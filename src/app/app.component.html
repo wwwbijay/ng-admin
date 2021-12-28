@@ -1,0 +1,21 @@
+<div *ngIf="!( (router.url === '/login') || (router.url === '/') )" #Sidenav id="mySidenav" class="sidenav"   
+[ngClass]="openNav ? 'open' : ' '">
+    <div class="sideBrand">
+        <img src="assets/mypay-logo.png">
+    </div>
+    <sidemenu></sidemenu>
+</div>
+<!--#mySidenav ends-->
+
+<div id="main" class="openNav" [ngClass]="(openNav && !( (router.url === '/login') || (router.url === '/') )) ? 'main-opennav' : ' '">
+    <nav-menu  *ngIf="! (router.url === '/login')" [openNav] = openNav (openSideNavFromChild) = "toggleSideNav()" >
+    </nav-menu>
+    <div [ngClass]="(router.url === '/login') ? '' : 'content'">
+        <router-outlet>
+        </router-outlet> 
+    </div>
+</div>
+<!--#main ends-->
+    
+
+

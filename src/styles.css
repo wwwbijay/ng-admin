@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+  --primaryColor: #E45415;
+}
+html, body { height: 100%; }
+body { background: #f3f3f3; margin: 0; font-family: 'Poppins', sans-serif; }
+img{
+    max-width: 100%;
+  }
+.btn.btn-primary{
+  background: var(--primaryColor);
+  border: none;
+  }
+h1,h2,h3,h4,h5{
+  font-weight: bold;
+}
+  .page-heading{
+    margin-bottom: 30px;
+  }
+  .navbar{
+    background: #fff;
+  }

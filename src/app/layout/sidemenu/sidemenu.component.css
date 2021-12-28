@@ -1,0 +1,40 @@
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  } 
+li a {
+    padding: 8px 20px 8px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    color: rgba(255,255,255,0.4);
+    display: block;
+    transition: 0.3s;
+  }
+  
+li a:hover {
+    color: rgba(255,255,255,0.9);
+  }
+ul li ul{
+    background: #011A28;
+    display: none;
+    width: 100%;
+  }
+ul li.active ul{
+  display: block;
+  }
+.active{
+  background: #194862;
+}
+.active a{
+  color: #fff;
+}
+ul li.active li a{
+  color: rgba(255, 255, 255, 0.5);
+  padding-left: 40px;
+  font-size: 14px;
+}
+ul li.active li a:hover{
+  background: #113244;
+  color: rgba(255,255,255,0.9);
+}

@@ -1,0 +1,60 @@
+
+<div class="login-wrap">
+  <div class="login-left w-50">
+    <img src="assets/login-hero.png"> 
+  </div>
+  <div class="login-right w-50">
+    <div class="login-page page">
+      <div class="page-header text-center">
+        <div class="welcome-msg">
+          <h4>
+            Welcome to
+          </h4>
+        </div><!--."welcome-msg ends-->
+        <div class="login-brand">
+          <img src="assets/mypay-logo.png">
+        </div><!--.login-brand ends-->
+        <div class="login-intro">
+          <p>
+            Login to get into the moment updates on the things that interest you
+          </p>
+        </div><!--.login-intro ends-->
+      </div>
+      <!--.page-header ends-->
+      <div class="page-entry">
+        
+          <form (ngSubmit) = "onSubmit()" [formGroup]="loginForm">
+              <div class="form-group">
+                <label for="inputEmail">Email address</label>
+                <input name="email" type="email" class="form-control" id="inputEmail" placeholder="your-email@mail.com" formControlName="email" >
+                  <small class="err_msg" *ngIf="email && email.invalid && email.touched">
+                    Please enter valid email address.
+                  </small>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Min. 8 characters" formControlName="password">
+                <small class="err_msg" *ngIf="password && password.invalid && password.touched">
+                  Please enter valid password.
+                </small>
+              </div>
+              <div class="remember-forgot-wrap form-group">
+                  <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                  </div>
+                  <div class="forgot-password">
+                      <a href="#">Forgot Password?</a>
+                  </div>
+              </div>
+              <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">
+                Submit
+              </button>
+  
+            </form>
+      </div><!--.page-entry ends-->
+    </div><!--.Login Page ends-->
+  </div>
+</div>
+
+
