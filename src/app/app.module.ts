@@ -16,6 +16,7 @@ import { UpdateWeeklyComponent } from './horoscope/update-weekly/update-weekly.c
 import { UpdateYearlyComponent } from './horoscope/update-yearly/update-yearly.component';
 import { DashboardComponent } from './horoscope/dashboard/dashboard.component';
 import { CpanelComponent } from './cpanel/cpanel.component';
+import { BreadcrumbsComponent } from './layout/breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CpanelComponent } from './cpanel/cpanel.component';
     UpdateWeeklyComponent,
     UpdateYearlyComponent,
     DashboardComponent,
-    CpanelComponent
+    CpanelComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,

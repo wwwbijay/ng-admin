@@ -18,36 +18,57 @@ const routes: Routes = [
   {
     component: CpanelComponent,
     path: '',
+    data: {
+      breadcrumb: 'Home'
+      },
     canActivate: [AuthGuard],
     children: [
       {
         component: DashboardComponent,
         path: 'horoscope',
+        data: {
+          breadcrumb: 'Horroscope'
+          },
         canActivate: [AuthGuard]
       },
       {
         component: ManageComponent,
         path: 'horoscope/manage',
+        data: {
+          breadcrumb: 'Manage Horroscope'
+          },
         canActivate: [AuthGuard]
       },
       {
         component: UpdateDailyComponent,
         path: 'horoscope/update-daily',
+        data: {
+          breadcrumb: 'Daily Update Horroscope'
+          },
         canActivate: [AuthGuard]
       },
       {
         component: UpdateWeeklyComponent,
         path: 'horoscope/update-weekly',
+        data: {
+          breadcrumb: 'Weekly Update Horroscope'
+          },
         canActivate: [AuthGuard]
       },
       {
         component: UpdateMonthlyComponent,
         path: 'horoscope/update-monthly',
+        data: {
+          breadcrumb: 'Monthly Update Horroscope'
+          },
         canActivate: [AuthGuard]
       },
       {
         component: UpdateYearlyComponent,
         path: 'horoscope/update-yearly',
+        data: {
+          breadcrumb: 'Yearly Update Horroscope'
+          },
         canActivate: [AuthGuard]
       },
     ]
