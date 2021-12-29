@@ -1,23 +1,46 @@
-<div class="page">
-  <div class="page-heading">
-      <h1>Control Panel</h1>
+<div [ngClass]="(router.url === '/')  ? 'page-cpanel' : 'no-cpanel'">
+  <div *ngIf="!(router.url === '/')" #Sidenav id="mySidenav" class="sidenav"   
+  [ngClass]="openNav ? 'open' : ' '">
+      <div class="sideBrand">
+          <a [routerLink]="'/'" >
+            <img src="assets/mypay-logo.png">
+          </a>
+      </div>
+      <sidemenu></sidemenu>
   </div>
-  <div class="page-entry text-center">
-    <div class="row">
-      <div class="col-sm">
-        <a [routerLink]= "'\horoscope'"> Horroscope </a>
+  <!--#mySidenav ends-->
+  
+  <div id="main" class="openNav" [ngClass]="!(router.url === '/') && openNav ? 'main-opennav' : ' '">
+    <nav-menu  [openNav] = openNav (openSideNavFromChild) = "toggleSideNav()" >
+    </nav-menu>
+
+    <div *ngIf=" (router.url === '/') " class="cpanel content">
+      <div class="page-heading">
+          <h1>Control Panel</h1>
       </div>
-      <div class="col-sm">
-        <a href="/"> Expense Management </a>
+      <div class="page-entry text-center">
+        <div class="row">
+          <div class="col-sm">
+            <a [routerLink]= "'\horoscope'"> Horroscope </a>
+          </div>
+          <div class="col-sm">
+            <a href="/"> Expense Management </a>
+          </div>
+          <div class="col-sm">
+            <a href="/"> User Management </a>
+          </div>
+          <div class="col-sm">
+            <a href="/"> Settings </a>
+          </div>
+        </div>
       </div>
-      <div class="col-sm">
-        <a href="/"> User Management </a>
-      </div>
-      <div class="col-sm">
-        <a href="/"> Settings </a>
-      </div>
+    </div><!--.Cpanel Ends-->
+
+    <div [ngClass]="(router.url === '/login') ? '' : 'content'">
+      <router-outlet>
+      </router-outlet> 
     </div>
   </div>
+  <!--#main ends-->
+
 </div>
-
-

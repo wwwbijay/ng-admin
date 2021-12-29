@@ -20,3 +20,13 @@ h1,h2,h3,h4,h5{
   .navbar{
     background: #fff;
   }
+  .page-cpanel .menu_icon{
+    display: none;
+  }
+  #main .menu_logo{
+    width: 110px;
+    line-height: 45px;
+  }
+  .no-cpanel .menu_logo{
+    display: none;
+  }
