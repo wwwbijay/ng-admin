@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BreadcrumbModule } from 'angular-crumbs';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
@@ -37,8 +36,7 @@ import { CpanelComponent } from './cpanel/cpanel.component';
     AppRoutingModule,
     NgbModule,
     NoopAnimationsModule,
-    ReactiveFormsModule,
-    BreadcrumbModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

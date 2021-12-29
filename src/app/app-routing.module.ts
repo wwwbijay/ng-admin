@@ -18,38 +18,41 @@ const routes: Routes = [
   {
     component: CpanelComponent,
     path: '',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      {
+        component: DashboardComponent,
+        path: 'horoscope',
+        canActivate: [AuthGuard]
+      },
+      {
+        component: ManageComponent,
+        path: 'horoscope/manage',
+        canActivate: [AuthGuard]
+      },
+      {
+        component: UpdateDailyComponent,
+        path: 'horoscope/update-daily',
+        canActivate: [AuthGuard]
+      },
+      {
+        component: UpdateWeeklyComponent,
+        path: 'horoscope/update-weekly',
+        canActivate: [AuthGuard]
+      },
+      {
+        component: UpdateMonthlyComponent,
+        path: 'horoscope/update-monthly',
+        canActivate: [AuthGuard]
+      },
+      {
+        component: UpdateYearlyComponent,
+        path: 'horoscope/update-yearly',
+        canActivate: [AuthGuard]
+      },
+    ]
   },
-  {
-    component: DashboardComponent,
-    path: 'horoscope',
-    canActivate: [AuthGuard]
-  },
-  {
-    component: ManageComponent,
-    path: 'horoscope/manage',
-    canActivate: [AuthGuard]
-  },
-  {
-    component: UpdateDailyComponent,
-    path: 'horoscope/update-daily',
-    canActivate: [AuthGuard]
-  },
-  {
-    component: UpdateWeeklyComponent,
-    path: 'horoscope/update-weekly',
-    canActivate: [AuthGuard]
-  },
-  {
-    component: UpdateMonthlyComponent,
-    path: 'horoscope/update-monthly',
-    canActivate: [AuthGuard]
-  },
-  {
-    component: UpdateYearlyComponent,
-    path: 'horoscope/update-yearly',
-    canActivate: [AuthGuard]
-  },
+  
   { 
     path: '**', 
     pathMatch: 'full', 
