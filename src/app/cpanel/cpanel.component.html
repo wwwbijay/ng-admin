@@ -13,6 +13,10 @@
   <div id="main" class="openNav" [ngClass]="!(router.url === '/') && openNav ? 'main-opennav' : ' '">
     <nav-menu  [openNav] = openNav (openSideNavFromChild) = "toggleSideNav()" >
     </nav-menu>
+    <div class="breadcrumbs">
+      <bj-breadcrumbs></bj-breadcrumbs>
+    </div>
+    
 
     <div *ngIf=" (router.url === '/') " class="cpanel content">
       <div class="page-heading">
@@ -35,8 +39,9 @@
         </div>
       </div>
     </div><!--.Cpanel Ends-->
-
+    
     <div [ngClass]="(router.url === '/login') ? '' : 'content'">
+      
       <router-outlet>
       </router-outlet> 
     </div>
