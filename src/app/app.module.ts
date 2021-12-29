@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BreadcrumbModule } from 'angular-crumbs';
+
+import { AppComponent } from './app.component';
 import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SidemenuComponent } from './layout/sidemenu/sidemenu.component';
@@ -16,7 +17,6 @@ import { UpdateWeeklyComponent } from './horoscope/update-weekly/update-weekly.c
 import { UpdateYearlyComponent } from './horoscope/update-yearly/update-yearly.component';
 import { DashboardComponent } from './horoscope/dashboard/dashboard.component';
 import { CpanelComponent } from './cpanel/cpanel.component';
-
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { CpanelComponent } from './cpanel/cpanel.component';
     AppRoutingModule,
     NgbModule,
     NoopAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BreadcrumbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
