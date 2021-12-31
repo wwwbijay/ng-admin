@@ -1,0 +1,18 @@
+.page-item{
+    margin: 10px 0 20px;
+}
+.page-entry-heading{
+    background: #E3E6EA;
+    padding: 12px;
+}
+.page-entry-heading h3{
+    font-size: 18px;
+    margin: 0;
+}
+.page-item-entry{
+    background: #fff;
+    padding: 50px 30px;
+}
+.page-item-entry a{
+    text-decoration: none;
+}

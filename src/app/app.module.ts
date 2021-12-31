@@ -17,6 +17,8 @@ import { UpdateYearlyComponent } from './horoscope/update-yearly/update-yearly.c
 import { DashboardComponent } from './horoscope/dashboard/dashboard.component';
 import { CpanelComponent } from './cpanel/cpanel.component';
 import { BreadcrumbsComponent } from './layout/breadcrumbs/breadcrumbs.component';
+import { RecentlyUsedComponent } from './cpanel/recently-used/recently-used.component';
+import { SidebarItemComponent } from './cpanel/sidebar-item/sidebar-item.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { BreadcrumbsComponent } from './layout/breadcrumbs/breadcrumbs.component
     UpdateYearlyComponent,
     DashboardComponent,
     CpanelComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    RecentlyUsedComponent,
+    SidebarItemComponent
   ],
   imports: [
     BrowserModule,
