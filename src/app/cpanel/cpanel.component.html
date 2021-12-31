@@ -18,30 +18,20 @@
     </div>
     
 
-    <div *ngIf=" (router.url === '/') " class="cpanel content">
-      <div class="page-heading">
-          <h1>Control Panel</h1>
-      </div>
-      <div class="page-entry text-center">
+    <div *ngIf=" (router.url === '/') " class="cpanel container-fluid">
         <div class="row">
-          <div class="col-sm">
-            <a [routerLink]= "'\horoscope'"> Horroscope </a>
-          </div>
-          <div class="col-sm">
-            <a href="/"> Expense Management </a>
-          </div>
-          <div class="col-sm">
-            <a href="/"> User Management </a>
-          </div>
-          <div class="col-sm">
-            <a href="/"> Settings </a>
-          </div>
-        </div>
-      </div>
+          <div class="col-8">
+            <recently-used itemTitle="Recently Used"></recently-used>
+            <recently-used itemTitle="Apps"></recently-used>
+            <recently-used itemTitle="Preferences"></recently-used>
+          </div><!--.col ends-->
+          <div class="col-4">
+            <sidebar-item itemTitle="General Information"></sidebar-item>
+            <sidebar-item itemTitle="Statistics"></sidebar-item>
+          </div><!--.col ends-->
+        </div><!--.row ends-->
     </div><!--.Cpanel Ends-->
-    
     <div [ngClass]="(router.url === '/login') ? '' : 'content'">
-      
       <router-outlet>
       </router-outlet> 
     </div>

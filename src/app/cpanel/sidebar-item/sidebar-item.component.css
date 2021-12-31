@@ -1,0 +1,27 @@
+.sidebar-item{
+    margin: 10px 0 20px;
+}
+.sidebar-entry-heading{
+    background: #E3E6EA;
+    padding: 12px;
+}
+.sidebar-entry-heading h3{
+    font-size: 18px;
+    margin: 0;
+}
+.sidebar-item-entry{
+    background: #fff;
+    padding: 20px;
+}
+.sidebar-item-entry a{
+    text-decoration: none;
+}
+.list-item{
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+}
+.list-item h5,
+.list-item p{
+    margin: 0;
+    font-size: 16px;
+}
