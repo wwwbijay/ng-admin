@@ -3,10 +3,11 @@
        <a [routerLink] ="data['link']">
             {{ data['title'] }}
         </a>
+     
         <ul>
-            <li *ngFor='let obj of data["submenu"]'> 
+            <li *ngFor='let obj of data["submenu"]' [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"> 
                 <a [routerLink]=" obj.link ">
-                     {{ obj.subtitle }}
+                     {{ obj.title }}
                 </a>
             </li>
         </ul>

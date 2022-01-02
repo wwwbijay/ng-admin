@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { CpanelComponent } from './cpanel/cpanel.component';
-import { DashboardComponent } from './horoscope/dashboard/dashboard.component';
-import { ManageComponent } from './horoscope/manage/manage.component';
-import { UpdateDailyComponent } from './horoscope/update-daily/update-daily.component';
-import { UpdateWeeklyComponent } from './horoscope/update-weekly/update-weekly.component';
-import { UpdateMonthlyComponent } from './horoscope/update-monthly/update-monthly.component';
 import { UpdateYearlyComponent } from './horoscope/update-yearly/update-yearly.component';
+import { UpdateMonthlyComponent } from './horoscope/update-monthly/update-monthly.component';
+import { UpdateWeeklyComponent } from './horoscope/update-weekly/update-weekly.component';
+import { UpdateDailyComponent } from './horoscope/update-daily/update-daily.component';
+import { ManageComponent } from './horoscope/manage/manage.component';
+import { DashboardComponent } from './horoscope/dashboard.component';
+
 
 const routes: Routes = [
   {
@@ -22,58 +23,61 @@ const routes: Routes = [
       breadcrumb: 'Home'
       },
     canActivate: [AuthGuard],
+    pathMatch: 'prefix', 
     children: [
       {
         component: DashboardComponent,
         path: 'horoscope',
         data: {
-          breadcrumb: 'Horroscope'
+          breadcrumb: 'Horoscope'
           },
-        canActivate: [AuthGuard]
-      },
-      {
-        component: ManageComponent,
-        path: 'horoscope/manage',
-        data: {
-          breadcrumb: 'Manage Horroscope'
+        canActivate: [AuthGuard],
+        pathMatch: 'prefix',
+        children: [
+          {
+            component: ManageComponent,
+            path: 'manage',
+            data: {
+              breadcrumb: 'Manage Horroscope'
+              },
+            canActivate: [AuthGuard]
           },
-        canActivate: [AuthGuard]
-      },
-      {
-        component: UpdateDailyComponent,
-        path: 'horoscope/update-daily',
-        data: {
-          breadcrumb: 'Daily Update Horroscope'
+          {
+            component: UpdateDailyComponent,
+            path: 'update-daily',
+            data: {
+              breadcrumb: 'Daily Update Horroscope'
+              },
+            canActivate: [AuthGuard]
           },
-        canActivate: [AuthGuard]
-      },
-      {
-        component: UpdateWeeklyComponent,
-        path: 'horoscope/update-weekly',
-        data: {
-          breadcrumb: 'Weekly Update Horroscope'
+          {
+            component: UpdateWeeklyComponent,
+            path: 'update-weekly',
+            data: {
+              breadcrumb: 'Weekly Update Horroscope'
+              },
+            canActivate: [AuthGuard]
           },
-        canActivate: [AuthGuard]
-      },
-      {
-        component: UpdateMonthlyComponent,
-        path: 'horoscope/update-monthly',
-        data: {
-          breadcrumb: 'Monthly Update Horroscope'
+          {
+            component: UpdateMonthlyComponent,
+            path: 'update-monthly',
+            data: {
+              breadcrumb: 'Monthly Update Horroscope'
+              },
+            canActivate: [AuthGuard]
           },
-        canActivate: [AuthGuard]
-      },
-      {
-        component: UpdateYearlyComponent,
-        path: 'horoscope/update-yearly',
-        data: {
-          breadcrumb: 'Yearly Update Horroscope'
+          {
+            component: UpdateYearlyComponent,
+            path: 'update-yearly',
+            data: {
+              breadcrumb: 'Yearly Update Horroscope'
+              },
+            canActivate: [AuthGuard]
           },
-        canActivate: [AuthGuard]
+        ]
       },
     ]
   },
-  
   { 
     path: '**', 
     pathMatch: 'full', 
