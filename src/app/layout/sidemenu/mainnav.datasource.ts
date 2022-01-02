@@ -12,7 +12,7 @@ export let mainDataSource: any[] = [
     submenu: [
       {
         title: 'Manage Horoscope',
-        link: 'horoscope/manage',
+        link: 'horoscope',
       },
       {
         title: 'Daily Update',
