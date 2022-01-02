@@ -1,0 +1,20 @@
+.page-item{
+    margin: 10px 0 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 20px 27px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    padding: 30px;
+}
+
+.page-entry-heading h3{
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 132%;
+    color: #022335;
+}
+.page-item-entry{
+    padding: 50px 30px;
+}
+.page-item-entry a{
+    text-decoration: none;
+}

@@ -1,0 +1,39 @@
+.stat-item{
+    padding: 20px;
+    display: flex;
+    margin: 20px 0;
+    border-radius: 3px;
+    color: #fff;
+}
+.stat-item.orange{
+    background: rgba(227, 101, 9, 0.65);
+    background: linear-gradient(180deg, rgba(227, 101, 9, 0.65) 0%, rgba(134, 41, 21, 0.9) 100%);
+}
+.stat-item.green{
+    background: linear-gradient(180deg, rgba(97, 124, 40, 0.65) 0%, rgba(51, 91, 10, 0.9) 100%);
+}
+.stat-item.blue{
+    background: linear-gradient(180deg, rgba(9, 122, 227, 0.65) 0%, rgba(21, 32, 134, 0.9) 100%);
+}
+.stat-item.red{
+    background: linear-gradient(180deg, rgba(227, 9, 9, 0.65) 0%, rgba(134, 21, 21, 0.9) 100%);
+}
+.item-entry{
+    width: 60%;
+}
+.item-icon{
+    width: 40%;
+}
+
+.item-title{
+    font-size: 18px;
+}
+.item-count{
+    font-size: 25px;
+}
+.item-icon span{
+    font-size: 70px;
+    opacity: 0.5;
+    text-align: center;
+    line-height: 70px;
+}
