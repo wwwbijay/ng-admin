@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { dataSource } from './sidemenu.datasource';
+import { mainDataSource } from './mainnav.datasource';
 
 @Component({
   selector: 'sidemenu',
@@ -7,7 +7,7 @@ import { dataSource } from './sidemenu.datasource';
   styleUrls: ['./sidemenu.component.css']
 })
 export class SidemenuComponent implements OnInit {
-  datas: any[] = dataSource;
+  datas: any[] = mainDataSource;
   
   constructor() { 
    }
