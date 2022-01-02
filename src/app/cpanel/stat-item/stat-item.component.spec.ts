@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidebarItemComponent } from './sidebar-item.component';
+import { StatItemComponent } from './stat-item.component';
 
-describe('SidebarItemComponent', () => {
-  let component: SidebarItemComponent;
-  let fixture: ComponentFixture<SidebarItemComponent>;
+describe('StatItemComponent', () => {
+  let component: StatItemComponent;
+  let fixture: ComponentFixture<StatItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SidebarItemComponent ]
+      declarations: [ StatItemComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SidebarItemComponent);
+    fixture = TestBed.createComponent(StatItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
