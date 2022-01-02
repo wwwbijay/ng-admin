@@ -35,6 +35,9 @@ ul li.active li a{
   font-size: 14px;
 }
 ul li.active li a:hover{
-  background: #113244;
+  background: #0e2836;
   color: rgba(255,255,255,0.9);
+}
+ul li.active li.active a{
+  background: #113244;
 }

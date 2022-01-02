@@ -1,0 +1,25 @@
+.horoscope-nav ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: #fff;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.horoscope-nav li a{
+    font-size: 14px;
+    color: #000;
+    display: inline-block;
+    padding: 20px 30px;
+}
+.horoscope-nav li a:hover{
+    text-decoration: none;
+}
+.horoscope-nav li.active a{
+    background: #022335;
+    color: #fff;
+    border-radius: 4px;
+}
+

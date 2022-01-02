@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
-  --primaryColor: #E45415;
+  --primaryBg: #022335;
 }
 html, body { height: 100%; }
 body { background: #f3f3f3; margin: 0; font-family: 'Poppins', sans-serif; }
@@ -8,7 +8,7 @@ img{
     max-width: 100%;
   }
 .btn.btn-primary{
-  background: var(--primaryColor);
+  background: var(--primaryBg);
   border: none;
   }
 h1,h2,h3,h4,h5{
@@ -22,3 +22,31 @@ h1,h2,h3,h4,h5{
   }
  
  
+/*
+Page Item Starts
+*/
+  .page-item{
+    margin: 30px 0 20px;
+}
+.page-entry-heading{
+    background: #E3E6EA;
+    padding: 18px;
+    position: relative;
+}
+.page-entry-heading .btn{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin-top: -18px;
+}
+.page-entry-heading h3{
+    font-size: 18px;
+    margin: 0;
+}
+.page-item-entry{
+    background: #fff;
+    padding: 50px 30px;
+}
+.page-item-entry a{
+    text-decoration: none;
+}

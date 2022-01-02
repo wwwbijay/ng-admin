@@ -1,2 +1,35 @@
-<router-outlet></router-outlet>
+<nav class="horoscope-nav">
+    <ul>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/horoscope'">Horoscope Dashboard</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/horoscope/update-daily'">Daily Horoscope</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/horoscope/update-weekly'">Weekly Horoscope</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/horoscope/update-monthly'">Monthly Horoscope</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/horoscope/update-yearly'">Yearly Horoscope</a>
+        </li>
+    </ul>
+</nav>
 
+<div *ngIf="router.url === '/horoscope'" class="horroscope-dashboard">
+    <div class="page-item">
+        <div class="page-entry-heading">
+            <h3>Horoscope Management</h3>
+            <a class="btn btn-primary" [routerLink]="'/'">+ Create</a>
+        </div><!--.page-entry-heading ends-->
+
+        <div class="page-item-entry text-center">
+          
+        </div><!--.page-entry-heading ends-->
+      </div>
+      <!--.page-item END-->
+</div>
+
+<router-outlet></router-outlet>

@@ -16,7 +16,6 @@ import { CpanelComponent } from './cpanel/cpanel.component';
 import { BreadcrumbsComponent } from './layout/breadcrumbs/breadcrumbs.component';
 import { DashItemComponent } from './cpanel/dash-item/dash-item.component';
 
-import { ManageComponent } from './horoscope/manage/manage.component';
 import { UpdateDailyComponent } from './horoscope/update-daily/update-daily.component';
 import { UpdateMonthlyComponent } from './horoscope/update-monthly/update-monthly.component';
 import { UpdateWeeklyComponent } from './horoscope/update-weekly/update-weekly.component';
@@ -35,7 +34,6 @@ import { ChartComponent } from './cpanel/chart/chart.component';
     CpanelComponent,
     BreadcrumbsComponent,
     DashItemComponent,
-    ManageComponent,
     UpdateDailyComponent,
     UpdateMonthlyComponent,
     UpdateWeeklyComponent,

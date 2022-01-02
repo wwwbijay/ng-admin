@@ -7,7 +7,6 @@ import { UpdateYearlyComponent } from './horoscope/update-yearly/update-yearly.c
 import { UpdateMonthlyComponent } from './horoscope/update-monthly/update-monthly.component';
 import { UpdateWeeklyComponent } from './horoscope/update-weekly/update-weekly.component';
 import { UpdateDailyComponent } from './horoscope/update-daily/update-daily.component';
-import { ManageComponent } from './horoscope/manage/manage.component';
 import { DashboardComponent } from './horoscope/dashboard.component';
 
 
@@ -23,7 +22,7 @@ const routes: Routes = [
       breadcrumb: 'Home'
       },
     canActivate: [AuthGuard],
-    pathMatch: 'prefix', 
+     
     children: [
       {
         component: DashboardComponent,
@@ -32,16 +31,8 @@ const routes: Routes = [
           breadcrumb: 'Horoscope'
           },
         canActivate: [AuthGuard],
-        pathMatch: 'prefix',
+        
         children: [
-          {
-            component: ManageComponent,
-            path: 'manage',
-            data: {
-              breadcrumb: 'Manage Horroscope'
-              },
-            canActivate: [AuthGuard]
-          },
           {
             component: UpdateDailyComponent,
             path: 'update-daily',
