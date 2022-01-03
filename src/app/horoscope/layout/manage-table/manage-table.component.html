@@ -1,0 +1,70 @@
+<table class="table table-striped table-mid-content">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Horoscope</th>
+    <th scope="col">Image</th>
+    <th scope="col">Subtitle</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let sign of allsigns; index as i" valign="middle">
+    <th scope="row">{{i+1}}</th>
+    <td>
+      {{sign.title}}
+    </td>
+    <td>
+      <img [src]="'assets/horoscope-signs/'+sign.image" class="mr-2" style="width: 100px">
+    </td>
+    <td>
+      <p>
+        {{sign.subtitle}}
+      </p>
+    </td>
+    <td>
+      <a class="btn btn-icon btn-icon-edit" >
+        <span class="material-icons">
+          edit
+          </span>
+      </a>
+      <a class="btn btn-icon btn-icon-view" data-toggle="modal" data-target="#deleteModal-{{sign.id}}">
+        <span class="material-icons">
+          delete 
+        </span>
+      </a>
+      <!-- Delete Modal START -->
+    <div class="modal fade" id="deleteModal-{{sign.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+              <h5 class="modal-title">Are you sure you want to delete Zodiac sign?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                    <div class="col-12">
+                        <p>
+                          Please click delete button to confirm operation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button"  class="btn btn-primary " (click)="deleteSigns(sign.id)" data-dismiss="modal">Delete {{sign.id}} </button>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Delete Modal END-->
+     
+      
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+

@@ -22,4 +22,9 @@
     color: #fff;
     border-radius: 4px;
 }
-
+.modal-title{
+    width: 100%;
+}
+.page-item .modal-body{
+    padding: 40px;
+}

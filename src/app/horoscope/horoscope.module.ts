@@ -8,6 +8,7 @@ import { UpdateMonthlyComponent } from './update-monthly/update-monthly.componen
 import { UpdateWeeklyComponent } from './update-weekly/update-weekly.component';
 import { UpdateDailyComponent } from './update-daily/update-daily.component';
 import { DashboardComponent } from './dashboard.component';
+import { ManageTableComponent } from './layout/manage-table/manage-table.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DashboardComponent } from './dashboard.component';
     UpdateWeeklyComponent,
     UpdateMonthlyComponent,
     UpdateYearlyComponent,
+    ManageTableComponent,
   ],
   imports: [
     CommonModule,
