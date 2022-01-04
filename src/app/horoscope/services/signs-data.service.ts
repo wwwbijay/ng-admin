@@ -1,18 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, from } from 'rxjs';
 
+const baseUrl = 'http://localhost:3000/signs';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class SignsDataService {
-  url = "http://localhost:3000/signs";
   constructor(private http: HttpClient) { }
   
-  getItems(){
-    return this.http.get(this.url);
+  getAll(): Observable<any> {
+    return this.http.get(baseUrl);
   }
-  deleteItem(id: number){
-    return this.http.delete(this.url+'/'+id);
+
+  get(id: number): Observable<any> {
+    return this.http.get(`${baseUrl}/${id}`);
   }
+
+  create(data: any): Observable<any> {
+    return this.http.post(baseUrl, data);
+  }
+
+  update(id:number, data: any): Observable<any> {
+    return this.http.put(`${baseUrl}/${id}`, data);
+  }
+
+  delete(id:number): Observable<any> {
+    return this.http.delete(`${baseUrl}/${id}`);
+  }
+
+  deleteAll(): Observable<any> {
+    return this.http.delete(baseUrl);
+  }
+
 }

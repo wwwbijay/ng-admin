@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { HoroscopeRoutingModule } from './horoscope-routing.module';
 
@@ -21,7 +22,8 @@ import { ManageTableComponent } from './layout/manage-table/manage-table.compone
   ],
   imports: [
     CommonModule,
-    HoroscopeRoutingModule
+    HoroscopeRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class HoroscopeModule { }

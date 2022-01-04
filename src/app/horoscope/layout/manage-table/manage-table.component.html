@@ -9,8 +9,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let sign of allsigns; index as i" valign="middle">
-    <th scope="row">{{i+1}}</th>
+  <tr *ngFor="let sign of allsigns$ | async">
+    <th scope="row">{{sign.id}}</th>
     <td>
       {{sign.title}}
     </td>
@@ -23,48 +23,162 @@
       </p>
     </td>
     <td>
-      <a class="btn btn-icon btn-icon-edit" >
+      <a (click)="btnEditClicked(sign.id)" class="btn btn-icon btn-icon-edit" data-toggle="modal" data-target="#editSignModal">
         <span class="material-icons">
           edit
           </span>
       </a>
-      <a class="btn btn-icon btn-icon-view" data-toggle="modal" data-target="#deleteModal-{{sign.id}}">
+      <a (click)="btnDeleteClicked(sign.id)" class="btn btn-icon btn-icon-view" data-toggle="modal" data-target="#modal">
         <span class="material-icons">
           delete 
         </span>
       </a>
-      <!-- Delete Modal START -->
-    <div class="modal fade" id="deleteModal-{{sign.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-              <h5 class="modal-title">Are you sure you want to delete Zodiac sign?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                    <div class="col-12">
-                        <p>
-                          Please click delete button to confirm operation.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button"  class="btn btn-primary " (click)="deleteSigns(sign.id)" data-dismiss="modal">Delete {{sign.id}} </button>
-            </div>
-        </div>
-      </div>
-    </div>
-    <!-- Delete Modal END-->
-     
-      
     </td>
   </tr>
   </tbody>
 </table>
+
+<!-- Delete Modal START -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title">Are you sure you want to delete Zodiac sign?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+                <div class="col-12">
+                    <p>
+                      Please click delete button to confirm operation.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button"  class="btn btn-primary " (click)="deleteSign()" data-dismiss="modal">Delete </button>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- Delete Modal END-->
+
+
+
+<!-- Edit Modal START -->
+<div
+class="modal fade"
+id="editSignModal"
+tabindex="-1"
+role="dialog"
+aria-labelledby="createModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+      <div class="modal-header text-center">
+          <h5 class="modal-title">Edit Zodiac Sign</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div><!--.modal-header ends-->
+
+      <div *ngIf="edit_submitted" class="submitted">
+          <div class="alert alert-success text-center" role="alert">
+              <p>Zodiac Sign Updated Successfully!</p>
+          </div>
+      </div>
+
+    <form [formGroup]="editSignForm" (ngSubmit)="editSign()">
+      
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="inputId" class="form-label">Id</label>
+            <input
+              name="id"
+              type="number"
+              class="form-control"
+              id="inputId"
+              formControlName="id"
+              value="{{onesign.id}}"
+            />
+            <small *ngIf="eid && eid.invalid && eid.touched" class="err_msg">
+              Please enter valid id.
+            </small>
+          </div>
+          <div class="col-md-4">
+            <label for="inputTitle" class="form-label">Title</label>
+            <input
+              name="title"
+              type="text"
+              class="form-control"
+              id="inputTitle"
+              formControlName="title"
+              value="{{onesign.title}}"
+            />
+            <small *ngIf="etitle && etitle.invalid && etitle.touched" class="err_msg">
+              Please enter valid id.
+            </small>
+          </div>
+          <div class="col-md-6">
+            <label for="inputSubtitle" class="form-label">Subtitle</label>
+            <input
+              name="subtitle"
+              type="text"
+              class="form-control"
+              id="inputSubtitle"
+              formControlName="subtitle"
+              value="{{onesign.subtitle}}"
+            />
+            <small *ngIf="esubtitle && esubtitle.invalid && esubtitle.touched" class="err_msg">
+              Please enter valid subtitle.
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label for="inputImage" class="form-label">Image</label>
+            <input
+              name="image"
+              type="file"
+              class="form-control"
+              id="inputImage"
+              formControlName="image"
+              value="{{onesign.image}}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          [disabled]="editSignForm.invalid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+  <!--.modal-content ends-->
+</div>
+</div>
+<!-- Edit Modal END-->
 
 
