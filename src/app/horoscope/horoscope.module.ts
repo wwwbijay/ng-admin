@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { HoroscopeRoutingModule } from './horoscope-routing.module';
 
@@ -8,6 +9,7 @@ import { UpdateMonthlyComponent } from './update-monthly/update-monthly.componen
 import { UpdateWeeklyComponent } from './update-weekly/update-weekly.component';
 import { UpdateDailyComponent } from './update-daily/update-daily.component';
 import { DashboardComponent } from './dashboard.component';
+import { ManageTableComponent } from './layout/manage-table/manage-table.component';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,12 @@ import { DashboardComponent } from './dashboard.component';
     UpdateWeeklyComponent,
     UpdateMonthlyComponent,
     UpdateYearlyComponent,
+    ManageTableComponent,
   ],
   imports: [
     CommonModule,
-    HoroscopeRoutingModule
+    HoroscopeRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class HoroscopeModule { }

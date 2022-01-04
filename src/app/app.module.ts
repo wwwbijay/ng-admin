@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgChartsModule } from 'ng2-charts';
 import { HoroscopeModule } from './horoscope/horoscope.module';
+
 
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,11 +36,12 @@ import { ChartComponent } from './cpanel/chart/chart.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     NgbModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
     NgChartsModule,
-    HoroscopeModule
+    HoroscopeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

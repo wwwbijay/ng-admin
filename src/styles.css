@@ -1,52 +1,130 @@
 /* You can add global styles to this file, and also import other style files */
-:root{
+:root {
   --primaryBg: #022335;
 }
-html, body { height: 100%; }
-body { background: #f3f3f3; margin: 0; font-family: 'Poppins', sans-serif; }
-img{
-    max-width: 100%;
-  }
-.btn.btn-primary{
-  background: var(--primaryBg);
-  border: none;
-  }
-h1,h2,h3,h4,h5{
+html,
+body {
+  height: 100%;
+}
+body {
+  background: #f3f3f3;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+img {
+  max-width: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-weight: bold;
 }
-  .page-heading{
-    margin-bottom: 30px;
-  }
-  .navbar{
-    background: #fff;
-  }
- 
- 
-/*
+.page-heading {
+  margin-bottom: 30px;
+}
+.navbar {
+  background: #fff;
+}
+.table.table-striped.table-mid-content th,
+.table.table-striped.table-mid-content td {
+  vertical-align: middle;
+}
+/***********************************
+General Buttons Starts
+**************************************/
+.btn.btn-primary {
+  background: var(--primaryBg);
+  border: none;
+}
+.btn.btn-icon {
+  border: none;
+  margin: 0 5px;
+  border-radius: 50%;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  text-align: center;
+}
+.btn.btn-icon-edit {
+  background: linear-gradient(
+    180deg,
+    rgba(97, 124, 40, 0.65) 0%,
+    rgba(51, 91, 10, 0.9) 100%
+  );
+}
+.btn.btn-icon-view {
+  background: linear-gradient(
+    180deg,
+    rgba(227, 9, 9, 0.65) 0%,
+    rgba(134, 21, 21, 0.9) 100%
+  );
+}
+.btn.btn-icon span {
+  font-size: 18px;
+  line-height: 35px;
+  width: 100%;
+}
+
+/***********************************
 Page Item Starts
-*/
-  .page-item{
-    margin: 30px 0 20px;
+**************************************/
+.page-item {
+  margin: 30px 0 20px;
 }
-.page-entry-heading{
-    background: #E3E6EA;
-    padding: 18px;
-    position: relative;
+.page-entry-heading {
+  background: #e3e6ea;
+  padding: 18px;
+  position: relative;
 }
-.page-entry-heading .btn{
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    margin-top: -18px;
+.page-entry-heading .btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  margin-top: -18px;
 }
-.page-entry-heading h3{
-    font-size: 18px;
-    margin: 0;
+.page-entry-heading h3 {
+  font-size: 18px;
+  margin: 0;
 }
-.page-item-entry{
-    background: #fff;
-    padding: 50px 30px;
+.page-item-entry {
+  background: #fff;
+  padding: 50px 30px;
 }
-.page-item-entry a{
-    text-decoration: none;
+.page-item-entry a {
+  text-decoration: none;
+}
+/***********************************
+Form Error Messages Starts
+**************************************/
+
+.err_msg {
+  color: red;
+  display: inline-block;
+  line-height: 16px;
+  margin: 7px 0;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+/***********************************
+Bootstrap Modal 
+**************************************/
+body.modal-open.modal-open.modal-open {
+  overflow: visible;
+}
+.modal-title{
+  width: 100%;
+}
+.page-item .modal-body{
+  padding: 40px;
+}
+.modal-body .row{
+  padding-bottom: 20px;
+}
+input[type="file"]{
+  height: 45px;
 }

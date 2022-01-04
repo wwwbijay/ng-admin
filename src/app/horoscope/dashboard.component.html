@@ -1,35 +1,157 @@
 <nav class="horoscope-nav">
-    <ul>
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a [routerLink]="'/horoscope'">Horoscope Dashboard</a>
-        </li>
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a [routerLink]="'/horoscope/update-daily'">Daily Horoscope</a>
-        </li>
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a [routerLink]="'/horoscope/update-weekly'">Weekly Horoscope</a>
-        </li>
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a [routerLink]="'/horoscope/update-monthly'">Monthly Horoscope</a>
-        </li>
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-            <a [routerLink]="'/horoscope/update-yearly'">Yearly Horoscope</a>
-        </li>
-    </ul>
+  <ul>
+    <li
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a [routerLink]="'/horoscope'">Horoscope Dashboard</a>
+    </li>
+    <li
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a [routerLink]="'/horoscope/update-daily'">Daily Horoscope</a>
+    </li>
+    <li
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a [routerLink]="'/horoscope/update-weekly'">Weekly Horoscope</a>
+    </li>
+    <li
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a [routerLink]="'/horoscope/update-monthly'">Monthly Horoscope</a>
+    </li>
+    <li
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a [routerLink]="'/horoscope/update-yearly'">Yearly Horoscope</a>
+    </li>
+  </ul>
 </nav>
 
 <div *ngIf="router.url === '/horoscope'" class="horroscope-dashboard">
-    <div class="page-item">
-        <div class="page-entry-heading">
-            <h3>Horoscope Management</h3>
-            <a class="btn btn-primary" [routerLink]="'/'">+ Create</a>
-        </div><!--.page-entry-heading ends-->
+  <div class="page-item">
+    <div class="page-entry-heading">
+      <h3>Horoscope Management</h3>
+      <a (click)="createSignClicked()" class="btn btn-primary" data-toggle="modal" data-target="#createModal"
+        >+ Create</a
+      >
+    </div>
+    <!--.page-entry-heading ends-->
 
-        <div class="page-item-entry text-center">
-          
-        </div><!--.page-entry-heading ends-->
+    <!-- Create Modal START -->
+    <div
+      class="modal fade"
+      id="createModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="createModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title">Add New Zodiac Sign</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div><!--.modal-header ends-->
+
+            <div *ngIf="submitted" class="submitted">
+                <div class="alert alert-success text-center" role="alert">
+                    <p>New Sign Created Successfully!</p>
+                </div>
+            </div>
+
+          <form [formGroup]="createSignForm" (ngSubmit)="addSign()">
+            
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <label for="inputId" class="form-label">Id</label>
+                  <input
+                    name="id"
+                    type="number"
+                    class="form-control"
+                    id="inputId"
+                    formControlName="id"
+                  />
+                  <small *ngIf="id && id.invalid && id.touched" class="err_msg">
+                    Please enter valid id.
+                  </small>
+                </div>
+                <div class="col-md-4">
+                  <label for="inputTitle" class="form-label">Title</label>
+                  <input
+                    name="title"
+                    type="text"
+                    class="form-control"
+                    id="inputTitle"
+                    formControlName="title"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="inputSubtitle" class="form-label">Subtitle</label>
+                  <input
+                    name="subtitle"
+                    type="text"
+                    class="form-control"
+                    id="inputSubtitle"
+                    formControlName="subtitle"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <label for="inputImage" class="form-label">Image</label>
+                  <input
+                    name="image"
+                    type="file"
+                    class="form-control"
+                    id="inputImage"
+                    formControlName="image"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                [disabled]="createSignForm.invalid"
+                type="submit"
+                class="btn btn-primary"
+              >
+                Add
+              </button>
+            </div>
+          </form>
+        </div>
+        <!--.modal-content ends-->
       </div>
-      <!--.page-item END-->
+    </div>
+    <!-- Create Modal END-->
+
+    <div class="page-item-entry text-center">
+      <manage-table></manage-table>
+    </div>
+    <!--.page-entry-heading ends-->
+  </div>
+  <!--.page-item END-->
 </div>
 
 <router-outlet></router-outlet>

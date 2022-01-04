@@ -8,7 +8,8 @@ import { UpdateDailyComponent } from './update-daily/update-daily.component';
 import { DashboardComponent } from './dashboard.component';
 import { AuthGuard } from '../auth/auth.guard';
 
-const routes: Routes = [{
+const routes: Routes = [
+  {
   component: DashboardComponent,
   path: 'horoscope',
   data: {
