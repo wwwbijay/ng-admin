@@ -1,13 +1,40 @@
 <div class="horroscope-dashboard">
-    <div class="page-item">
-        <div class="page-entry-heading">
-            <h3>Daily Horoscope</h3>
-            <a class="btn btn-primary" [routerLink]="'/'">+ Create</a>
-        </div><!--.page-entry-heading ends-->
+  <div class="page-item">
+    <div class="page-entry-heading">
+      <h3>Daily Horoscope</h3>
+      <a class="btn btn-primary" [routerLink]="'/'">+ Create</a>
+    </div>
+    <!--.page-entry-heading ends-->
 
-        <div class="page-item-entry text-center">
-          
-        </div><!--.page-entry-heading ends-->
+    <div class="page-item-entry text-center">
+      <div class="row date-picker mb-3 ">
+          <div class="col text-left">
+            <strong>Date:</strong> 
+          </div>
+          <div class="col text-right">
+              <div class="row">
+                  <div class="col">
+                    <p>
+                        Select Date: 
+                    </p>
+                  </div>
+                  <div class="col">
+                    <input
+                        type="text"
+                        value=""
+                        name="date"
+                        class="bod-picker form-control"
+                        placeholder="Select Date"
+                    />
+                </div>
+              </div>
+            
+         </div>
       </div>
-      <!--.page-item END-->
+
+      <daily-table></daily-table>
+    </div>
+    <!--.page-entry-heading ends-->
+  </div>
+  <!--.page-item END-->
 </div>

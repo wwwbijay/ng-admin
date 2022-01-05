@@ -21,6 +21,9 @@ h4,
 h5 {
   font-weight: bold;
 }
+p{
+  margin: 8px 0;
+}
 .page-heading {
   margin-bottom: 30px;
 }
@@ -31,6 +34,7 @@ h5 {
 .table.table-striped.table-mid-content td {
   vertical-align: middle;
 }
+
 /***********************************
 General Buttons Starts
 **************************************/
