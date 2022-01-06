@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators  } from '@angular/forms';
 import {Router} from "@angular/router"
+import { AuthService } from '../auth/auth.service';
+import { IUser } from '../auth/IUser';
 
 @Component({
   selector: 'app-login',
@@ -8,34 +10,52 @@ import {Router} from "@angular/router"
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  _email: String = 'bijay@mypay.com.np';
-  _password: String = '12345678';
-
+  
+  currentUser: IUser = {
+    userName: '',
+    email: '',
+    roles: ''
+  };
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)])
   })
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authservice: AuthService) { }
 
-  ngOnInit(): void {
-
-  }
-  get email(){
-    return this.loginForm.get('email');
+  ngOnInit(): void {}
+  get username(){
+    return this.loginForm.get('username');
   }
   get password(){
     return this.loginForm.get('password');
   }
   onSubmit(){
-    if( this._email === this.loginForm.value.email && this._password === this.loginForm.value.password ){
-        localStorage.setItem('token','68d5aaaa3emsh19d4967d4fab744p1a4ad6jsn30b6fb59bc09');
-        localStorage.setItem('user_type','admin');
-        this.router.navigate(['/']);
+    var login_model = {
+     userName: this.loginForm.value.username,
+     password: this.loginForm.value.password
+    };
+
+    this.authservice.login(login_model).subscribe({
+      next: (rawToken:any) => {
         alert('Logged in Successfully!');
-    }else{
-      alert('Username or password Incorrect');
-    }
+        
+      },
+      error: (err: Error) => {
+        alert('Username or password Incorrect!');
+      },
+      complete: () => { 
+        this.router.navigate(['/']);
+      },
+    });
+    
+    // if( this._username === this.loginForm.value.email && this._password === this.loginForm.value.password ){
+    //     localStorage.setItem('token','68d5aaaa3emsh19d4967d4fab744p1a4ad6jsn30b6fb59bc09');
+    //     localStorage.setItem('user_type','admin');
+    //     this.router.navigate(['/']);
+    //     alert('Logged in Successfully!');
+    // }else{
+    //   alert('Username or password Incorrect');
+    // }
         
    }
 

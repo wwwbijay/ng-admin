@@ -10,6 +10,7 @@ import { UpdateWeeklyComponent } from './update-weekly/update-weekly.component';
 import { UpdateDailyComponent } from './update-daily/update-daily.component';
 import { DashboardComponent } from './dashboard.component';
 import { ManageTableComponent } from './layout/manage-table/manage-table.component';
+import { DailyTableComponent } from './layout/daily-table/daily-table.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ManageTableComponent } from './layout/manage-table/manage-table.compone
     UpdateMonthlyComponent,
     UpdateYearlyComponent,
     ManageTableComponent,
+    DailyTableComponent,
   ],
   imports: [
     CommonModule,

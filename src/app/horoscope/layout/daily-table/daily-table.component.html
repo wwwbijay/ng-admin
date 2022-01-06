@@ -1,0 +1,58 @@
+<table class="table table-striped table-mid-content">
+    <thead>
+    <tr>
+      
+      <th scope="col" width="20%">Sign</th>
+      <th scope="col" width="30%">English</th>
+      <th scope="col" width="30%">Nepali</th>
+      <th scope="col" width="20%">Action</th>
+    </tr>
+    </thead>
+   
+    <tbody> 
+      <tr>
+        <td>Mesh</td>
+        <td>sadsadsad</td>
+        <td>sadsadsad</td>
+        <td>
+          <a class="btn btn-icon btn-icon-edit" data-toggle="modal" data-target="#editSignModal">
+            <span class="material-icons">
+              edit
+              </span>
+          </a>
+          <a class="btn btn-icon btn-icon-view" data-toggle="modal" data-target="#modal">
+            <span class="material-icons">
+              delete 
+            </span>
+          </a>
+        </td>
+      </tr>
+        <!-- 
+   <tr *ngFor="let sign of allsigns$ | async">
+      <th scope="row">{{sign.id}}</th>
+      <td>
+        {{sign.title}}
+      </td>
+      <td>
+        <img [src]="'assets/horoscope-signs/'+sign.image" class="mr-2" style="width: 100px">
+      </td>
+      <td>
+        <p>
+          {{sign.subtitle}}
+        </p>
+      </td>
+      <td>
+        <a (click)="btnEditClicked(sign.id)" class="btn btn-icon btn-icon-edit" data-toggle="modal" data-target="#editSignModal">
+          <span class="material-icons">
+            edit
+            </span>
+        </a>
+        <a (click)="btnDeleteClicked(sign.id)" class="btn btn-icon btn-icon-view" data-toggle="modal" data-target="#modal">
+          <span class="material-icons">
+            delete 
+          </span>
+        </a>
+      </td>
+    </tr> -->
+    </tbody>
+  </table>
