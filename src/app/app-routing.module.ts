@@ -5,12 +5,14 @@ import { AuthGuard } from './auth/auth.guard';
 import { CpanelComponent } from './cpanel/cpanel.component';
 
 import { HoroscopeRoutingModule } from './horoscope/horoscope-routing.module';
+import { AccountRoutingModule } from './account/account-routing.module';
 
 
 const routes: Routes = [
   {
     component: LoginComponent,
-    path: 'login'
+    path: 'login',
+    
   },
   {
     component: CpanelComponent,
