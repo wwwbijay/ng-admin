@@ -1,1 +1,65 @@
-<p>profile works!</p>
+<div class="account-dashboard">
+    <div class="row">
+        <div class="col">
+            <div class="whiteheader-item">
+              <div class="wh-item-heading">
+                <h3 class="title">General Information</h3>
+                <a class="btn btn-primary" routerLink="#">
+                  <span class="material-icons-outlined">
+                    create
+                    </span>
+                  Edit
+                </a>
+              </div>
+              <div class="wh-item-entry">
+                <div class="item-profile-pic text-center">
+                  <div class="item-profile-pic-image">
+                    <img src="assets/img_profile.png">
+                  </div>
+                  <div class="item-profile-pic-info">
+                    <h5>{{currentUser.fullName}}</h5>
+                    <p>{{currentUser.userName}}</p>
+                  </div>
+                  
+                </div>
+                <div class="item-profile-details">
+                  <table class="table table-mid-content">
+                    <tbody> 
+                      
+                      <tr>
+                        <td>Email</td>
+                        <td>{{currentUser.email}}</td>
+                      </tr>
+                      <tr>
+                        <td>Address</td>
+                        <td>{{currentUser.address}}</td>
+                      </tr>
+                      <tr>
+                        <td>Phone</td>
+                        <td>{{currentUser.phoneNumber}}</td>
+                      </tr>
+                      <tr>
+                        <td>Gender</td>
+                        <td>{{currentUser.gender}}</td>
+                      </tr>
+                        
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              </div>
+              <!--.page-item END-->
+        </div>
+        <div class="col">
+            <div class="noheader-item">
+      
+            </div>
+              <!--.page-item END-->
+        </div>
+    </div>
+</div>
+
+
+
+
+

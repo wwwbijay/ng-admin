@@ -7,6 +7,9 @@ import { CpanelComponent } from './cpanel/cpanel.component';
 import { HoroscopeRoutingModule } from './horoscope/horoscope-routing.module';
 import { AccountRoutingModule } from './account/account-routing.module';
 
+import { DashboardComponent } from './horoscope/dashboard.component';
+import { ProfileComponent } from './account/profile.component';
+
 
 const routes: Routes = [
   {
@@ -21,7 +24,26 @@ const routes: Routes = [
       breadcrumb: 'Home'
     },
     canActivate: [AuthGuard],
-    loadChildren: () => HoroscopeRoutingModule
+    children: [
+      {
+      path: 'horoscope',
+      data: {
+        breadcrumb: 'Horoscope'
+      },
+      component: DashboardComponent,
+      loadChildren: () => HoroscopeRoutingModule
+      },
+      {
+        path: 'account',
+        data: {
+          breadcrumb: 'Account'
+        },
+        component: ProfileComponent,
+        loadChildren: () => AccountRoutingModule
+      }
+
+    ],
+    
   },
   {
     path: '**',

@@ -132,3 +132,20 @@ body.modal-open.modal-open.modal-open {
 input[type="file"]{
   height: 45px;
 }
+
+.whiteheader-item{
+  background: #FFFFFF;
+  box-shadow: 0px 20px 27px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+}
+.wh-item-heading {
+  padding: 14px 30px;
+  border-bottom: 1px solid #E0E0E0;
+}
+.wh-item-heading .title{
+  font-size: 18px;
+  margin: 0;
+}
+.wh-item-entry{
+  padding: 30px;
+}

@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from './user.service';
+import { IUserDetails } from './IUserDetails';
+
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +11,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  currentUser: IUserDetails ={
+    fullName: '',
+    userName: '',
+    address: '',
+    email: '',
+    roles: '',
+    phoneNumber: '',
+    gender: '',
+    dateOfBirth: '',
+    department: ''
+  };
+  testCurrentuser: any;
+
+
+  constructor(private http: HttpClient, private userservice: UserService) { }
+  
 
   ngOnInit(): void {
+    var mytoken = this.userservice.getToken();
+    var username = this.userservice.getUserByToken(mytoken) || 'sorry';
+   
+    this.userservice.getUserByUsername(username).subscribe({
+      next: (data) => {
+        this.testCurrentuser = data;
+      },
+      error: (err: Error) => {
+        alert('Error:' + err);
+      },
+      complete: () => { 
+        this.currentUser = this.testCurrentuser;
+      }
+     });
   }
+
+
 
 }

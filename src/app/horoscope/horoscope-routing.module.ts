@@ -5,19 +5,9 @@ import { UpdateYearlyComponent } from './update-yearly/update-yearly.component';
 import { UpdateMonthlyComponent } from './update-monthly/update-monthly.component';
 import { UpdateWeeklyComponent } from './update-weekly/update-weekly.component';
 import { UpdateDailyComponent } from './update-daily/update-daily.component';
-import { DashboardComponent } from './dashboard.component';
 import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
-  {
-  component: DashboardComponent,
-  path: 'horoscope',
-  data: {
-    breadcrumb: 'Horoscope'
-  },
-  canActivate: [AuthGuard],
-
-  children: [
     {
       component: UpdateDailyComponent,
       path: 'update-daily',
@@ -50,9 +40,7 @@ const routes: Routes = [
       },
       canActivate: [AuthGuard]
     },
-  ]
-}
-];
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
