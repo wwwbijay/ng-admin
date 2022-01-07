@@ -1,21 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+
 import { AuthGuard } from './auth/auth.guard';
-import { CpanelComponent } from './cpanel/cpanel.component';
 
 import { HoroscopeRoutingModule } from './horoscope/horoscope-routing.module';
 import { AccountRoutingModule } from './account/account-routing.module';
+import { UserManagementRoutingModule } from './user-management/user-management-routing.module';
 
+import { LoginComponent } from './login/login.component';
+import { CpanelComponent } from './cpanel/cpanel.component';
 import { DashboardComponent } from './horoscope/dashboard.component';
 import { ProfileComponent } from './account/profile.component';
+import { AllUsersComponent } from './user-management/all-users/all-users.component';
 
 
 const routes: Routes = [
   {
     component: LoginComponent,
     path: 'login',
-    
   },
   {
     component: CpanelComponent,
@@ -40,8 +42,15 @@ const routes: Routes = [
         },
         component: ProfileComponent,
         loadChildren: () => AccountRoutingModule
+      },
+      {
+        path: 'user-management',
+        data: {
+          breadcrumb: 'User Management'
+        },
+        component: AllUsersComponent,
+        loadChildren: () => UserManagementRoutingModule
       }
-
     ],
     
   },

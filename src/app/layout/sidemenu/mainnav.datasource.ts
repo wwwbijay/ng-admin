@@ -33,15 +33,18 @@ export let mainDataSource: any[] = [
     ],
   },
   {
-    title: 'Expense Manager',
-    link: 'expense-manager',
+    title: 'User Management',
+    link: 'user-management',
+    submenu: [
+      {
+        title: 'All Users',
+        link: 'user-management',
+      },
+      {
+        title: 'User Roles',
+        link: 'user-management/user-roles',
+      },
+    ],
   },
-  {
-    title: 'User Manager',
-    link: 'user-manager',
-  },
-  {
-    title: 'Settings',
-    link: 'settings',
-  },
+  
 ];

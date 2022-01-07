@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
-import { IUserDetails } from './IUserDetails';
+import { IUserDetails } from '../interfaces/IUserDetails';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
     phoneNumber: '',
     gender: '',
     dateOfBirth: '',
-    department: ''
+    department: '',
   };
   testCurrentuser: any;
 
