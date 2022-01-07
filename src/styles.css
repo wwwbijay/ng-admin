@@ -100,6 +100,9 @@ Page Item Starts
 .page-item-entry a {
   text-decoration: none;
 }
+.page-item-entry table{
+  font-size: 14px;
+}
 /***********************************
 Form Error Messages Starts
 **************************************/
@@ -148,4 +151,30 @@ input[type="file"]{
 }
 .wh-item-entry{
   padding: 30px;
+}
+
+
+.horoscope-nav ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  justify-content: start;
+}
+
+.horoscope-nav li a{
+  font-size: 14px;
+  color: #000;
+  display: inline-block;
+  padding: 20px 30px;
+}
+.horoscope-nav li a:hover{
+  text-decoration: none;
+}
+.horoscope-nav li.active a{
+  background: #022335;
+  color: #fff;
+  border-radius: 4px;
 }

@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgChartsModule } from 'ng2-charts';
 import { HoroscopeModule } from './horoscope/horoscope.module';
 import { AccountModule } from './account/account.module';
+import { UserManagementModule } from './user-management/user-management.module';
 
 
 import { AppComponent } from './app.component';
@@ -20,7 +21,6 @@ import { CpanelComponent } from './cpanel/cpanel.component';
 import { DashItemComponent } from './cpanel/dash-item/dash-item.component';
 import { StatItemComponent } from './cpanel/stat-item/stat-item.component';
 import { ChartComponent } from './cpanel/chart/chart.component';
-
 
 
 @NgModule({
@@ -44,7 +44,8 @@ import { ChartComponent } from './cpanel/chart/chart.component';
     ReactiveFormsModule,
     NgChartsModule,
     HoroscopeModule,
-    AccountModule
+    AccountModule,
+    UserManagementModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -26,21 +26,29 @@
                   <table class="table table-mid-content">
                     <tbody> 
                       
-                      <tr>
+                      <tr *ngIf="!!currentUser.email">
                         <td>Email</td>
                         <td>{{currentUser.email}}</td>
                       </tr>
-                      <tr>
+                      <tr *ngIf="!!currentUser.address">
                         <td>Address</td>
                         <td>{{currentUser.address}}</td>
                       </tr>
-                      <tr>
+                      <tr *ngIf="!!currentUser.phoneNumber">
                         <td>Phone</td>
                         <td>{{currentUser.phoneNumber}}</td>
                       </tr>
-                      <tr>
+                      <tr *ngIf="!!currentUser.gender">
                         <td>Gender</td>
                         <td>{{currentUser.gender}}</td>
+                      </tr>
+                      <tr *ngIf="!!currentUser.dateOfBirth">
+                        <td>Date of Birth</td>
+                        <td>{{currentUser.dateOfBirth}}</td>
+                      </tr>
+                      <tr *ngIf="!!currentUser.department">
+                        <td>Date of Birth</td>
+                        <td>{{currentUser.department}}</td>
                       </tr>
                         
                     </tbody>
