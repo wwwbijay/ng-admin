@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,8 @@ export class userManageServices {
   }
   getAllRoles() {
     return this.http.get(this.baseUrl + '/api/UserManager/get-roles-list');
+  }
+  addNewUser(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + '/api/UserManager/create-user', data);
   }
 }

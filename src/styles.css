@@ -104,6 +104,32 @@ Page Item Starts
   font-size: 14px;
 }
 /***********************************
+Default Form Stylings Starts
+**************************************/
+.form-group label{
+  font-size: 14px;
+  color: #979797;
+}
+.form-control{
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+.form-control:focus{
+  box-shadow: none;
+  border-bottom: 1px solid #555;
+}
+.form-group .material-icons{
+  color: #777;
+  font-size: 20px;
+  position: absolute;
+  right: 25px;
+  top: 10px;
+}
+
+
+
+/***********************************
 Form Error Messages Starts
 **************************************/
 
@@ -114,24 +140,36 @@ Form Error Messages Starts
   margin: 7px 0;
 }
 input.ng-invalid.ng-touched {
-  border: 1px solid red;
+  border-bottom: 1px solid red;
 }
 
 /***********************************
 Bootstrap Modal 
 **************************************/
+
 body.modal-open.modal-open.modal-open {
   overflow: visible;
 }
 .modal-title{
   width: 100%;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  color: #022335;
 }
-.page-item .modal-body{
-  padding: 40px;
+.modal-body{
+  padding: 40px 40px 0;
 }
 .modal-body .row{
   padding-bottom: 20px;
 }
+.form-section-heading .title{
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0 0 20px;
+}
+
+
 input[type="file"]{
   height: 45px;
 }
@@ -153,6 +191,10 @@ input[type="file"]{
   padding: 30px;
 }
 
+
+/***********************************
+.horoscope-nav  starts
+**************************************/
 
 .horoscope-nav ul{
   margin: 0;

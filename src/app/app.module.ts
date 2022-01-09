@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgChartsModule } from 'ng2-charts';
 import { HoroscopeModule } from './horoscope/horoscope.module';
 import { AccountModule } from './account/account.module';
 import { UserManagementModule } from './user-management/user-management.module';
+
 
 
 import { AppComponent } from './app.component';
@@ -42,10 +43,12 @@ import { ChartComponent } from './cpanel/chart/chart.component';
     NgbModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
     NgChartsModule,
     HoroscopeModule,
     AccountModule,
-    UserManagementModule
+    UserManagementModule,
+    NgbDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,10 +3,11 @@ export interface IUserDetails {
     userName: string;
     address: string;
     email: string;
-    roles: string;
     phoneNumber: string;
+    mobileNumber: string;
     gender: string;
     dateOfBirth: string;
     department: string;
+    roles: [];
   }
   
