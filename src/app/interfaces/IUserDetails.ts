@@ -1,13 +1,17 @@
 export interface IUserDetails {
     fullName: string;
     userName: string;
-    address: string;
     email: string;
     phoneNumber: string;
+    address: string;
+    password: string;
+    confirmPassword: string;
     mobileNumber: string;
     gender: string;
-    dateOfBirth: string;
     department: string;
-    roles: [];
+    dateOfBirth: string;
+    isActive: boolean;
+    profileImagePath: string;
+    roles: string[];
   }
   

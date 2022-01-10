@@ -21,8 +21,8 @@
           <tr>
             <th scope="col" width="10%">S.No.</th>
 
-            <th scope="col" width="20%">Name</th>
-            <th scope="col" width="10%">Department</th>
+            <th scope="col" width="20%">Full Name</th>
+            <th scope="col" width="10%">Username</th>
             <th scope="col" width="10%">Phone</th>
             <th scope="col" width="10%">Email</th>
             <th scope="col" width="10%">Role</th>
@@ -34,7 +34,7 @@
           <tr *ngFor="let user of allUsers; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ user.fullName }}</td>
-            <td>{{ user.department }}</td>
+            <td>{{ user.userName }}</td>
             <td>{{ user.phoneNumber }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.roles }}</td>
@@ -105,18 +105,60 @@
               <div class="form-group">
                 <span class="material-icons"> person </span>
                 <input
-                  id="myfullname"
+                  id="fullname"
                   type="text"
                   class="form-control"
-                  name="myfullname"
+                  name="fullname"
                   placeholder="Full Name"
-                  formControlName="myfullname"
+                  formControlName="fullname"
                 />
                 <small
-                  *ngIf="myfullname && myfullname.invalid && myfullname.touched"
+                  *ngIf="fullName && fullName.invalid && fullName.touched"
                   class="err_msg"
                 >
                   Please enter full name.
+                </small>
+              </div>
+            </div>
+          </div>
+          <!--.row ends-->
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <span class="material-icons"> lock </span>
+                <input
+                  id="password"
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  placeholder="Password"
+                  formControlName="password"
+                />
+                <small
+                  *ngIf="password && password.invalid && password.touched"
+                  class="err_msg"
+                >
+                  Please enter valid password.
+                </small>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <span class="material-icons"> lock </span>
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  class="form-control"
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  formControlName="confirmPassword"
+                />
+                <small
+                  *ngIf="confirmPassword && confirmPassword.invalid && confirmPassword.touched"
+                  class="err_msg"
+                >
+                Please enter valid password.
                 </small>
               </div>
             </div>
@@ -165,6 +207,8 @@
           </div>
           <!--.row ends-->
 
+
+
           <div class="row">
             <div class="col">
               <div class="form-group">
@@ -210,9 +254,10 @@
                 <input
                   class="form-control"
                   type="date"
-                  id="mobile"
+                  id="dob"
                   name="dob"
                   placeholder="Date of Birth"
+                  formControlName="dob"
                 />
               </div>
             </div>
@@ -245,17 +290,15 @@
                 
                  <div *ngFor="let role of allRoleLists; let i=index" class="form-check">
                   <input
-                    name="allroles"
                     class="form-check-input"
                     type="checkbox"
-                    value="{{role.name}}"
-                    id="for{{role.name}}"
-                    (change)="onRolesChange($event)" 
-                    [checked]="role.isselected"
-                    
+                    id="role-option-{{i}}"
+                    [(ngModel)]="role.isselected"
+                    [ngModelOptions]="{standalone: true}"
                   />
                   
-                  <label class="form-check-label" for="for{{role.name}}"> {{role.name}} </label>
+                  <label class="form-check-label" for="role-option-{{i}}"> {{role.name}} </label>
+                  
                 </div> 
                 
               </div>

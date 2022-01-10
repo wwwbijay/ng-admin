@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   Validators,
@@ -17,7 +16,7 @@ import { userManageServices } from '../user-manage.service';
   styleUrls: ['./all-users.component.css'],
 })
 export class AllUsersComponent implements OnInit {
-  allUsers!: [IUserDetails];
+  allUsers: any;
   testCurrentuser: any;
   selectedUser!: IUserDetails;
   allRoles!: any;
@@ -29,21 +28,38 @@ export class AllUsersComponent implements OnInit {
   submitted_success: boolean = false;
   submitted_msg: string = '';
 
+
+  constructor(
+    public _router: Router,
+    private _userservices: userManageServices
+  ) {}
+
   createUserForm = new FormGroup({
-    myfullname: new FormControl('', [Validators.required]),
+    fullname: new FormControl('', [Validators.required]),
     username: new FormControl('', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.minLength(5),
     ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+    confirmPassword: new FormControl('', [
+      Validators.required,
+     Validators.minLength(5),
+   ]),
     email: new FormControl('', [Validators.required, Validators.email]),
     gender: new FormControl(''),
     mobile: new FormControl('', [Validators.required]),
     phone: new FormControl(''),
     dob: new FormControl(''),
-  });
+    roles: new FormControl([])
+  } );
 
-  get myfullname() {
-    return this.createUserForm.get('myfullname');
+ 
+
+  get fullName() {
+    return this.createUserForm.get('fullName');
   }
   get email() {
     return this.createUserForm.get('email');
@@ -54,12 +70,12 @@ export class AllUsersComponent implements OnInit {
   get username() {
     return this.createUserForm.get('username');
   }
-
-  constructor(
-    public _router: Router,
-    private _userservices: userManageServices,
-    private _formBuilder: FormBuilder
-  ) {}
+  get password() {
+    return this.createUserForm.get('password');
+  }
+  get confirmPassword() {
+    return this.createUserForm.get('confirmedPassword');
+  }
 
   ngOnInit(): void {
     this.listAllRoles();
@@ -99,7 +115,7 @@ export class AllUsersComponent implements OnInit {
             };
             this.allRoleLists.push( RoleObject );  
          });
-         console.log(this.allRoleLists);
+        //  console.log(this.allRoleLists);
 
       },
     });
@@ -107,26 +123,43 @@ export class AllUsersComponent implements OnInit {
   }
 
 
-  onRolesChange(event:any){
-    console.log(this.allRoleLists);
-    
-  }
+  // onRolesChange(event:any){
+  //   console.log(this.allRoleLists);
+  //   console.log(event.target.value.name);
+  // }
 
+  /************
+   * Create User Method Starts
+   */
   createUser(): void {
+    var myroles: string[] = [];
+    this.allRoleLists.filter( role => {
+      if(role.isselected === true){
+        myroles.push(role.name);
+      }
+    });
+
+
+    console.log(myroles);
+
     this.selectedUser = {
-      fullName: this.createUserForm.value.myfullname || '',
+      fullName: this.createUserForm.value.fullname || '',
       userName: this.createUserForm.value.username || '',
       address: this.createUserForm.value.address || '',
       email: this.createUserForm.value.email || '',
+      password: this.createUserForm.value.password || '',
+      confirmPassword: this.createUserForm.value.confirmPassword || '',
       phoneNumber: this.createUserForm.value.phone || '',
       mobileNumber: this.createUserForm.value.mobile || '',
       gender: this.createUserForm.value.gender || '',
       dateOfBirth: this.createUserForm.value.dob || '',
       department: this.createUserForm.value.department || '',
-      roles: this.createUserForm.value.roles || [],
+      profileImagePath: this.createUserForm.value.profileImagePath || '',
+      isActive: this.createUserForm.value.isActive || true,
+      roles: myroles
     };
 
-    console.log(this.createUserForm.value);
+    console.log(this.selectedUser);
 
     this._userservices.addNewUser(this.selectedUser).subscribe({
       next: (x: number) => {
@@ -137,13 +170,27 @@ export class AllUsersComponent implements OnInit {
       },
       error: (err: Error) => {
         this.submitted = true;
-        this.submitted_msg = "Sorry! Couldn't Add User.";
+        this.submitted_msg = "Couldn't Create User. Error: " + err.message;
+        console.log(err);
       },
       complete: () => {
         this.listAllUsers();
       },
     });
   }
+
+/************
+   * Create User Method Ends
+*/
+
+
+
+
+
+
+
+
+
 }
 
 

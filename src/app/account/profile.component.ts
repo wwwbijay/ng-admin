@@ -22,6 +22,10 @@ export class ProfileComponent implements OnInit {
     gender: '',
     dateOfBirth: '',
     department: '',
+    password: '',
+    confirmPassword: '',
+    profileImagePath: '',
+    isActive: true,
   };
   testCurrentuser: any;
 
