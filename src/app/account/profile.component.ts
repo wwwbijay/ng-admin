@@ -16,11 +16,16 @@ export class ProfileComponent implements OnInit {
     userName: '',
     address: '',
     email: '',
-    roles: '',
+    roles: [],
     phoneNumber: '',
+    mobileNumber: '',
     gender: '',
     dateOfBirth: '',
     department: '',
+    password: '',
+    confirmPassword: '',
+    profileImagePath: '',
+    isActive: true,
   };
   testCurrentuser: any;
 
