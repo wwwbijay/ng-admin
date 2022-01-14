@@ -36,14 +36,23 @@
           <div class="form-section-heading">
             <h5 class="title">Add Profile Image</h5>
           </div>
-          <div class="row">
-            <div class="col-12">
+          <div class="row align-items-center">
+            <div class="col-4">
+              <div class="profile_image">
+                <label for="upload_profile_image"> 
+                  <img [src]="userAvatarPath " />
+                </label>
+              </div>
+            </div>
+            <div class="col-8">
               <div class="form-group">
                 <input
                   name="avatar"
                   type="file"
                   accept="image/png, image/jpeg"
-                (change)="uploadFile($event)" />
+                  formControlName="avatar"
+                  (change)="uploadFile($event)"
+                />
               </div>
             </div>
           </div>

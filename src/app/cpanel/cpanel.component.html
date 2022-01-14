@@ -19,7 +19,7 @@
     class="openNav"
     [ngClass]=" openNav ? 'main-opennav' : ' '"
   >
-    <nav-menu [openNav]="openNav" (openSideNavFromChild)="toggleSideNav()">
+    <nav-menu [cUser] = "currentUser" [openNav]="openNav" (openSideNavFromChild)="toggleSideNav()">
     </nav-menu>
     <div class="breadcrumbs">
       <bj-breadcrumbs></bj-breadcrumbs>

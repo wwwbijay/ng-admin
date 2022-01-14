@@ -13,7 +13,10 @@
               </div>
               <div class="wh-item-entry">
                 <div class="item-profile-pic text-center">
-                  <div class="item-profile-pic-image">
+                  <div *ngIf="!!currentUser.profileImagePath" class="item-profile-pic-image">
+                    <img src="{{baseUrl + currentUser.profileImagePath}}">
+                  </div>
+                  <div *ngIf="!currentUser.profileImagePath" class="item-profile-pic-image">
                     <img src="assets/img_profile.png">
                   </div>
                   <div class="item-profile-pic-info">
@@ -37,6 +40,10 @@
                       <tr *ngIf="!!currentUser.phoneNumber">
                         <td>Phone</td>
                         <td>{{currentUser.phoneNumber}}</td>
+                      </tr>
+                      <tr *ngIf="!!currentUser.mobileNumber">
+                        <td>Phone</td>
+                        <td>{{currentUser.mobileNumber}}</td>
                       </tr>
                       <tr *ngIf="!!currentUser.gender">
                         <td>Gender</td>

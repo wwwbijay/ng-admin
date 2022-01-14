@@ -11,6 +11,10 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
+.table.table td{
+  padding: 0.5rem;
+  line-height: 30px;
+}
 img {
   max-width: 100%;
 }
@@ -34,7 +38,12 @@ p{
 .table.table-striped.table-mid-content td {
   vertical-align: middle;
 }
-
+.alert-danger{
+  background: #f7e5e7;
+}
+.grey_txt{
+  color: #777
+}
 /***********************************
 General Buttons Starts
 **************************************/
@@ -44,11 +53,11 @@ General Buttons Starts
 }
 .btn.btn-icon {
   border: none;
-  margin: 0 5px;
+  margin: 0 3px;
   border-radius: 50%;
   color: #fff;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   text-align: center;
 }
@@ -67,14 +76,21 @@ General Buttons Starts
   );
 }
 .btn.btn-icon span {
-  font-size: 18px;
-  line-height: 35px;
+  font-size: 16px;
+  line-height: 30px;
   width: 100%;
 }
 
 /***********************************
 Page Item Starts
 **************************************/
+#profileMenuButton{
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid #eee;
+}
 .page-item {
   margin: 30px 0 20px;
 }
@@ -114,6 +130,7 @@ Default Form Stylings Starts
   border-radius: 0;
   border: none;
   border-bottom: 1px solid #ccc;
+  color: #000;
 }
 .form-control:focus{
   box-shadow: none;
@@ -158,7 +175,7 @@ body.modal-open.modal-open.modal-open {
   color: #022335;
 }
 .modal-body{
-  padding: 40px 40px 0;
+  padding: 40px;
 }
 .modal-body .row{
   padding-bottom: 20px;
@@ -220,3 +237,15 @@ input[type="file"]{
   color: #fff;
   border-radius: 4px;
 }
+.profile_image{
+  width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.profile_image img{
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+

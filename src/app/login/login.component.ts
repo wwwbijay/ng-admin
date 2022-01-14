@@ -11,6 +11,8 @@ import { IUser } from '../auth/IUser';
 })
 export class LoginComponent implements OnInit {
   
+  submitted: boolean = false;
+  submitted_msg: string = '';
   currentUser: IUser = {
     userName: '',
     email: '',
@@ -36,12 +38,10 @@ export class LoginComponent implements OnInit {
     };
 
     this.authservice.login(login_model).subscribe({
-      next: (rawToken:any) => {
-        alert('Logged in Successfully!');
-        
-      },
+      next: (rawToken:any) => {},
       error: (err: Error) => {
-        alert('Username or password Incorrect!');
+        this.submitted = true;
+        this.submitted_msg= 'User and/or password incorrect.';
       },
       complete: () => { 
         this.router.navigate(['/']);

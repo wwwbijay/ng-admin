@@ -1,18 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IUserDetails } from '../interfaces/IUserDetails';
-import { environment } from 'src/environments/environment';
 import { UserService } from './user.service';
-import { UserDataService } from './user-data.service';
 
-
-@Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class ProfileComponent implements OnInit {
+export class UserDataService {
 
-  baseUrl = environment.baseUrl;
   currentUser: IUserDetails ={
     fullName: '',
     userName: '',
@@ -29,16 +23,9 @@ export class ProfileComponent implements OnInit {
     profileImagePath: '',
     isActive: true,
   };
-  
-  constructor(private _userservice: UserService) { }
-  ngOnInit(): void {
-    var mytoken = this._userservice.getToken();
-    var username = this._userservice.getUserByToken(mytoken) || 'sorry';
-    this.getUserByUsername(username);
-  
-  }
+  constructor(private _userservice: UserService) {}
 
-  getUserByUsername(username:any){
+  getUserByUsername(username:any):IUserDetails{
     let testCurrentuser:any;
     this._userservice.getUserByUsername(username).subscribe({
       next: (data) => {
@@ -49,14 +36,10 @@ export class ProfileComponent implements OnInit {
       },
       complete: () => { 
         this.currentUser = testCurrentuser;
+        console.log(this.currentUser);
+        return this.currentUser;
       }
      });
-     
+     return this.currentUser;
   }
-  
-
-
-
-
-
 }

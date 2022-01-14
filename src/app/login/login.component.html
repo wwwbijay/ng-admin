@@ -21,6 +21,9 @@
         <!--.login-intro ends-->
       </div>
       <!--.page-header ends-->
+      <div *ngIf="submitted" class="alert alert-danger">
+        {{submitted_msg}}
+      </div>
       <div class="page-entry">
         <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
           <div class="form-group">

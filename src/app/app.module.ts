@@ -8,6 +8,8 @@ import { NgChartsModule } from 'ng2-charts';
 import { HoroscopeModule } from './horoscope/horoscope.module';
 import { AccountModule } from './account/account.module';
 import { UserManagementModule } from './user-management/user-management.module';
+import { DatePipe } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -48,9 +50,10 @@ import { ChartComponent } from './cpanel/chart/chart.component';
     HoroscopeModule,
     AccountModule,
     UserManagementModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    NgxPaginationModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 
