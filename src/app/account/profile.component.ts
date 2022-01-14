@@ -3,6 +3,7 @@ import { IUserDetails } from '../interfaces/IUserDetails';
 import { environment } from 'src/environments/environment';
 import { UserService } from './user.service';
 import { UserDataService } from './user-data.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class ProfileComponent implements OnInit {
     isActive: true,
   };
   
-  constructor(private _userservice: UserService) { }
+  constructor(private _userservice: UserService, public _router:Router) { }
   ngOnInit(): void {
     var mytoken = this._userservice.getToken();
     var username = this._userservice.getUserByToken(mytoken) || 'sorry';

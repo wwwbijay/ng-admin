@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { UserDataService } from '../account/user-data.service';
+
 import { UserService } from '../account/user.service';
 import { IUserDetails } from '../interfaces/IUserDetails';
 
@@ -39,8 +39,7 @@ export class CpanelComponent implements OnInit {
     var username = this._userservice.getUserByToken(mytoken) || 'sorry';
     this.getUserByUsername(username);
 
-    console.log(username);
-    console.log(this.currentUser);
+   
     
   }
   /* Set the width of the side navigation to 250px */
@@ -60,7 +59,7 @@ export class CpanelComponent implements OnInit {
       },
       complete: () => { 
         this.currentUser = testCurrentuser;
-        console.log(this.currentUser);
+       
        
       }
      });
