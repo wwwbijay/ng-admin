@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { userManageServices } from '../../user-manage.service';
@@ -16,6 +16,7 @@ export class EditUserComponent implements OnInit {
   userAvatar: any;
   userAvatarPath: any;
   @Input() allRoleLists: IRoles[] = [];
+  @Output("listAllUsers") listAllUsers: EventEmitter<any> = new EventEmitter();
 
   submitted: boolean = false;
   submitted_msg: string = '';
@@ -30,6 +31,7 @@ export class EditUserComponent implements OnInit {
     dob: new FormControl(''),
     address: new FormControl(''),
     department: new FormControl(''),
+    isactive: new FormControl('')
   });
 
   get fullName() {
@@ -93,6 +95,7 @@ export class EditUserComponent implements OnInit {
           ),
           address: this.userToEdit[0].address,
           department: this.userToEdit[0].department,
+          isactive: this.userToEdit[0].isActive
         });
         //assign avatar path
         this.userAvatarPath = this.baseUrl + this.userToEdit[0].profileImagePath;
@@ -121,6 +124,7 @@ export class EditUserComponent implements OnInit {
 
   submitEditForm(id:any) {
 
+    console.log(this.updateUserForm.value.isactive);
     var formData: any = new FormData();
     formData.append("id", id);
     formData.append("fullName", this.updateUserForm.value.fullname || '');
@@ -133,7 +137,7 @@ export class EditUserComponent implements OnInit {
     formData.append("gender", this.updateUserForm.value.gender || '');
     formData.append("dateOfBirth", this.updateUserForm.value.dob || '');
     formData.append("department", this.updateUserForm.value.department || '');
-    formData.append("isActive", true);
+    formData.append("isActive",  this.updateUserForm.value.isActive || true);
     formData.append("profileImage", this.userAvatar || '');
     // formData.append("roles", myroles );
 
@@ -162,6 +166,7 @@ export class EditUserComponent implements OnInit {
         console.log(err);
       },
       complete: () => {
+        this.listAllUsers.emit();
         document.getElementById('modal-content')?.scrollIntoView();
       },
     });

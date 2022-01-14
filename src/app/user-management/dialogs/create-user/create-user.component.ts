@@ -81,8 +81,6 @@ export class CreateUserComponent implements OnInit {
       }
     }
 
-    console.log(this.userAvatar);
-    console.log(this.userAvatar.name);
   }
 
   /************

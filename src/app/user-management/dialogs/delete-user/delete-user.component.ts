@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { userManageServices } from '../../user-manage.service';
 
 @Component({
@@ -8,6 +8,9 @@ import { userManageServices } from '../../user-manage.service';
 })
 export class DeleteUserComponent implements OnInit {
   userIdToDelete:any;
+
+  @Output("listAllUsers") listAllUsers: EventEmitter<any> = new EventEmitter();
+
   constructor(private _userservice: userManageServices) { }
 
   ngOnInit(): void {
@@ -24,7 +27,9 @@ export class DeleteUserComponent implements OnInit {
       error:(err) =>{
         console.log("Error"+err);
       },
-      complete:()=>{}
+      complete:()=>{
+        this.listAllUsers.emit();
+      }
 
     });
 

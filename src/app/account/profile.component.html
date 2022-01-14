@@ -1,15 +1,9 @@
-<div class="account-dashboard">
+<div *ngIf="_router.url === '/account'" class="account-dashboard">
     <div class="row">
         <div class="col">
             <div class="whiteheader-item">
               <div class="wh-item-heading">
                 <h3 class="title">General Information</h3>
-                <a class="btn btn-primary" routerLink="#">
-                  <span class="material-icons-outlined">
-                    create
-                    </span>
-                  Edit
-                </a>
               </div>
               <div class="wh-item-entry">
                 <div class="item-profile-pic text-center">
@@ -76,5 +70,4 @@
 
 
 
-
-
+<router-outlet></router-outlet>
