@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { userManageServices } from '../user-manage.service';
+import { userRoleServices } from './user-roles.service';
+
 
 @Component({
   selector: 'app-user-roles',
@@ -11,10 +12,10 @@ export class UserRolesComponent implements OnInit {
 
   allRoles!: any;
   testRoles: any;
-  constructor(public router: Router, private userservices:userManageServices) { }
+  constructor(public router: Router, private _roleservices:userRoleServices) { }
 
   ngOnInit(): void {
-    this.userservices.getAllRoles().subscribe({
+    this._roleservices.getAllRoles().subscribe({
       next: (data) => {
         this.testRoles = data;
       },

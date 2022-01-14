@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -18,7 +19,7 @@ export class AuthService {
     roles: ''
   };
   
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private _router: Router) {}
 
   register(model: any) {
     return this.http.post(this.baseUrl + '/api/UserManager/register', model);
@@ -27,17 +28,18 @@ export class AuthService {
     const token = localStorage.getItem('token') || undefined;
     return !this.jwthelper.isTokenExpired(token);
   }
-  
   login(model: any): Observable<IUser | undefined> {
     
     return this.http.post(this.baseUrl + '/api/Authenticate/login', model).pipe(
       map((response: any) => {
         const user = response;
+        console.log(user);
         if (user.token) {
           const decodedToken = this.jwthelper.decodeToken(user.token);
          this.currentUser.roles = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+          localStorage.setItem('id', user.id);
+          localStorage.setItem('roles', this.currentUser.roles);
           localStorage.setItem('token', user.token);
-          localStorage.setItem('role', this.currentUser.roles);
           return user.token;
         }
         else{
@@ -48,12 +50,15 @@ export class AuthService {
   }
 
   logout() {
+    localStorage.removeItem('id');
+    localStorage.removeItem('roles');
     localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    
     this.currentUser = {
       userName: '',
       email: '',
       roles: ''
     };
+    this._router.navigate(['login']);
   }
 }

@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserDataService } from 'src/app/account/user-data.service';
+import { UserService } from 'src/app/account/user.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { IUserDetails } from 'src/app/interfaces/IUserDetails';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -9,21 +14,24 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent implements OnInit {
   @Input() openNav!: Boolean;
+  @Input() cUser!: IUserDetails;
   @Output() openSideNavFromChild= new EventEmitter();
+  baseUrl = environment.baseUrl;
   
-  constructor(private router: Router) { }
 
-  ngOnInit(): void {}
+  constructor(private router: Router, private authservice: AuthService, private _userservice: UserService, private _userdata:UserDataService) { }
+
+  ngOnInit(): void {
+    
+
+   
+  }
 
   openFromChild(){
     this.openSideNavFromChild.emit();
   }
-
   signout(){
-    alert('signout');
-    this.router.navigate(['/login']);
-    localStorage.removeItem('token');
-    localStorage.removeItem('user_type');
+    this.authservice.logout();
   }
 
 }

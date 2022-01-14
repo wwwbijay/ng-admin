@@ -10,11 +10,15 @@
     margin: 0;
     color: #434246;
 }
-.item-profile-pic-image img{
+.item-profile-pic-image{
     width: 94px;
     height: 94px;
     border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #eee;
+    margin: 0 auto;
 }
+
 .wh-item-heading{
     position: relative;
 }

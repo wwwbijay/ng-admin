@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { mainDataSource } from './mainnav.datasource';
+import { userDataSource } from './usernav.datasource';
 
 @Component({
   selector: 'sidemenu',
@@ -7,17 +8,23 @@ import { mainDataSource } from './mainnav.datasource';
   styleUrls: ['./sidemenu.component.css']
 })
 export class SidemenuComponent implements OnInit {
-  datas: any[] = mainDataSource;
+
+  userRoles = localStorage.getItem('roles');
   
-  constructor() { 
+  datas: any[] = [];
+  
+  constructor() {
+
    }
 
   ngOnInit(): void {
-      // this.href = this.router.url;
-      // console.log(this.router.url);
-      // this.router.events.subscribe((event) => {       
-      //   event instanceof NavigationEnd ? ( this.href = event.url ): null     
-      // });
+    if(this.userRoles?.includes('Admin')){
+      this.datas = mainDataSource;
+    }
+    else{
+      this.datas = userDataSource;
+    }
+      
    }
 
 }

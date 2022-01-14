@@ -14,8 +14,12 @@ export class CreateUserComponent implements OnInit {
   submitted_success: boolean = false;
   submitted_msg: string = '';
 
+  userAvatarPath:any;
+
   @Input() allRoleLists: IRoles[] = [];
   @Output("listAllUsers") listAllUsers: EventEmitter<any> = new EventEmitter();
+
+  userAvatar:any;
 
   createUserForm = new FormGroup({
     fullname: new FormControl('', [Validators.required]),
@@ -38,11 +42,11 @@ export class CreateUserComponent implements OnInit {
     dob: new FormControl(''),
     address: new FormControl(''),
     department: new FormControl(''),
-    roles: new FormControl([])
+    roles: new FormControl([]),
+    avatar: new FormControl(''),
   } );
 
  
-
   get fullName() {
     return this.createUserForm.get('fullName');
   }
@@ -67,13 +71,18 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
   }
   uploadFile(e:any){
-    const target = e.target as HTMLInputElement;
-    const file: File = (target.files as FileList)[0];
+    
+    if (e.target.files.length > 0) {
+      this.userAvatar = e.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload= (event:any)=>{
+        this.userAvatarPath=event.target.result;
+      }
+    }
 
-    this.createUserForm.patchValue({
-      avatar: file
-    });
-    this.createUserForm.value.avatar.updateValueAndValidity();
+    console.log(this.userAvatar);
+    console.log(this.userAvatar.name);
   }
 
   /************
@@ -81,26 +90,31 @@ export class CreateUserComponent implements OnInit {
    */
    createUser(): void {
     
-    var formData: any = new FormData();
+    let formData: any = new FormData();
     formData.append("fullName", this.createUserForm.value.fullname || '');
     formData.append("userName", this.createUserForm.value.username || '');
     formData.append("password", this.createUserForm.value.password || '');
     formData.append("confirmPassword", this.createUserForm.value.confirmPassword || '');
     formData.append("email", this.createUserForm.value.email || '');
-    formData.append("phoneNumber", this.createUserForm.value.phoneNumber || '');
-    formData.append("mobileNumber", this.createUserForm.value.mobileNumber || '');
+    formData.append("phoneNumber", this.createUserForm.value.phone || '');
+    formData.append("mobileNumber", this.createUserForm.value.mobile || '');
     formData.append("address", this.createUserForm.value.address || '');
     formData.append("gender", this.createUserForm.value.gender || '');
-    formData.append("dateOfBirth", this.createUserForm.value.dateOfBirth || '');
+    formData.append("dateOfBirth", this.createUserForm.value.dob || '');
     formData.append("department", this.createUserForm.value.department || '');
-    formData.append("profileImagePath", this.createUserForm.value.avatar || '');
+    formData.append("profileImage",this.userAvatar || '');
     // formData.append("roles", myroles );
 
+    let roleCount =0 ;
     this.allRoleLists.filter( role => {
       if(role.isselected === true){
+        roleCount++;
         formData.append("roles", role.name);
       }
     });
+    if(roleCount < 1){
+      formData.append("roles", 'Customer');
+    }
 
     this._userservices.addNewUser(formData).subscribe({
       next: (x: number) => {
@@ -117,8 +131,11 @@ export class CreateUserComponent implements OnInit {
       complete: () => {
         this.listAllUsers.emit();
         this.createUserForm.reset();
+        document.getElementById('modal-content')?.scrollIntoView();
       },
     });
+
+
   }
 
 /************

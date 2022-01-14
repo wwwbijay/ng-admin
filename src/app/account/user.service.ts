@@ -14,7 +14,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUserByUsername(username: string) {
+  getUserByUsername(username: string):Observable<any> {
     return this.http.get(this.baseUrl + '/api/UserManager/get-user-by-username?userName='+username);
   }
   getToken(){
@@ -26,4 +26,6 @@ export class UserService {
     var user = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     return user;
   }
+
+  
 }
