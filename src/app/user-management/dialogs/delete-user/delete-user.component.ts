@@ -1,19 +1,25 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { userManageServices } from '../../user-manage.service';
+// import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'dialog-delete-user',
   templateUrl: './delete-user.component.html',
   styleUrls: ['./delete-user.component.css']
 })
-export class DeleteUserComponent implements OnInit {
-  userIdToDelete:any;
+export class DeleteUserComponent implements OnInit  {
+  @Input() public userIdToDelete:any;
 
+  @Input() public usertodelete:any;
   @Output("listAllUsers") listAllUsers: EventEmitter<any> = new EventEmitter();
 
-  constructor(private _userservice: userManageServices) { }
-
+  constructor(
+    private _userservice: userManageServices,
+    // private _modalService: NgbModal,
+    // public _modal: NgbActiveModal
+   ) { }
   ngOnInit(): void {
+    this.userIdToDelete = this.usertodelete;
   }
 
   deleteUser(id:any){
@@ -29,6 +35,7 @@ export class DeleteUserComponent implements OnInit {
       },
       complete:()=>{
         this.listAllUsers.emit();
+       // document.getElementById('deleteModalClose')?.click();
       }
 
     });

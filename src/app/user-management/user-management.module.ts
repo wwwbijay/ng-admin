@@ -4,6 +4,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { UserManagementRoutingModule } from './user-management-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+
 //Page components
 import { AllUsersComponent } from './all-users/all-users.component';
 import { UserRolesComponent } from './user-roles/user-roles.component';
@@ -17,6 +18,9 @@ import { EditUserComponent } from './dialogs/edit-user/edit-user.component';
 import { DeleteUserComponent } from './dialogs/delete-user/delete-user.component';
 import { CreateRoleComponent } from './dialogs/create-role/create-role.component';
 import { EditRoleComponent } from './dialogs/edit-role/edit-role.component';
+import { ChangePasswordComponent } from './dialogs/change-password/change-password.component';
+
+
 
 
 
@@ -29,7 +33,8 @@ import { EditRoleComponent } from './dialogs/edit-role/edit-role.component';
     EditUserComponent,
     DeleteUserComponent,
     CreateRoleComponent,
-    EditRoleComponent
+    EditRoleComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,

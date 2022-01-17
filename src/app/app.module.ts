@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbDatepickerModule, NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgChartsModule } from 'ng2-charts';
 import { HoroscopeModule } from './horoscope/horoscope.module';
 import { AccountModule } from './account/account.module';
@@ -53,7 +53,7 @@ import { ChartComponent } from './cpanel/chart/chart.component';
     NgbDatepickerModule,
     NgxPaginationModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,NgbModal, NgbActiveModal],
   bootstrap: [AppComponent]
 })
 
