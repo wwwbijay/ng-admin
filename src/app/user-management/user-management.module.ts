@@ -19,6 +19,7 @@ import { DeleteUserComponent } from './dialogs/delete-user/delete-user.component
 import { CreateRoleComponent } from './dialogs/create-role/create-role.component';
 import { EditRoleComponent } from './dialogs/edit-role/edit-role.component';
 import { ChangePasswordComponent } from './dialogs/change-password/change-password.component';
+import { ViewUserComponent } from './dialogs/view-user/view-user.component';
 
 
 
@@ -34,7 +35,8 @@ import { ChangePasswordComponent } from './dialogs/change-password/change-passwo
     DeleteUserComponent,
     CreateRoleComponent,
     EditRoleComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ViewUserComponent
   ],
   imports: [
     CommonModule,
