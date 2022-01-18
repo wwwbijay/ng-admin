@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IUserDetails } from '../../interfaces/IUserDetails';
+//import { IUserDetails } from '../../interfaces/IUserDetails';
 import {IRoles} from '../../interfaces/IRoles'
 
 import { userManageServices } from '../user-manage.service';
 import { environment } from 'src/environments/environment';
-
+//import { DeleteUserComponent } from '../dialogs/delete-user/delete-user.component';
+//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import 'jquery';
 
 @Component({
   selector: 'app-all-users',
@@ -13,6 +15,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./all-users.component.css'],
 })
 export class AllUsersComponent implements OnInit {
+  
   baseUrl=environment.baseUrl;
   page: number = 1;
   loader:boolean= true;
@@ -24,7 +27,9 @@ export class AllUsersComponent implements OnInit {
 
   constructor(
     public _router: Router,
-    private _userservices: userManageServices
+    private _userservices: userManageServices,
+    //private _modalService: NgbModal,
+    // public _modal: NgbActiveModal
   ) {}
   
   ngOnInit(): void {
@@ -45,6 +50,7 @@ export class AllUsersComponent implements OnInit {
       complete: () => {
         this.allUsers = testCurrentuser.users;
         this.loader = false;
+        (<any>$('.modal')).modal('hide');
       },
     });
   }
@@ -75,14 +81,9 @@ export class AllUsersComponent implements OnInit {
 
   }
 
-
-
-
-
-
-
-
-
+  
+ 
+  
 }
 
 

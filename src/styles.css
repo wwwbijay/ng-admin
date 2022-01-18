@@ -13,7 +13,9 @@ body {
 }
 .table.table td{
   padding: 0.5rem;
-  line-height: 30px;
+  line-height: 20px;
+  word-break: break-all;
+  vertical-align: middle;
 }
 img {
   max-width: 100%;
@@ -118,6 +120,7 @@ Page Item Starts
 }
 .page-item-entry table{
   font-size: 14px;
+  table-layout: fixed;
 }
 /***********************************
 Default Form Stylings Starts
@@ -249,3 +252,40 @@ input[type="file"]{
   cursor: pointer;
 }
 
+/***********************************
+MATDialog  starts
+**************************************/
+.dialog-header{
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+.mat-dialog-title.mat-dialog-title{
+  margin: 0;
+  padding: 10px 0;
+}
+.dialog-header button{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.modal-notice {
+  padding: 10px 20px;
+  border: 1px solid #eee;
+  margin-bottom: 20px;
+  color: #777;
+}
+.modal-notice .title{
+  font-size: 16px;
+  margin: 0;
+}
+.modal-notice ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+a.dropdown-item{
+  cursor: pointer;
+}

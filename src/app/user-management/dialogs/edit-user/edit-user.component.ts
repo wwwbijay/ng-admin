@@ -4,6 +4,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IRoles } from 'src/app/interfaces/IRoles';
 import { userManageServices } from '../../user-manage.service';
 import { environment } from 'src/environments/environment';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @Component({
   selector: 'dialog-edit-user',
@@ -11,6 +14,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./edit-user.component.css'],
 })
 export class EditUserComponent implements OnInit {
+  
   baseUrl = environment.baseUrl;
   userToEdit: any;
   userAvatar: any;
@@ -21,7 +25,9 @@ export class EditUserComponent implements OnInit {
   submitted: boolean = false;
   submitted_msg: string = '';
   submitted_success: boolean = false;
- 
+  
+  user_selected:boolean = false;
+
   updateUserForm = new FormGroup({
     fullname: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -33,7 +39,6 @@ export class EditUserComponent implements OnInit {
     department: new FormControl(''),
     isactive: new FormControl('')
   });
-
   get fullName() {
     return this.updateUserForm.get('fullName');
   }
@@ -43,16 +48,16 @@ export class EditUserComponent implements OnInit {
   get mobile() {
     return this.updateUserForm.get('mobile');
   }
-
-
   constructor(
     private _userservices: userManageServices,
-    private _datePipe: DatePipe
-  ) {}
-
+    private _datePipe: DatePipe,
+    private _modalService: NgbModal,
+    public _modal: NgbActiveModal
+  ) { }
   ngOnInit(): void {}
 
   assignUserData(id: any){
+    
     this.submitted = false;
     this.submitted_success = false;
     this.submitted_msg = '';
@@ -102,9 +107,11 @@ export class EditUserComponent implements OnInit {
       
       },
     });
-
     
   }
+  // statusChanged(e:any){
+  //   console.log(e.target.value);
+  // }
 
   uploadFile(e: any) {
     if (e.target.files.length > 0) {
@@ -116,8 +123,6 @@ export class EditUserComponent implements OnInit {
         this.userAvatarPath=event.target.result;
       }
     }
-
-
     console.log(this.userAvatar || '');
     console.log(this.userAvatar.name || '');
   }
@@ -137,9 +142,9 @@ export class EditUserComponent implements OnInit {
     formData.append("gender", this.updateUserForm.value.gender || '');
     formData.append("dateOfBirth", this.updateUserForm.value.dob || '');
     formData.append("department", this.updateUserForm.value.department || '');
-    formData.append("isActive",  this.updateUserForm.value.isActive || true);
+    formData.append("isActive",  this.updateUserForm.value.isactive || false);
     formData.append("profileImage", this.userAvatar || '');
-    // formData.append("roles", myroles );
+    // formData.append("roles", myroles ); 
 
     let roleCount =0 ;
     this.allRoleLists.filter( role => {
@@ -167,7 +172,6 @@ export class EditUserComponent implements OnInit {
       },
       complete: () => {
         this.listAllUsers.emit();
-        document.getElementById('modal-content')?.scrollIntoView();
       },
     });
   }
