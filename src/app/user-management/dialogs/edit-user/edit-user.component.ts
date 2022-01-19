@@ -104,7 +104,6 @@ export class EditUserComponent implements OnInit {
         });
         //assign avatar path
         this.userAvatarPath = this.baseUrl + this.userToEdit[0].profileImagePath;
-      
       },
     });
     
@@ -116,7 +115,6 @@ export class EditUserComponent implements OnInit {
   uploadFile(e: any) {
     if (e.target.files.length > 0) {
       this.userAvatar = e.target.files[0];
-
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload= (event:any)=>{

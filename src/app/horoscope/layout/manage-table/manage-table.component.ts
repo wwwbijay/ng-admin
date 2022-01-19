@@ -44,9 +44,9 @@ export class ManageTableComponent implements OnInit {
   }
   //getSigns START
   getSignsById(id:number){
-    this.signsData.get(id).subscribe(data =>{
-      this.onesign = data;
-    });
+    // this.signsData.get(id).subscribe(data =>{
+    //   this.onesign = data;
+    // });
     
   }
 
@@ -71,7 +71,6 @@ export class ManageTableComponent implements OnInit {
     this.getSignsById(id);
   }
   editSign(){
-   
    
   }
 

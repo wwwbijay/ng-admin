@@ -24,7 +24,6 @@ export class UserRolesComponent implements OnInit {
       },
       complete: () => { 
         this.allRoles = this.testRoles.roles;
-        console.log(this.allRoles);
       }
      });
   }

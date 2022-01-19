@@ -15,11 +15,12 @@ export class CreateUserComponent implements OnInit {
   submitted_msg: string = '';
 
   userAvatarPath:any;
+  userAvatar:any;
 
   @Input() allRoleLists: IRoles[] = [];
   @Output("listAllUsers") listAllUsers: EventEmitter<any> = new EventEmitter();
 
-  userAvatar:any;
+  
 
   createUserForm = new FormGroup({
     fullname: new FormControl('', [Validators.required]),

@@ -14,6 +14,7 @@ export class EditRoleComponent implements OnInit {
   submitted_msg:string = '';
 
   selectedRoleId:any;
+  selectedRole:any;
 
   editRoleForm = new FormGroup({
     roleName: new FormControl('', [Validators.required]),
@@ -27,7 +28,21 @@ export class EditRoleComponent implements OnInit {
   ngOnInit(): void {
   }
   assignRole(id:any){
+    let sel_role:any;
     this.selectedRoleId = id;
+    this._roleservice.getRoleById(id).subscribe({
+      next:(x:any)=>{
+        sel_role = x.role;
+      },
+      error:(err:any)=>{
+        //console.log(err);
+      },
+      complete:()=>{
+        this.editRoleForm.setValue({
+          roleName: sel_role.roleName
+        });
+      }
+    });
   }
   editRole(){
     let roleName = this.editRoleForm.value.roleName;

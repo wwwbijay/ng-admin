@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatSelectModule} from '@angular/material/select';
 
 import { HoroscopeRoutingModule } from './horoscope-routing.module';
 
@@ -11,6 +13,10 @@ import { UpdateDailyComponent } from './update-daily/update-daily.component';
 import { DashboardComponent } from './dashboard.component';
 import { ManageTableComponent } from './layout/manage-table/manage-table.component';
 import { DailyTableComponent } from './layout/daily-table/daily-table.component';
+import { CreateSignComponent } from './dialogs/create-sign/create-sign.component';
+import { EditSignComponent } from './dialogs/edit-sign/edit-sign.component';
+import { DeleteSignComponent } from './dialogs/delete-sign/delete-sign.component';
+import { NewDailyComponent } from './dialogs/new-daily/new-daily.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +27,19 @@ import { DailyTableComponent } from './layout/daily-table/daily-table.component'
     UpdateYearlyComponent,
     ManageTableComponent,
     DailyTableComponent,
+    CreateSignComponent,
+    EditSignComponent,
+    DeleteSignComponent,
+    NewDailyComponent,
   ],
   imports: [
     CommonModule,
     HoroscopeRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    NgbModule,
+    MatSelectModule
   ]
 })
+
 export class HoroscopeModule { }

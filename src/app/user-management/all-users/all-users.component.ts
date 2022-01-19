@@ -60,7 +60,7 @@ export class AllUsersComponent implements OnInit {
     this._userservices.getAllRoles().subscribe({
       next: (data) => {
         allroles = data;
-        console.log(allroles);
+       // console.log(allroles);
       },
       error: (err: Error) => {
         alert('Error:' + err);
