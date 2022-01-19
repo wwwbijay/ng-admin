@@ -289,3 +289,30 @@ MATDialog  starts
 a.dropdown-item{
   cursor: pointer;
 }
+
+/***********************************
+Horoscope  starts
+**************************************/
+.mid-title{
+  margin-top: 20px;
+}
+.mid-title h3{
+  font-weight: normal;
+  font-size: 20px;
+  padding: 8px;
+  background: #eee;
+}
+
+.input-group-append a{
+  cursor: pointer;
+  font-size: 20px;
+}
+.input-group-append a:hover{
+  color: #333;
+}
+
+.highlight{
+  background:rgb(237, 247, 97);
+  padding: 8px;
+}
+

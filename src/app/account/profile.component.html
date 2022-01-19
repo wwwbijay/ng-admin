@@ -45,7 +45,7 @@
                       </tr>
                       <tr *ngIf="!!currentUser.dateOfBirth">
                         <td>Date of Birth</td>
-                        <td>{{currentUser.dateOfBirth}}</td>
+                        <td>{{currentUser.dateOfBirth | date}}</td>
                       </tr>
                       <tr *ngIf="!!currentUser.department">
                         <td>Department</td>

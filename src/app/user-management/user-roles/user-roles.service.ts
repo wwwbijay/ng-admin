@@ -22,8 +22,11 @@ export class userRoleServices {
   getToken(){
     return localStorage.getItem('token');
   }
-  getAllRoles() {
+  getAllRoles(): Observable<any> {
     return this.http.get(this.baseUrl + '/api/UserManager/get-roles-list', this.options);
+  }
+  getRoleById(id:any): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/UserManager/get-role-by-id?Id='+id, this.options);
   }
   create(data:string): Observable<any> {
     console.log(`Bearer ${this.getToken()}` );
