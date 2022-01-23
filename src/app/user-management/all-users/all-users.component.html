@@ -49,7 +49,7 @@
          
           >
             
-            <td>{{ i + 1 }}</td>
+            <td>{{ ((page-1) * 10 + i ) + 1  }}</td>
             <td>{{ user.fullName }}</td>
             <td>{{ user.userName }}</td>
             <td>{{ user.email }}</td>
@@ -90,6 +90,7 @@
                 key
                 </span>
               </button>
+              
             </td>
           </tr>
       </table>
@@ -99,11 +100,7 @@
     <!--.page-entry-heading ends-->
   </div>
   <!--.page-item END-->
-</div>
-
-<router-outlet></router-outlet>
-
-<dialog-create-user
+  <dialog-create-user
   #createUser
   [allRoleLists]="allRoleLists"
   (listAllUsers)="listAllUsers()"
@@ -123,5 +120,10 @@
 <dialog-reset-password
   #resetPassword
   ></dialog-reset-password>
+</div>
+
+<router-outlet></router-outlet>
+
+
 
 

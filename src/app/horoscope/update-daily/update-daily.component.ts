@@ -33,7 +33,6 @@ export class UpdateDailyComponent implements OnInit {
   dateChanged(e:any){
     this.selected_date = e;
     this.getDailyByDate();
-    
   }
   getDailyByDate() {
     let seldate = this._datePipe.transform(this.selected_date,"yyyy-MM-dd");
