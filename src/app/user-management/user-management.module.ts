@@ -22,9 +22,6 @@ import { ChangePasswordComponent } from './dialogs/change-password/change-passwo
 import { ViewUserComponent } from './dialogs/view-user/view-user.component';
 
 
-
-
-
 @NgModule({
   declarations: [
     AllUsersComponent,

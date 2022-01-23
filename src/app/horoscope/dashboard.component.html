@@ -53,10 +53,10 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Image</th>
-          <th scope="col">English Title</th>
-          <th scope="col">English Subtitle</th>
           <th scope="col">Nepali Title</th>
+          <th scope="col">English Title</th>
           <th scope="col">Nepali Subtitle</th>
+          <th scope="col">English Subtitle</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
@@ -67,16 +67,16 @@
             <img [src]="baseUrl+sign.horoscopeImagePath" class="mr-2" style="width: 100px">
           </td>
           <td>
-            {{sign.horoscopeNameEnglish}}
-          </td>
-          <td>
-            {{sign.horoscopeSubTitleEnglish}}
-          </td>
-          <td>
             {{sign.horoscopeNameNepali}}
           </td>
           <td>
+            {{sign.horoscopeNameEnglish}}
+          </td>
+          <td>
             {{sign.horoscopeSubTitleNepali}}
+          </td>
+          <td>
+            {{sign.horoscopeSubTitleEnglish}}
           </td>
           
           <td>
@@ -98,9 +98,11 @@
     <!--.page-entry-heading ends-->
   </div>
   <!--.page-item END-->
+
+  <dialog-create-sign #newSign (getAllSigns)="getAllSigns()"></dialog-create-sign>
+  <dialog-edit-sign #editSign (getAllSigns)="getAllSigns()"></dialog-edit-sign>
+  <dialog-delete-sign #deleteSign (getAllSigns)="getAllSigns()"></dialog-delete-sign>
 </div>
 
 <router-outlet></router-outlet>
-<dialog-create-sign #newSign (getAllSigns)="getAllSigns()"></dialog-create-sign>
-<dialog-edit-sign #editSign (getAllSigns)="getAllSigns()"></dialog-edit-sign>
-<dialog-delete-sign #deleteSign (getAllSigns)="getAllSigns()"></dialog-delete-sign>
+
