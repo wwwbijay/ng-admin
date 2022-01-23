@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatSelectModule} from '@angular/material/select';
+import { CKEditorModule } from 'ckeditor4-angular';
+
 
 import { HoroscopeRoutingModule } from './horoscope-routing.module';
 
@@ -17,6 +19,8 @@ import { CreateSignComponent } from './dialogs/create-sign/create-sign.component
 import { EditSignComponent } from './dialogs/edit-sign/edit-sign.component';
 import { DeleteSignComponent } from './dialogs/delete-sign/delete-sign.component';
 import { NewDailyComponent } from './dialogs/new-daily/new-daily.component';
+import { EditDailyComponent } from './dialogs/edit-daily/edit-daily.component';
+import { DeleteDailyComponent } from './dialogs/delete-daily/delete-daily.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,8 @@ import { NewDailyComponent } from './dialogs/new-daily/new-daily.component';
     EditSignComponent,
     DeleteSignComponent,
     NewDailyComponent,
+    EditDailyComponent,
+    DeleteDailyComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +44,8 @@ import { NewDailyComponent } from './dialogs/new-daily/new-daily.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    MatSelectModule
+    MatSelectModule,
+    CKEditorModule
   ]
 })
 
