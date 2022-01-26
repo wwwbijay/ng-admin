@@ -12,9 +12,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  loader: boolean = false;
   baseUrl = environment.baseUrl;
-  currentUser: IUserDetails ={
+  currentUser: IUserDetails = {
     fullName: '',
     userName: '',
     address: '',
@@ -30,17 +30,18 @@ export class ProfileComponent implements OnInit {
     profileImagePath: '',
     isActive: true,
   };
-  
-  constructor(private _userservice: UserService, public _router:Router) { }
+
+  constructor(private _userservice: UserService, public _router: Router) { }
   ngOnInit(): void {
+    this.loader = true;
     var mytoken = this._userservice.getToken();
     var username = this._userservice.getUserByToken(mytoken) || 'sorry';
     this.getUserByUsername(username);
-  
+
   }
 
-  getUserByUsername(username:any){
-    let testCurrentuser:any;
+  getUserByUsername(username: any) {
+    let testCurrentuser: any;
     this._userservice.getUserByUsername(username).subscribe({
       next: (data) => {
         testCurrentuser = data;
@@ -48,13 +49,14 @@ export class ProfileComponent implements OnInit {
       error: (err: Error) => {
         alert('Error:' + err);
       },
-      complete: () => { 
+      complete: () => {
         this.currentUser = testCurrentuser;
+        this.loader = false;
       }
-     });
-     
+    });
+
   }
-  
+
 
 
 

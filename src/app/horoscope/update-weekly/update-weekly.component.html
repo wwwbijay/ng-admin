@@ -10,22 +10,13 @@
       <div class="row date-picker mb-3">
         <div class="col-8 text-left">
           <strong>Week:</strong>
-          <span class="selected_date"
-            >{{ selectedWeekStart | date }} - {{ selectedWeekEnd | date }}</span
-          >
+          <span class="selected_date">{{ selectedWeekStart | date }} - {{ selectedWeekEnd | date }}</span>
         </div>
         <div class="col-4 text-right">
           <div class="form-group">
             <div class="input-group">
-              <input
-                (ngModelChange)="dateChanged($event)"
-                class="form-control"
-                placeholder="yyyy-mm-dd"
-                name="dp"
-                [(ngModel)]="selected_date"
-                ngbDatepicker
-                #d="ngbDatepicker"
-              />
+              <input (ngModelChange)="dateChanged($event)" class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                [(ngModel)]="selected_date" ngbDatepicker #d="ngbDatepicker" (firstDayOfWeek)=5 />
               <div class="input-group-append">
                 <a (click)="d.toggle()">
                   <span class="material-icons"> today </span>

@@ -21,6 +21,7 @@ import { DeleteSignComponent } from './dialogs/delete-sign/delete-sign.component
 import { NewDailyComponent } from './dialogs/new-daily/new-daily.component';
 import { EditDailyComponent } from './dialogs/edit-daily/edit-daily.component';
 import { DeleteDailyComponent } from './dialogs/delete-daily/delete-daily.component';
+import { TopNavComponent } from './layout/top-nav/top-nav.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { DeleteDailyComponent } from './dialogs/delete-daily/delete-daily.compon
     NewDailyComponent,
     EditDailyComponent,
     DeleteDailyComponent,
+    TopNavComponent,
   ],
   imports: [
     CommonModule,

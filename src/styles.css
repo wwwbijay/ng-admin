@@ -83,6 +83,9 @@ General Buttons Starts
   width: 100%;
 }
 
+
+
+
 /***********************************
 Page Item Starts
 **************************************/
@@ -230,7 +233,7 @@ input[type="file"]{
   font-size: 14px;
   color: #000;
   display: inline-block;
-  padding: 20px 30px;
+  padding: 10px 30px;
 }
 .horoscope-nav li a:hover{
   text-decoration: none;
@@ -251,7 +254,11 @@ input[type="file"]{
   height: auto;
   cursor: pointer;
 }
-
+.sign_title{
+  font-size: 12px;
+  display: block;
+  text-align: center;
+}
 /***********************************
 MATDialog  starts
 **************************************/

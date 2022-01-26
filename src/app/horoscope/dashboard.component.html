@@ -1,97 +1,70 @@
 <!--
   Horoscope Dashboard
 -->
-<nav class="horoscope-nav">
-  <ul>
-    <li
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      <a [routerLink]="'/horoscope'">Horoscope Dashboard</a>
-    </li>
-    <li
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      <a [routerLink]="'/horoscope/update-daily'">Daily Horoscope</a>
-    </li>
-    <li
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      <a [routerLink]="'/horoscope/update-weekly'">Weekly Horoscope</a>
-    </li>
-    <li
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      <a [routerLink]="'/horoscope/update-monthly'">Monthly Horoscope</a>
-    </li>
-    <li
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      <a [routerLink]="'/horoscope/update-yearly'">Yearly Horoscope</a>
-    </li>
-  </ul>
-</nav>
+<top-nav></top-nav>
 
 <div *ngIf="router.url === '/horoscope'" class="horroscope-dashboard">
   <div class="page-item">
     <div class="page-entry-heading">
       <h3>Horoscope Management</h3>
-      <a class="btn btn-primary" data-toggle="modal" data-target="#createSign"
-        >+ New Sign</a
-      >
+      <a class="btn btn-primary" data-toggle="modal" data-target="#createSign">+ New Sign</a>
     </div>
     <!--.page-entry-heading ends-->
-    
+
     <div class="page-item-entry text-center">
-      
+      <div *ngIf="loader" class="loader">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
       <table class="table table-striped table-mid-content">
         <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Image</th>
-          <th scope="col">Nepali Title</th>
-          <th scope="col">English Title</th>
-          <th scope="col">Nepali Subtitle</th>
-          <th scope="col">English Subtitle</th>
-          <th scope="col">Action</th>
-        </tr>
+          <tr>
+
+            <th scope="col">Image</th>
+            <th scope="col">Nepali Title</th>
+            <th scope="col">English Title</th>
+            <th scope="col">Nepali Subtitle</th>
+            <th scope="col">English Subtitle</th>
+            <th scope="col">Action</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let sign of allsigns$ | async">
-          <th scope="row">{{sign.id}}</th>
-          <td>
-            <img [src]="baseUrl+sign.horoscopeImagePath" class="mr-2" style="width: 100px">
-          </td>
-          <td>
-            {{sign.horoscopeNameNepali}}
-          </td>
-          <td>
-            {{sign.horoscopeNameEnglish}}
-          </td>
-          <td>
-            {{sign.horoscopeSubTitleNepali}}
-          </td>
-          <td>
-            {{sign.horoscopeSubTitleEnglish}}
-          </td>
-          
-          <td>
-            <a (click)="editSign.assignSign(sign.id)" class="btn btn-icon btn-icon-edit" data-toggle="modal" data-target="#editSign">
-              <span class="material-icons">
-                edit
+          <tr *ngFor="let sign of allsigns$ | async">
+
+            <td>
+              <img [src]="baseUrl+sign.horoscopeImagePath" class="mr-2" style="width: 100px">
+            </td>
+            <td>
+              {{sign.horoscopeNameNepali}}
+            </td>
+            <td>
+              {{sign.horoscopeNameEnglish}}
+            </td>
+            <td>
+              {{sign.horoscopeSubTitleNepali}}
+            </td>
+            <td>
+              {{sign.horoscopeSubTitleEnglish}}
+            </td>
+
+            <td>
+              <a (click)="editSign.assignSign(sign.id)" class="btn btn-icon btn-icon-edit" data-toggle="modal"
+                data-target="#editSign">
+                <span class="material-icons">
+                  edit
                 </span>
-            </a>
-            <a (click)="deleteSign.assignId(sign.id)" class="btn btn-icon btn-icon-view" data-toggle="modal" data-target="#deleteSign">
-              <span class="material-icons">
-                delete 
-              </span>
-            </a>
-          </td>
-        </tr>
+              </a>
+              <a (click)="deleteSign.assignId(sign.id)" class="btn btn-icon btn-icon-view" data-toggle="modal"
+                data-target="#deleteSign">
+                <span class="material-icons">
+                  delete
+                </span>
+              </a>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -105,4 +78,3 @@
 </div>
 
 <router-outlet></router-outlet>
-

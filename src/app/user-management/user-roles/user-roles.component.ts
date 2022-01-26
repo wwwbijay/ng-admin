@@ -9,12 +9,13 @@ import { userRoleServices } from './user-roles.service';
   styleUrls: ['./user-roles.component.css']
 })
 export class UserRolesComponent implements OnInit {
-
+  loader: boolean = false;
   allRoles!: any;
   testRoles: any;
-  constructor(public router: Router, private _roleservices:userRoleServices) { }
+  constructor(public router: Router, private _roleservices: userRoleServices) { }
 
   ngOnInit(): void {
+    this.loader = true;
     this._roleservices.getAllRoles().subscribe({
       next: (data) => {
         this.testRoles = data;
@@ -22,10 +23,11 @@ export class UserRolesComponent implements OnInit {
       error: (err: Error) => {
         alert('Error:' + err);
       },
-      complete: () => { 
+      complete: () => {
         this.allRoles = this.testRoles.roles;
+        this.loader = false;
       }
-     });
+    });
   }
 
 }
