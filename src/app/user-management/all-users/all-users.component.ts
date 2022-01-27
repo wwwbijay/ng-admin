@@ -9,6 +9,9 @@ import { environment } from 'src/environments/environment';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import 'jquery';
 
+import {MatSnackBar} from '@angular/material/snack-bar';
+
+
 @Component({
   selector: 'app-all-users',
   templateUrl: './all-users.component.html',
@@ -28,6 +31,7 @@ export class AllUsersComponent implements OnInit {
   constructor(
     public _router: Router,
     private _userservices: userManageServices,
+    private _snackBar: MatSnackBar
     //private _modalService: NgbModal,
     // public _modal: NgbActiveModal
   ) {}
@@ -35,6 +39,14 @@ export class AllUsersComponent implements OnInit {
   ngOnInit(): void {
     this.listAllRoles();
     this.listAllUsers();
+  }
+
+  openSnackBar(msg:string) {
+    this._snackBar.open(msg,'close',{
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      duration: 3*1000 ,
+    });
   }
 
   listAllUsers() {
@@ -51,6 +63,7 @@ export class AllUsersComponent implements OnInit {
         this.allUsers = testCurrentuser.users;
         this.loader = false;
         (<any>$('.modal')).modal('hide');
+        this.openSnackBar("Success!");
       },
     });
   }
@@ -80,10 +93,25 @@ export class AllUsersComponent implements OnInit {
     });
 
   }
-
-  
- 
   
 }
+
+
+
+@Component({
+  selector: 'snack-bar-component-example-snack',
+  template: `<span class="example-pizza-party">
+              Pizza party!!! 🍕
+             </span>
+            `,
+  styles: [
+    `
+    .example-pizza-party {
+      color: hotpink;
+    }
+  `,
+  ],
+})
+export class PizzaPartyComponent {}
 
 

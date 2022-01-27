@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { UserManagementRoutingModule } from './user-management-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 //Page components
@@ -40,7 +41,8 @@ import { ViewUserComponent } from './dialogs/view-user/view-user.component';
     UserManagementRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatSnackBarModule
   ]
 })
 export class UserManagementModule { }
