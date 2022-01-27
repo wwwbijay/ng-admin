@@ -19,6 +19,9 @@
           </div>
         </div>
       </div>
+     
+
+
       <table class="table table-striped table-mid-content">
         <thead>
           <tr>
@@ -31,8 +34,15 @@
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let sign of allsigns$ | async">
+      <!---Test Drag #Start-->
+      <tbody
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="allsigns"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+
+          <tr class="grabbable" *ngFor="let sign of allsigns" cdkDrag>
 
             <td>
               <img [src]="baseUrl+sign.horoscopeImagePath" class="mr-2" style="width: 100px">
@@ -65,8 +75,14 @@
               </a>
             </td>
           </tr>
-        </tbody>
+      
+      </tbody>
+      <!---Test Drag #END-->
       </table>
+
+   
+
+
     </div>
     <!--.page-entry-heading ends-->
   </div>

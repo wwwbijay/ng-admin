@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatSelectModule} from '@angular/material/select';
 import { CKEditorModule } from 'ckeditor4-angular';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 import { HoroscopeRoutingModule } from './horoscope-routing.module';
@@ -47,7 +48,8 @@ import { TopNavComponent } from './layout/top-nav/top-nav.component';
     FormsModule,
     NgbModule,
     MatSelectModule,
-    CKEditorModule
+    CKEditorModule,
+    DragDropModule
   ]
 })
 
