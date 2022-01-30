@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { userRoleServices } from './user-roles.service';
-
+import { userRoleServices } from '../services/user-roles.service';
+import 'jquery';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-roles',
@@ -12,10 +13,17 @@ export class UserRolesComponent implements OnInit {
   loader: boolean = false;
   allRoles!: any;
   testRoles: any;
-  constructor(public router: Router, private _roleservices: userRoleServices) { }
+  message!: string;
+
+  constructor(public router: Router, private _roleservices: userRoleServices, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.loader = true;
+    this.listAllRoles();
+  }
+
+  listAllRoles(msg = null) {
+
     this._roleservices.getAllRoles().subscribe({
       next: (data) => {
         this.testRoles = data;
@@ -26,8 +34,18 @@ export class UserRolesComponent implements OnInit {
       complete: () => {
         this.allRoles = this.testRoles.roles;
         this.loader = false;
+        (<any>$('.modal')).modal('hide');
       }
     });
   }
 
+  openSnackBar($event:any) {
+    this._snackBar.open($event.message, 'close', {
+      duration: 4 * 1000,
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+    });
+  }
+
 }
+

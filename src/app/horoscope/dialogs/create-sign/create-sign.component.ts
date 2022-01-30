@@ -11,6 +11,7 @@ export class CreateSignComponent implements OnInit {
 
   submitted = false;
   @Output("getAllSigns") getAllSigns: EventEmitter<any> = new EventEmitter();
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
 
   symbol:any;
   symbolPath:any;
@@ -58,11 +59,11 @@ export class CreateSignComponent implements OnInit {
     this._signs.create(formData).subscribe({
         next: (x: number) =>{
            console.log('next value: ' + x);
-           console.log('Success');
+           this.openSnackBar.emit({message: 'Created Successfully!'});
           },
         error: (err: Error) => {
           console.error('Error:'+err.message);
-          console.error('failed');
+          this.openSnackBar.emit({message: 'Sorry! Couldnot create.'});
         },
         complete: () => {
           // this.submitted = true;

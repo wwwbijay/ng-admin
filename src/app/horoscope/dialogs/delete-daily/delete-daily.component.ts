@@ -10,6 +10,7 @@ export class DeleteDailyComponent implements OnInit {
 
   selectedId!:number;
   @Output() getDailyByDate: EventEmitter<any> = new EventEmitter();
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
 
   constructor(private _daily:DailyDataService) { }
 
@@ -22,9 +23,11 @@ export class DeleteDailyComponent implements OnInit {
 
   confirmDelete(){
     this._daily.delete(this.selectedId).subscribe({
-      next:()=>{},
+      next:()=>{
+        this.openSnackBar.emit({message: 'Deleted Successfully!'});
+      },
       error:(err:any)=>{
-        console.log("Error:"+err);
+        this.openSnackBar.emit({message: 'Sorry! Couldnot Delete.'});
       },
       complete:()=>{
         this.getDailyByDate.emit();

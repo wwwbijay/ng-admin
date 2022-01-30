@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { userRoleServices } from '../../user-roles/user-roles.service';
+import { userRoleServices } from '../../services/user-roles.service';
 
 @Component({
   selector: 'dialog-edit-role',
@@ -11,10 +11,13 @@ export class EditRoleComponent implements OnInit {
 
   submitted = false;
   submitted_success = false;
-  submitted_msg:string = '';
+  submitted_msg: string = '';
 
-  selectedRoleId:any;
-  selectedRole:any;
+  selectedRoleId: any;
+  selectedRole: any;
+
+  @Output("listAllRoles") listAllRoles: EventEmitter<any> = new EventEmitter();
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
 
   editRoleForm = new FormGroup({
     roleName: new FormControl('', [Validators.required]),
@@ -23,28 +26,29 @@ export class EditRoleComponent implements OnInit {
     return this.editRoleForm.get('roleName');
   }
 
-  constructor(private _roleservice:userRoleServices) { }
+  constructor(private _roleservice: userRoleServices) { }
 
   ngOnInit(): void {
   }
-  assignRole(id:any){
-    let sel_role:any;
+  assignRole(id: any) {
+    let sel_role: any;
     this.selectedRoleId = id;
     this._roleservice.getRoleById(id).subscribe({
-      next:(x:any)=>{
+      next: (x: any) => {
         sel_role = x.role;
       },
-      error:(err:any)=>{
-        //console.log(err);
+      error: (err: any) => {
+        this.submitted_msg = "Sorry! Couldnot update."
+        
       },
-      complete:()=>{
+      complete: () => {
         this.editRoleForm.setValue({
           roleName: sel_role.roleName
         });
       }
     });
   }
-  editRole(){
+  editRole() {
     let roleName = this.editRoleForm.value.roleName;
     let data = {
       roleId: this.selectedRoleId,
@@ -52,17 +56,17 @@ export class EditRoleComponent implements OnInit {
       }
 
     this._roleservice.update(this.selectedRoleId, data).subscribe({
-      next: (x:any)=> {
-        this.submitted = true;
-        this.submitted_success = true;
-        this.submitted_msg = 'New Role Created Successfully!';
+      next: (x: any) => {
+        this.submitted_msg = 'Role Updated Successfully!';
+        this.openSnackBar.emit({message:this.submitted_msg});
       },
-      error:(err:any)=>{
-        this.submitted = true;
-        this.submitted_msg = "Couldn't Create Role. Error: " + err.message;
+      error: (err: any) => {
+        this.submitted_msg = "Couldn't Update Role.";
+        this.openSnackBar.emit({message:this.submitted_msg});
+        this.listAllRoles.emit();
       },
-      complete:()=>{
-        
+      complete: () => {
+        this.listAllRoles.emit();
       }
     });
 
