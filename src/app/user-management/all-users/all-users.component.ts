@@ -5,9 +5,8 @@ import { IRoles } from '../../interfaces/IRoles'
 
 import { userManageServices } from '../services/user-manage.service';
 import { environment } from 'src/environments/environment';
-//import { DeleteUserComponent } from '../dialogs/delete-user/delete-user.component';
-//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import 'jquery';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-all-users',
@@ -28,8 +27,7 @@ export class AllUsersComponent implements OnInit {
   constructor(
     public _router: Router,
     private _userservices: userManageServices,
-    //private _modalService: NgbModal,
-    // public _modal: NgbActiveModal
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -79,6 +77,15 @@ export class AllUsersComponent implements OnInit {
       },
     });
 
+  }
+
+
+  openSnackBar($event:any) {
+    this._snackBar.open($event.message, 'close', {
+      duration: 4 * 1000,
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+    });
   }
 
 

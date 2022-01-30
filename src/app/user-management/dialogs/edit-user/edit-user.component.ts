@@ -6,8 +6,6 @@ import { userManageServices } from '../../services/user-manage.service';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-
-
 @Component({
   selector: 'dialog-edit-user',
   templateUrl: './edit-user.component.html',
@@ -21,6 +19,7 @@ export class EditUserComponent implements OnInit {
   userAvatarPath: any;
   @Input() allRoleLists: IRoles[] = [];
   @Output("listAllUsers") listAllUsers: EventEmitter<any> = new EventEmitter();
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
 
   submitted: boolean = false;
   submitted_msg: string = '';
@@ -161,12 +160,12 @@ export class EditUserComponent implements OnInit {
         this.submitted = true;
         this.submitted_success = true;
         this.submitted_msg = 'User Updated Successfully!';
-        console.log(x);
+        this.openSnackBar.emit({message:this.submitted_msg});
       },
       error: (err: Error) => {
         this.submitted = true;
         this.submitted_msg = "Couldn't Update User. Error: " + err.message;
-        console.log(err);
+        this.openSnackBar.emit({message:this.submitted_msg});
       },
       complete: () => {
         this.listAllUsers.emit();
