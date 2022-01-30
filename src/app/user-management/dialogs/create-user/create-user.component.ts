@@ -19,7 +19,7 @@ export class CreateUserComponent implements OnInit {
 
   @Input() allRoleLists: IRoles[] = [];
   @Output("listAllUsers") listAllUsers: EventEmitter<any> = new EventEmitter();
-
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
 
 
   createUserForm = new FormGroup({
@@ -121,11 +121,13 @@ export class CreateUserComponent implements OnInit {
         this.submitted_success = true;
         this.submitted_msg = 'New User Created Successfully!';
         console.log(x);
+        this.openSnackBar.emit({message:this.submitted_msg});
       },
       error: (err: Error) => {
         this.submitted = true;
         this.submitted_msg = "Couldn't Create User. Error: " + err.message;
         console.log(err);
+        this.openSnackBar.emit({message:this.submitted_msg});
       },
       complete: () => {
         this.listAllUsers.emit();

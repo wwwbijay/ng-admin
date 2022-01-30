@@ -7,13 +7,8 @@
       <a class="refresh_users" (click)="listAllUsers()">
         <span class="material-icons-outlined"> loop </span>
       </a>
-      <a
-        class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#addUserModal"
-      >
-        + Add User</a
-      >
+      <a class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">
+        + Add User</a>
     </div>
     <!--.page-entry-heading ends-->
 
@@ -38,61 +33,41 @@
           </tr>
         </thead>
 
-        
-          <tr
-            *ngFor="
+
+        <tr *ngFor="
               let user of allUsers
                 | paginate: { itemsPerPage: 10, currentPage: page };
               let i = index
-            "
-            [ngClass]=" (user.isActive ) ? '' : 'alert alert-danger'"
-         
-          >
-            
-            <td>{{ ((page-1) * 10 + i ) + 1  }}</td>
-            <td>{{ user.fullName }}</td>
-            <td>{{ user.userName }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.roles }}</td>
-            <td>
-              
-              <a
-                class="btn btn-icon btn-icon-edit"
-                data-toggle="modal"
-                data-target="#editUserModal"
-                (click)="editUser.assignUserData(user.id)"
-                title="Edit User"
-              >
-                <span class="material-icons"> edit </span>
-              </a>
+            " [ngClass]=" (user.isActive ) ? '' : 'alert alert-danger'">
 
-              <button
-                [disabled]="!user.isActive"
-                class="btn btn-icon btn-icon-view"
-                data-toggle="modal"
-                data-target="#deleteUserModal"
-                (click)="deleteUser.deleteUser(user.id)"
-                title="Delete User"
-              >
-                <span class="material-icons"> delete </span>
-              </button>
+          <td>{{ ((page-1) * 10 + i ) + 1 }}</td>
+          <td>{{ user.fullName }}</td>
+          <td>{{ user.userName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.roles }}</td>
+          <td>
+
+            <a class="btn btn-icon btn-icon-edit" data-toggle="modal" data-target="#editUserModal"
+              (click)="editUser.assignUserData(user.id)" title="Edit User">
+              <span class="material-icons"> edit </span>
+            </a>
+
+            <button [disabled]="!user.isActive" class="btn btn-icon btn-icon-view" data-toggle="modal"
+              data-target="#deleteUserModal" (click)="deleteUser.deleteUser(user.id)" title="Delete User">
+              <span class="material-icons"> delete </span>
+            </button>
 
 
-              <button
-                [disabled]="!user.isActive"
-                class="btn btn-icon btn-icon-view"
-                data-toggle="modal"
-                data-target="#resetPasswordUserModal"
-                (click)="resetPassword.changePassword(user.id)"
-                title="Change Password"
-              >
+            <button [disabled]="!user.isActive" class="btn btn-icon btn-icon-view" data-toggle="modal"
+              data-target="#resetPasswordUserModal" (click)="resetPassword.changePassword(user.id)"
+              title="Change Password">
               <span class="material-icons-outlined">
                 key
-                </span>
-              </button>
-              
-            </td>
-          </tr>
+              </span>
+            </button>
+
+          </td>
+        </tr>
       </table>
       <!-- Data Tables END -->
       <pagination-controls (pageChange)="page = $event"></pagination-controls>
@@ -100,30 +75,15 @@
     <!--.page-entry-heading ends-->
   </div>
   <!--.page-item END-->
-  <dialog-create-user
-  #createUser
-  [allRoleLists]="allRoleLists"
-  (listAllUsers)="listAllUsers()"
-></dialog-create-user>
-<dialog-edit-user
-  #editUser
-  [allRoleLists]="allRoleLists"
-  (listAllUsers)="listAllUsers()"
-  
-></dialog-edit-user>
+  <dialog-create-user #createUser [allRoleLists]="allRoleLists" (listAllUsers)="listAllUsers()"
+    (openSnackBar)="openSnackBar($event)"></dialog-create-user>
+  <dialog-edit-user #editUser [allRoleLists]="allRoleLists" (listAllUsers)="listAllUsers()"
+    (openSnackBar)="openSnackBar($event)"></dialog-edit-user>
 
-<dialog-delete-user
-  #deleteUser
-  (listAllUsers)="listAllUsers()"
-></dialog-delete-user>
+  <dialog-delete-user #deleteUser (listAllUsers)="listAllUsers()" (openSnackBar)="openSnackBar($event)">
+  </dialog-delete-user>
 
-<dialog-reset-password
-  #resetPassword
-  ></dialog-reset-password>
+  <dialog-reset-password #resetPassword (openSnackBar)="openSnackBar($event)"></dialog-reset-password>
 </div>
 
 <router-outlet></router-outlet>
-
-
-
-

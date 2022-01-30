@@ -12,6 +12,7 @@ export class DeleteUserComponent implements OnInit {
 
   @Input() public usertodelete: any;
   @Output("listAllUsers") listAllUsers: EventEmitter<any> = new EventEmitter();
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private _userservice: userManageServices,
@@ -29,9 +30,11 @@ export class DeleteUserComponent implements OnInit {
     this._userservice.deleteUserById(this.userIdToDelete).subscribe({
       next: (x) => {
         console.log("User" + x + " Deleted");
+        this.openSnackBar.emit({message:'User Deleted!'});
       },
       error: (err) => {
         console.log("Error" + err);
+        this.openSnackBar.emit({message:'Sorry! Couldnot delete user.'});
       },
       complete: () => {
         this.listAllUsers.emit();

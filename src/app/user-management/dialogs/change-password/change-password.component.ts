@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { userManageServices } from '../../services/user-manage.service';
 import 'jquery';
@@ -14,6 +14,7 @@ export class ChangePasswordComponent implements OnInit {
   submitted = false;
   submitted_success = false;
   submitted_msg:string = '';
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
 
   resetPasswordForm = new FormGroup({
     rpassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -41,11 +42,11 @@ export class ChangePasswordComponent implements OnInit {
       confirmPassword: this.resetPasswordForm.value.rconfirmPassword
     }
     this._user.resetPassword(this.selectedId,data).subscribe({
-      next:(x:any)=>{
-        console.log("password changed successfully");
+      next:(x:any)=>{     
+        this.openSnackBar.emit({message:"Password Changed Successfully"});
       },
-      error:(err:any)=>{
-        console.log("Error:"+err);
+      error:(err:any)=>{   
+        this.openSnackBar.emit({message:"Sorry! Couldnot change password."});
       },
       complete:()=>{
         (<any>$('.modal')).modal('hide');
