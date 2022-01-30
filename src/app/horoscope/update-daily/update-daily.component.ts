@@ -8,6 +8,7 @@ import {
 import { DailyDataService } from '../services/daily-data.service';
 import 'jquery';
 import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-update-daily',
@@ -33,7 +34,8 @@ export class UpdateDailyComponent implements OnInit {
 
   constructor(
     private _daily: DailyDataService,
-    private _datePipe: DatePipe
+    private _datePipe: DatePipe,
+    private _snackBar: MatSnackBar
   ) {
     this.selected_date = new Date();
     this.formatted_date = _datePipe.transform(this.selected_date, "yyyy-MM-dd");
@@ -62,8 +64,6 @@ export class UpdateDailyComponent implements OnInit {
         console.log(this.alldaily);
         (<any>$('.modal')).modal('hide');
         this.loader = false;
-
-
       }
     });
   }
@@ -83,6 +83,14 @@ export class UpdateDailyComponent implements OnInit {
       }
     });
     return selectedSignImage;
+  }
+
+  openSnackBar($event:any) {
+    this._snackBar.open($event.message, 'close', {
+      duration: 4 * 1000,
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+    });
   }
 
 }

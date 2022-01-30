@@ -1,58 +1,40 @@
 <!-- Create Role Modal -->
-<div class="modal fade" id="createRoleModal" tabindex="-1" role="dialog" aria-labelledby="createRoleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <form [formGroup]="createRoleForm" (ngSubmit)="createRole()">
+<div class="modal fade" id="createRoleModal" tabindex="-1" role="dialog" aria-labelledby="createRoleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="createRoleForm" (ngSubmit)="createRole()">
         <div class="modal-header">
           <h5 class="modal-title" id="createRoleModalLabel">Create New Role</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div *ngIf="submitted" class="submitted">
-            <div
-              class="alert text-center"
-              [ngClass]="submitted_success ? 'alert-success' : 'alert-danger'"
-              role="alert"
-            >
-              <p>
-                {{ submitted_msg }}
-              </p>
-            </div>
-          </div>
+
         <div class="modal-body">
-          
-            <div class="row">
-                <div class="col">
-                    <label>Add New Role</label>
-                  <div class="form-group">
-                    
-                    <input
-                      id="roleName"
-                      type="text"
-                      class="form-control"
-                      name="roleName"
-                      placeholder="Role Name"
-                      formControlName="roleName"
-                    />
-                    <small
-                      *ngIf="roleName && roleName.invalid && roleName.touched"
-                      class="err_msg"
-                    >
-                      Please enter valid password.
-                    </small>
-                  </div>
-                </div>
-                
+
+          <div class="row">
+            <div class="col">
+              <label>Add New Role</label>
+              <div class="form-group">
+
+                <input id="roleName" type="text" class="form-control" name="roleName" placeholder="Role Name"
+                  formControlName="roleName" />
+                <small *ngIf="roleName && roleName.invalid && roleName.touched" class="err_msg">
+                  Please enter valid password.
+                </small>
               </div>
-              <!--.row ends-->
-          
+            </div>
+
+          </div>
+          <!--.row ends-->
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary" [disabled]="createRoleForm.invalid">Create</button>
         </div>
-        </form>
-      </div>
+      </form>
     </div>
   </div>
+</div>

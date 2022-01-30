@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IRoles } from 'src/app/interfaces/IRoles';
-import { userManageServices } from '../../user-manage.service';
+import { userManageServices } from '../../services/user-manage.service';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -14,7 +14,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./edit-user.component.css'],
 })
 export class EditUserComponent implements OnInit {
-  
+
   baseUrl = environment.baseUrl;
   userToEdit: any;
   userAvatar: any;
@@ -25,8 +25,8 @@ export class EditUserComponent implements OnInit {
   submitted: boolean = false;
   submitted_msg: string = '';
   submitted_success: boolean = false;
-  
-  user_selected:boolean = false;
+
+  user_selected: boolean = false;
 
   updateUserForm = new FormGroup({
     fullname: new FormControl('', [Validators.required]),
@@ -54,17 +54,17 @@ export class EditUserComponent implements OnInit {
     private _modalService: NgbModal,
     public _modal: NgbActiveModal
   ) { }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  assignUserData(id: any){
-    
+  assignUserData(id: any) {
+
     this.submitted = false;
     this.submitted_success = false;
     this.submitted_msg = '';
 
     var tempUser: any;
     //reset roles binding 
-    this.allRoleLists.filter( role => {
+    this.allRoleLists.filter(role => {
       role.isselected = false;
     });
 
@@ -78,12 +78,12 @@ export class EditUserComponent implements OnInit {
       complete: () => {
         this.userToEdit = tempUser;
         console.log(this.userToEdit);
-        
+
         let selected_roles = this.userToEdit[0].roles;
-        
+
         //assign roles
-        this.allRoleLists.filter( role => {
-          if(selected_roles.indexOf(role.name) >= 0){
+        this.allRoleLists.filter(role => {
+          if (selected_roles.indexOf(role.name) >= 0) {
             role.isselected = true;
           }
         });
@@ -106,7 +106,7 @@ export class EditUserComponent implements OnInit {
         this.userAvatarPath = this.baseUrl + this.userToEdit[0].profileImagePath;
       },
     });
-    
+
   }
   // statusChanged(e:any){
   //   console.log(e.target.value);
@@ -117,15 +117,15 @@ export class EditUserComponent implements OnInit {
       this.userAvatar = e.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
-      reader.onload= (event:any)=>{
-        this.userAvatarPath=event.target.result;
+      reader.onload = (event: any) => {
+        this.userAvatarPath = event.target.result;
       }
     }
     console.log(this.userAvatar || '');
     console.log(this.userAvatar.name || '');
   }
 
-  submitEditForm(id:any) {
+  submitEditForm(id: any) {
 
     console.log(this.updateUserForm.value.isactive);
     var formData: any = new FormData();
@@ -140,19 +140,19 @@ export class EditUserComponent implements OnInit {
     formData.append("gender", this.updateUserForm.value.gender || '');
     formData.append("dateOfBirth", this.updateUserForm.value.dob || '');
     formData.append("department", this.updateUserForm.value.department || '');
-    formData.append("isActive",  this.updateUserForm.value.isactive || false);
+    formData.append("isActive", this.updateUserForm.value.isactive || false);
     formData.append("profileImage", this.userAvatar || '');
     // formData.append("roles", myroles ); 
 
-    let roleCount =0 ;
-    this.allRoleLists.filter( role => {
-      if(role.isselected === true){
+    let roleCount = 0;
+    this.allRoleLists.filter(role => {
+      if (role.isselected === true) {
         roleCount++;
         formData.append("roles", role.name);
       }
     });
 
-    if(roleCount < 1){
+    if (roleCount < 1) {
       formData.append("roles", 'Customer');
     }
 

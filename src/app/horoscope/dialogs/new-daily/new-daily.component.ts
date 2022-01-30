@@ -21,6 +21,7 @@ export class NewDailyComponent implements OnInit {
   @Input() selected_date: any;
   formatted_date:any; 
   @Output() getDailyByDate: EventEmitter<any> = new EventEmitter();
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
   
   addDailyForm = new FormGroup({
     horoscopeId: new FormControl('', Validators.required),
@@ -77,11 +78,14 @@ export class NewDailyComponent implements OnInit {
     };
 
     this._dailyservice.add(data).subscribe({
-      next:(x:any)=>{ },
+      next:(x:any)=>{
+        this.openSnackBar.emit({message: 'Added Successfully!'});
+       },
       error:(err:any)=>{
-        console.log("Error:"+err);
+        this.openSnackBar.emit({message: 'Sorry! Couldnot add.'});
       },
       complete:()=>{
+        
         this.getDailyByDate.emit();
       }
     });

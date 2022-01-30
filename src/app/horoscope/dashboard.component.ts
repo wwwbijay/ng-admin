@@ -6,6 +6,7 @@ import { ISign } from '../interfaces/ISign'
 import { environment } from 'src/environments/environment';
 import 'jquery';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -23,10 +24,7 @@ export class DashboardComponent implements OnInit {
   allsigns: any;
   onesign!: ISign;
 
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
-
-  constructor(public router: Router, private _signs: SignsDataService) { }
+  constructor(public router: Router, private _signs: SignsDataService, private _snackBar:MatSnackBar) { }
   ngOnInit(): void {
     // this.manageTblCmp?.getAllSigns();
     this.getAllSigns();
@@ -56,7 +54,6 @@ export class DashboardComponent implements OnInit {
 
   }
 
-
   drop(event: CdkDragDrop<string[]>) {
    
     if (event.previousContainer === event.container) {
@@ -70,6 +67,15 @@ export class DashboardComponent implements OnInit {
       );
     }
     
+  }
+
+
+  openSnackBar($event:any) {
+    this._snackBar.open($event.message, 'close', {
+      duration: 4 * 1000,
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom',
+    });
   }
 
 

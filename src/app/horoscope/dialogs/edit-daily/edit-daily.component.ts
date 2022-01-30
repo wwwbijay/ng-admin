@@ -12,21 +12,22 @@ import * as jQuery from 'jquery';
 })
 export class EditDailyComponent implements OnInit {
   baserUrl = environment.baseUrl;
-  engDesc:any;
-  nepDesc:any;
-  allSigns:any;
+  engDesc: any;
+  nepDesc: any;
+  allSigns: any;
   selectedSignImage: any;
-  selectedDaily:any;
-  selectedId!:number;
+  selectedDaily: any;
+  selectedId!: number;
   @Input() selected_date: any;
   @Output() getDailyByDate: EventEmitter<any> = new EventEmitter();
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
 
   editDailyForm = new FormGroup({
     horoscopeId: new FormControl(''),
   });
 
 
-  
+
   constructor(
     private _signs: SignsDataService,
     private _daily: DailyDataService,
@@ -34,7 +35,7 @@ export class EditDailyComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  getAllSigns(){
+  getAllSigns() {
     this._signs.getAll().subscribe({
       next: (x: any) => {
         this.allSigns = x;
@@ -42,15 +43,15 @@ export class EditDailyComponent implements OnInit {
       error: (e: any) => {
         console.log('Error:' + e);
       },
-      complete: () => {},
+      complete: () => { },
     });
   }
 
-  assignAll(id:number) {
+  assignAll(id: number) {
     this.selectedId = id;
     this.getAllSigns();
-    
-    let temp:any;
+
+    let temp: any;
     this._daily.getById(id).subscribe({
       next: (x: any) => {
         temp = x;
@@ -60,6 +61,7 @@ export class EditDailyComponent implements OnInit {
       },
       complete: () => {
         this.selectedDaily = temp.horoscope;
+
         this.engDesc = this.selectedDaily.horoscopeDescriptionEnglish;
         this.nepDesc = this.selectedDaily.horoscopeDescriptionNepali;
         this.selectedSignImage = this.baserUrl + this.selectedDaily.horoscopeImagePath
@@ -74,23 +76,25 @@ export class EditDailyComponent implements OnInit {
     this.nepDesc = e.editor.getData();
   }
 
-  editDaily(){
-    
+  editDaily() {
+
     let data = {
       id: this.selectedId,
+      horoscopeId: this.selectedDaily.horoscopeId,
+      horoscopeDateEnglish: this.selectedDaily.horoscopeDateEnglish,
       horoscopeDescriptionEnglish: this.engDesc,
       horoscopeDescriptionNepali: this.nepDesc
     };
-    console.log(data);
+
 
     this._daily.update(data).subscribe({
-      next:(x:any)=>{
-        console.log("success"+x);
+      next: (x: any) => {
+        this.openSnackBar.emit({message: 'Updated Successfully!'});
       },
-      error:(err:any)=>{
-        console.log("Error:"+err);
+      error: (err: any) => {
+        this.openSnackBar.emit({message: 'Sorry! Couldnot Update.'});
       },
-      complete:()=>{
+      complete: () => {
         this.getDailyByDate.emit();
       }
     });

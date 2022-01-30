@@ -52,14 +52,8 @@
                 {{day.horoscopeNameNepali + '-' + day.horoscopeNameEnglish}}
               </span>
             </td>
-            <td>
-              {{ day.horoscopeDescriptionNepali | slice:3:120 }}...
-            </td>
-            <td>
-              <p>
-                {{ day.horoscopeDescriptionEnglish | slice:3:120 }}...
-              </p>
-            </td>
+            <td [innerHTML]="day.horoscopeDescriptionNepali"></td>
+            <td [innerHTML]="day.horoscopeDescriptionEnglish"></td>
             <td>
               <a class="btn btn-icon btn-icon-edit" data-toggle="modal" data-target="#editDaily"
                 (click)="editDaily.assignAll(day.id)">
@@ -79,8 +73,11 @@
   <!--.page-item END-->
 </div>
 
-<dialog-new-daily #newDaily [selected_date]="selected_date" (getDailyByDate)="getDailyByDate()"></dialog-new-daily>
+<dialog-new-daily #newDaily [selected_date]="selected_date" (getDailyByDate)="getDailyByDate()"
+  (openSnackBar)="openSnackBar($event)"></dialog-new-daily>
 
-<dialog-edit-daily #editDaily [selected_date]="selected_date" (getDailyByDate)="getDailyByDate()"></dialog-edit-daily>
+<dialog-edit-daily #editDaily [selected_date]="selected_date" (getDailyByDate)="getDailyByDate()"
+  (openSnackBar)="openSnackBar($event)"></dialog-edit-daily>
 
-<dialog-delete-daily #deleteDaily (getDailyByDate)="getDailyByDate()"></dialog-delete-daily>
+<dialog-delete-daily #deleteDaily (getDailyByDate)="getDailyByDate()" (openSnackBar)="openSnackBar($event)">
+</dialog-delete-daily>

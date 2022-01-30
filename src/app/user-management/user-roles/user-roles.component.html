@@ -36,11 +36,11 @@
                   edit
                 </span>
               </a>
-              <a class="btn btn-icon btn-icon-view" data-toggle="modal" data-target="#deleteRoleModal">
-                <span class="material-icons">
-                  delete
-                </span>
+              <a class="btn btn-icon btn-icon-view" data-toggle="modal" data-target="#deleteRoleModal"
+                (click)="deleteRoleDialog.assignRole(role.roleId)" title="Delete User">
+                <span class="material-icons"> delete </span>
               </a>
+
             </td>
           </tr>
 
@@ -53,5 +53,8 @@
   <!--.page-item END-->
 </div>
 
-<dialog-create-role></dialog-create-role>
-<dialog-edit-role #editRoleDialog></dialog-edit-role>
+<dialog-create-role (listAllRoles)="listAllRoles()" (openSnackBar)="openSnackBar($event)"></dialog-create-role>
+<dialog-edit-role #editRoleDialog (listAllRoles)="listAllRoles()" (openSnackBar)="openSnackBar($event)">
+</dialog-edit-role>
+<dialog-delete-role #deleteRoleDialog (listAllRoles)="listAllRoles()" (openSnackBar)="openSnackBar($event)">
+</dialog-delete-role>

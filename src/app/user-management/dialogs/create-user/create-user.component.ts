@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IRoles } from 'src/app/interfaces/IRoles';
 
-import { userManageServices } from '../../user-manage.service';
+import { userManageServices } from '../../services/user-manage.service';
 
 @Component({
   selector: 'dialog-create-user',
@@ -14,13 +14,13 @@ export class CreateUserComponent implements OnInit {
   submitted_success: boolean = false;
   submitted_msg: string = '';
 
-  userAvatarPath:any;
-  userAvatar:any;
+  userAvatarPath: any;
+  userAvatar: any;
 
   @Input() allRoleLists: IRoles[] = [];
   @Output("listAllUsers") listAllUsers: EventEmitter<any> = new EventEmitter();
 
-  
+
 
   createUserForm = new FormGroup({
     fullname: new FormControl('', [Validators.required]),
@@ -34,8 +34,8 @@ export class CreateUserComponent implements OnInit {
     ]),
     confirmPassword: new FormControl('', [
       Validators.required,
-     Validators.minLength(6),
-   ]),
+      Validators.minLength(6),
+    ]),
     email: new FormControl('', [Validators.required, Validators.email]),
     gender: new FormControl(''),
     mobile: new FormControl(''),
@@ -45,9 +45,9 @@ export class CreateUserComponent implements OnInit {
     department: new FormControl(''),
     roles: new FormControl([]),
     avatar: new FormControl(''),
-  } );
+  });
 
- 
+
   get fullName() {
     return this.createUserForm.get('fullName');
   }
@@ -71,14 +71,14 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  uploadFile(e:any){
-    
+  uploadFile(e: any) {
+
     if (e.target.files.length > 0) {
       this.userAvatar = e.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
-      reader.onload= (event:any)=>{
-        this.userAvatarPath=event.target.result;
+      reader.onload = (event: any) => {
+        this.userAvatarPath = event.target.result;
       }
     }
 
@@ -87,8 +87,8 @@ export class CreateUserComponent implements OnInit {
   /************
    * Create User Method Starts
    */
-   createUser(): void {
-    
+  createUser(): void {
+
     let formData: any = new FormData();
     formData.append("fullName", this.createUserForm.value.fullname || '');
     formData.append("userName", this.createUserForm.value.username || '');
@@ -101,17 +101,17 @@ export class CreateUserComponent implements OnInit {
     formData.append("gender", this.createUserForm.value.gender || '');
     formData.append("dateOfBirth", this.createUserForm.value.dob || '');
     formData.append("department", this.createUserForm.value.department || '');
-    formData.append("profileImage",this.userAvatar || '');
+    formData.append("profileImage", this.userAvatar || '');
     // formData.append("roles", myroles );
 
-    let roleCount =0 ;
-    this.allRoleLists.filter( role => {
-      if(role.isselected === true){
+    let roleCount = 0;
+    this.allRoleLists.filter(role => {
+      if (role.isselected === true) {
         roleCount++;
         formData.append("roles", role.name);
       }
     });
-    if(roleCount < 1){
+    if (roleCount < 1) {
       formData.append("roles", 'Customer');
     }
 
@@ -137,8 +137,8 @@ export class CreateUserComponent implements OnInit {
 
   }
 
-/************
-   * Create User Method Ends
-*/
+  /************
+     * Create User Method Ends
+  */
 
 }

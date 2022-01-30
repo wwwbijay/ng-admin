@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { userRoleServices } from '../../user-roles/user-roles.service';
+import { userRoleServices } from '../../services/user-roles.service';
 
 @Component({
   selector: 'dialog-create-role',
@@ -8,14 +8,15 @@ import { userRoleServices } from '../../user-roles/user-roles.service';
   styleUrls: ['./create-role.component.css']
 })
 export class CreateRoleComponent implements OnInit {
-  submitted = false;
-  submitted_success = false;
-  submitted_msg:string = '';
 
-  constructor(private _roleservice:userRoleServices ) { }
+  submitted_msg: string = '';
+  @Output("listAllRoles") listAllRoles: EventEmitter<any> = new EventEmitter();
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
+
+  constructor(private _roleservice: userRoleServices) { }
   createRoleForm = new FormGroup({
     roleName: new FormControl('', [Validators.required]),
-  }); 
+  });
 
   get roleName() {
     return this.createRoleForm.get('roleName');
@@ -24,19 +25,22 @@ export class CreateRoleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createRole(){
+  createRole() {
     var roleName = this.createRoleForm.value.roleName;
     this._roleservice.create(roleName).subscribe({
-      next: (x:any)=> {
-        this.submitted = true;
-        this.submitted_success = true;
+      next: (x: any) => {
         this.submitted_msg = 'New Role Created Successfully!';
+        this.openSnackBar.emit({message:this.submitted_msg});
       },
-      error:(err:any)=>{
-        this.submitted = true;
-        this.submitted_msg = "Couldn't Create Role. Error: " + err.message;
+      error: (err: any) => {
+        
+        this.submitted_msg = "Couldn't Create Role.";
+        this.openSnackBar.emit({message:this.submitted_msg});
+        this.listAllRoles.emit();
       },
-      complete:()=>{}
+      complete: () => {
+        this.listAllRoles.emit();
+      }
     });
 
   }
