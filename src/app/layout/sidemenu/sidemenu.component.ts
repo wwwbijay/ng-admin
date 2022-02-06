@@ -14,7 +14,8 @@ export class SidemenuComponent implements OnInit {
   datas: any[] = [];
   
   constructor() {
-
+    
+    
    }
 
   ngOnInit(): void {

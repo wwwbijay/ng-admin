@@ -1,0 +1,72 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, from } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+const baseUrl = environment.baseUrl;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class WeeklyDataService {
+  headers = new HttpHeaders({
+    Authorization: `Bearer ${this.getToken()}`,
+  });
+  options = { headers: this.headers };
+
+  constructor(private http: HttpClient) {}
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+  getAll(): Observable<any> {
+    return this.http.get(
+      baseUrl + '/api/HoroscopeDetailsWeekly/get-horoscopedetails-weekly_list',
+      this.options
+    );
+  }
+  getByDate(date: any): Observable<any> {
+    return this.http.get(
+      baseUrl +
+        '/api/HoroscopeDetailsWeekly/get-horoscopedetails-weekly-by-date?dDate=' +
+        date,
+      this.options
+    );
+  }
+  getById(id: any): Observable<any> {
+    return this.http.get(
+      baseUrl +
+        '/api/HoroscopeDetailsWeekly/get-horoscopedetails-weekly-by-id?Id=' +
+        id,
+      this.options
+    );
+  }
+  getRangeByDate(date: any): Observable<any> {
+    return this.http.get(
+      baseUrl + '/api/HoroscopeDetailsWeekly/get-week_range?dDate=' + date,
+      this.options
+    );
+  }
+  add(data: any): Observable<any> {
+    return this.http.post(
+      baseUrl + '/api/HoroscopeDetailsWeekly/add-horoscopedetails-weekly',
+      data,
+      this.options
+    );
+  }
+  update(data: any): Observable<any> {
+    return this.http.put(
+      baseUrl + '/api/HoroscopeDetailsWeekly/update-horoscopedetails-weekly',
+      data,
+      this.options
+    );
+  }
+  delete(id: number): Observable<any> {
+    return this.http.delete(
+      baseUrl +
+        '/api/HoroscopeDetailsWeekly/delete-horoscopedetails-weekly?Id=' +
+        id,
+      this.options
+    );
+  }
+}

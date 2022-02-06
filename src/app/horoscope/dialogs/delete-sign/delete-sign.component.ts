@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SignsDataService } from '../../services/signs-data.service';
+import { appMessages } from 'src/app/messages.config';
 
 @Component({
   selector: 'dialog-delete-sign',
@@ -11,7 +12,7 @@ export class DeleteSignComponent implements OnInit {
   constructor(private _sign:SignsDataService) { }
 
   @Output("getAllSigns") getAllSigns: EventEmitter<any> = new EventEmitter();
-
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
 
   ngOnInit(): void {
   }
@@ -20,8 +21,13 @@ export class DeleteSignComponent implements OnInit {
   }
   confirmDelete(){
     this._sign.delete(this.selectedId).subscribe({
-      next:(x:any)=>{},
-      error:(err:any)=>{console.log(err)},
+      next:(x:any)=>{
+        this.openSnackBar.emit({message: appMessages.deleted});
+      },
+      error:(err:any)=>{
+        this.openSnackBar.emit({message: appMessages.deleteError});
+        this.getAllSigns.emit();
+      },
       complete:()=>{
         this.getAllSigns.emit();
       }

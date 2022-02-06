@@ -7,16 +7,16 @@
 }
 .stat-item.orange{
     background: rgba(227, 101, 9, 0.65);
-    background: linear-gradient(180deg, rgba(227, 101, 9, 0.65) 0%, rgba(134, 41, 21, 0.9) 100%);
+    background: linear-gradient(-135deg, #899FD4 0%, #A389D4 100%);
 }
 .stat-item.green{
-    background: linear-gradient(180deg, rgba(97, 124, 40, 0.65) 0%, rgba(51, 91, 10, 0.9) 100%);
+    background: linear-gradient(-135deg, #1de9b6 0%, #1dc4e9 100%);
 }
 .stat-item.blue{
-    background: linear-gradient(180deg, rgba(9, 122, 227, 0.65) 0%, rgba(21, 32, 134, 0.9) 100%);
+    background: #1aa9f3;
 }
 .stat-item.red{
-    background: linear-gradient(180deg, rgba(227, 9, 9, 0.65) 0%, rgba(134, 21, 21, 0.9) 100%);
+    background: #f44236;
 }
 .item-entry{
     width: 60%;

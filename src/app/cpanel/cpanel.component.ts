@@ -38,9 +38,6 @@ export class CpanelComponent implements OnInit {
     var mytoken = this._userservice.getToken();
     var username = this._userservice.getUserByToken(mytoken) || 'sorry';
     this.getUserByUsername(username);
-
-   
-    
   }
   /* Set the width of the side navigation to 250px */
   toggleSideNav() {

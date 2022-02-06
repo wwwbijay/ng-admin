@@ -1,0 +1,19 @@
+<nav class="horoscope-nav">
+    <ul>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/horoscope'">Horoscope Dashboard</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/horoscope/update-daily'">Daily Horoscope</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/horoscope/update-weekly'">Weekly Horoscope</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/horoscope/update-monthly'">Monthly Horoscope</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/horoscope/update-yearly'">Yearly Horoscope</a>
+        </li>
+    </ul>
+</nav>

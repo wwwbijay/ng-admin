@@ -1,0 +1,17 @@
+<ul class="smenu">
+    <li *ngFor="let data of datas; index as i;" [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <a [routerLink]="data['link']">
+            {{ data['title'] }}
+        </a>
+
+        <ul>
+            <li *ngFor='let obj of data["submenu"]' [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <a [routerLink]=" obj.link ">
+                    {{ obj.title }}
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>

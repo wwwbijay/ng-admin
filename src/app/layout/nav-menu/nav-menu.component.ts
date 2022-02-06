@@ -22,9 +22,7 @@ export class NavMenuComponent implements OnInit {
   constructor(private router: Router, private authservice: AuthService, private _userservice: UserService, private _userdata:UserDataService) { }
 
   ngOnInit(): void {
-    
-
-   
+     
   }
 
   openFromChild(){

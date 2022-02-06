@@ -1,0 +1,104 @@
+<!-- Create Modal START -->
+<div
+  class="modal fade"
+  id="newMonthly"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="newMonthlyLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          New Monthly Horoscope for -
+          <span class="highlights">{{selected_month}} {{selected_year}}</span>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--.modal-header ends-->
+
+      <form [formGroup]="addMonthlyForm" (ngSubmit)="addMonthly()">
+        <div class="modal-body">
+
+          <div *ngIf="loader" class="d-flex justify-content-center loading-middle">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+          
+          <div class="row mid-title">
+            <div class="col">
+              <h3>Select Sign</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <!-- To get all horoscope names in select -->
+              <select
+                id="horoscopeId"
+                class="form-control"
+                name="horoscopeId"
+                formControlName="horoscopeId"
+              >
+                <option value="" selected>Select Sign</option>
+                <option *ngFor="let sign of allSigns" value="{{ sign.id }}">
+                  {{ sign.horoscopeNameEnglish }}
+                </option>
+              </select>
+              <!-- Error Message -->
+              <small
+                *ngIf="
+                  horoscopeId && horoscopeId.invalid && horoscopeId.touched
+                "
+                class="err_msg"
+              >
+                Please select horoscope sign.
+              </small>
+            </div>
+          </div>
+
+          <div class="row mid-title">
+            <div class="col">
+              <h3>Description in English</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <ckeditor
+                [data]="engDesc"
+                (change)="descEngChange($event)"
+              ></ckeditor>
+            </div>
+          </div>
+        </div>
+        <!--.modal-body ends-->
+        <div class="modal-footer">
+          <button
+            type="reset"
+            class="btn btn-danger btn-sm"
+            data-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            [disabled]="addMonthlyForm.invalid"
+            type="submit"
+            class="btn btn-primary btn-sm"
+          >
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+    <!--.modal-content ends-->
+  </div>
+</div>
+<!-- Create Modal END-->

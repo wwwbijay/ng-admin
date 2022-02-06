@@ -1,0 +1,97 @@
+<!-- Create Modal START -->
+<div
+  class="modal fade"
+  id="newDaily"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="newDailyLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title">
+          New Daily Horoscope for
+          <span class="highlight"> {{ selected_date | date }}</span>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--.modal-header ends-->
+      
+      <div *ngIf="submitted" class="submitted">
+        <div class="alert alert-success text-center" role="alert">
+          <p>Daily Horoscope Added Successfully!</p>
+        </div>
+      </div>
+      <form [formGroup]="addDailyForm" (ngSubmit)="addDaily()">
+        <div class="modal-body">
+          <div class="row mid-title">
+            <div class="col">
+              <h3>Select Sign</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <select id="horoscopeId" class="form-control" name="horoscopeId" formControlName="horoscopeId">
+                <option value="" selected>Select Sign</option>
+                <option *ngFor="let sign of allSigns" value="{{sign.id}}">
+                  {{
+                    sign.horoscopeNameEnglish + " - " + sign.horoscopeNameNepali
+                  }}
+                </option>
+              </select>
+              <small
+                  *ngIf="horoscopeId && horoscopeId.invalid && horoscopeId.touched"
+                  class="err_msg"
+                >
+                Please select horoscope sign.
+              </small>
+            </div>
+          </div>
+          <div class="row mid-title">
+            <div class="col">
+              <h3>Description in Nepali</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <ckeditor [data]="nepDesc" (change)="descNepChange($event)"></ckeditor>
+            </div>
+          </div>
+          <div class="row mid-title">
+            <div class="col">
+              <h3>Description in English</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <ckeditor [data]="engDesc" (change)="descEngChange($event)" ></ckeditor>
+            </div>
+          </div>
+          
+        </div><!--.modal-body ends-->
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            [disabled]="addDailyForm.invalid"
+            type="submit"
+            class="btn btn-primary"
+          >
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+    <!--.modal-content ends-->
+  </div>
+</div>
+<!-- Create Modal END-->

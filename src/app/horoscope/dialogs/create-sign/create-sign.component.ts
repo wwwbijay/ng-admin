@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignsDataService } from '../../services/signs-data.service';
+import { appMessages } from 'src/app/messages.config';
 
 @Component({
   selector: 'dialog-create-sign',
@@ -11,6 +12,7 @@ export class CreateSignComponent implements OnInit {
 
   submitted = false;
   @Output("getAllSigns") getAllSigns: EventEmitter<any> = new EventEmitter();
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
 
   symbol:any;
   symbolPath:any;
@@ -58,11 +60,11 @@ export class CreateSignComponent implements OnInit {
     this._signs.create(formData).subscribe({
         next: (x: number) =>{
            console.log('next value: ' + x);
-           console.log('Success');
+           this.openSnackBar.emit({message: appMessages.signCreated});
           },
         error: (err: Error) => {
           console.error('Error:'+err.message);
-          console.error('failed');
+          this.openSnackBar.emit({message: appMessages.signCreateError});
         },
         complete: () => {
           // this.submitted = true;

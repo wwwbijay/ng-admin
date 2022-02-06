@@ -9,10 +9,10 @@
 >
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header text-center">
+      <div class="modal-header">
         <h5 class="modal-title">
-          Edit Daily Horoscope for 
-          <span class="highlight"> {{ selected_date | date }}</span>
+          Edit Daily Horoscope for -
+          <span class="highlights"> {{ selected_date | date }}</span>
         </h5>
         <button
           type="button"
@@ -66,13 +66,13 @@
         </div>
         <!--.modal-body ends-->
         <div class="modal-footer">
-          <button type="reset" class="btn btn-secondary" data-dismiss="modal">
+          <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
             Close
           </button>
           <button
             [disabled]="editDailyForm.invalid"
             type="submit"
-            class="btn btn-primary"
+            class="btn btn-primary btn-sm"
           >
             Update
           </button>

@@ -1,0 +1,75 @@
+<!-- Edit Modal START -->
+<div
+  class="modal fade"
+  id="editMonthlyNep"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="editMonthlyNepLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Edit Daily Horoscope for -
+          <span class="highlights"> {{ selected_month  }}, {{selected_year}}</span>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--.modal-header ends-->
+      
+      <form [formGroup]="editMonthlyNepForm" (ngSubmit)="editMonthlyNep()">
+        <div class="modal-body">
+          <div class="row mid-title">
+            <div class="col">
+              <h3>Selected Sign</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <!-- <img style="width: 100px" src="{{ selectedSignImage }}" /> -->
+              Sign Id: {{selectedSignId}}
+            </div>
+            <div class="col-6">
+              
+            </div>
+          </div>
+          <div class="row mid-title">
+            <div class="col">
+              <h3>Description in Nepali</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <ckeditor (change)="descNepChange($event)" [data]="nepDesc"></ckeditor>
+            </div>
+          </div>
+         
+        </div>
+        <!--.modal-body ends-->
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            [disabled]="editMonthlyNepForm.invalid"
+            type="submit"
+            class="btn btn-primary btn-sm"
+          >
+            Update
+          </button>
+        </div>
+        <!--.modal-footer ends-->
+      </form>
+    </div>
+    <!--.modal-content ends-->
+  </div>
+</div>
+<!-- Edit Modal END-->

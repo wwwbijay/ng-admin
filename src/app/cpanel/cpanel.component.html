@@ -7,7 +7,7 @@
   >
     <div class="sideBrand">
       <a [routerLink]="'/'">
-        <img src="assets/mypay-logo.png" />
+        <img src="assets/mypay-logo.png"  class="img-fluid" width="100"/>
       </a>
     </div>
     <sidemenu></sidemenu>
@@ -21,7 +21,8 @@
   >
     <nav-menu [cUser] = "currentUser" [openNav]="openNav" (openSideNavFromChild)="toggleSideNav()">
     </nav-menu>
-    <div class="breadcrumbs">
+    <div *ngIf="!(router.url === '/')" class="breadcrumbs">
+      
       <bj-breadcrumbs></bj-breadcrumbs>
     </div>
 

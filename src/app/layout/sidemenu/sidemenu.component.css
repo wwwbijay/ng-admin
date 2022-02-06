@@ -4,7 +4,7 @@ ul{
     list-style: none;
   } 
 li a {
-    padding: 8px 20px 8px 20px;
+    padding: 6px 20px 6px 20px;
     text-decoration: none;
     font-size: 16px;
     color: rgba(255,255,255,0.4);
@@ -39,11 +39,14 @@ ul li.active li a:hover{
   color: rgba(255,255,255,0.9);
 }
 ul li.active li.active a{
-  background: #113244;
-  color: rgba(255,255,255,0.9);
+  background: #011a28;
+  color: rgb(228 84 21);
 }
 .smenu > li{
   position: relative;
+}
+ul li li ul{
+  display: none;
 }
 .smenu > li:after{
   background: url(/assets/arrow-white.png) no-repeat center;

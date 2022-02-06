@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators  } from '@angular/forms';
 import {Router} from "@angular/router"
 import { AuthService } from '../auth/auth.service';
 import { IUser } from '../auth/IUser';
+import { appMessages } from '../messages.config';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { IUser } from '../auth/IUser';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+
+  appMessages = appMessages;
   submitted: boolean = false;
   submitted_msg: string = '';
   currentUser: IUser = {
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit {
       next: (rawToken:any) => {},
       error: (err: Error) => {
         this.submitted = true;
-        this.submitted_msg= 'User and/or password incorrect.';
+        this.submitted_msg= appMessages.loginError;
       },
       complete: () => { 
         this.router.navigate(['/']);

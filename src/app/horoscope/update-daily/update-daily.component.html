@@ -2,21 +2,30 @@
   <div class="page-item">
     <div class="page-entry-heading">
       <h3>Daily Horoscope</h3>
-      <a (click)="newDaily.assignAllSigns()" class="btn btn-primary" data-toggle="modal" data-target="#newDaily">+ New
-        Daily</a>
+      <a
+        (click)="newDaily.assignAllSigns()"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#newDaily"
+        >+ New Daily</a
+      >
     </div>
     <!--.page-entry-heading ends-->
 
     <div class="page-item-entry text-center">
       <div class="row date-picker mb-3">
-        <div class="col-8 text-left">
-          <strong>Date:</strong> <span class="selected_date">{{ selected_date | date }}</span>
-        </div>
-        <div class="col-4 text-right">
+        <div class="col-4 text-left">
           <div class="form-group">
             <div class="input-group">
-              <input (ngModelChange)="dateChanged($event)" class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                [(ngModel)]="selected_date" ngbDatepicker #d="ngbDatepicker" />
+              <input
+                (ngModelChange)="dateChanged($event)"
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                [(ngModel)]="selected_date"
+                ngbDatepicker
+                #d="ngbDatepicker"
+              />
               <div class="input-group-append">
                 <a (click)="d.toggle()">
                   <span class="material-icons"> today </span>
@@ -24,6 +33,11 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-8 text-right">
+          <strong>{{ dayTitle }} :</strong>
+          <span class="selected_dates"> {{ selected_date | date }}</span>
+
           <!--form-group end-->
         </div>
       </div>
@@ -47,26 +61,32 @@
         <tbody>
           <tr *ngFor="let day of alldaily">
             <td>
-              <img width="85px" src="{{ baseUrl + day.horoscopeImagePath }}">
+              <img
+                width="60"
+                src="{{ baseUrl + day.horoscopeImagePath }}"
+                class="img-fluid"
+              />
               <span class="sign_title">
-                {{day.horoscopeNameNepali + '-' + day.horoscopeNameEnglish}}
+                {{ day.horoscopeNameNepali + "-" + day.horoscopeNameEnglish }}
               </span>
             </td>
+            <td [innerHTML]="day.horoscopeDescriptionNepali"></td>
+            <td [innerHTML]="day.horoscopeDescriptionEnglish"></td>
             <td>
-              {{ day.horoscopeDescriptionNepali | slice:3:120 }}...
-            </td>
-            <td>
-              <p>
-                {{ day.horoscopeDescriptionEnglish | slice:3:120 }}...
-              </p>
-            </td>
-            <td>
-              <a class="btn btn-icon btn-icon-edit" data-toggle="modal" data-target="#editDaily"
-                (click)="editDaily.assignAll(day.id)">
+              <a
+                class="btn btn-icon btn-icon-edit"
+                data-toggle="modal"
+                data-target="#editDaily"
+                (click)="editDaily.assignAll(day.id)"
+              >
                 <span class="material-icons"> edit </span>
               </a>
-              <a class="btn btn-icon btn-icon-view" data-toggle="modal" data-target="#deleteDaily"
-                (click)="deleteDaily.assignAll(day.id)">
+              <a
+                class="btn btn-icon btn-icon-view"
+                data-toggle="modal"
+                data-target="#deleteDaily"
+                (click)="deleteDaily.assignAll(day.id)"
+              >
                 <span class="material-icons"> delete </span>
               </a>
             </td>
@@ -79,8 +99,23 @@
   <!--.page-item END-->
 </div>
 
-<dialog-new-daily #newDaily [selected_date]="selected_date" (getDailyByDate)="getDailyByDate()"></dialog-new-daily>
+<dialog-new-daily
+  #newDaily
+  [selected_date]="selected_date"
+  (getDailyByDate)="getDailyByDate()"
+  (openSnackBar)="openSnackBar($event)"
+></dialog-new-daily>
 
-<dialog-edit-daily #editDaily [selected_date]="selected_date" (getDailyByDate)="getDailyByDate()"></dialog-edit-daily>
+<dialog-edit-daily
+  #editDaily
+  [selected_date]="selected_date"
+  (getDailyByDate)="getDailyByDate()"
+  (openSnackBar)="openSnackBar($event)"
+></dialog-edit-daily>
 
-<dialog-delete-daily #deleteDaily (getDailyByDate)="getDailyByDate()"></dialog-delete-daily>
+<dialog-delete-daily
+  #deleteDaily
+  (getDailyByDate)="getDailyByDate()"
+  (openSnackBar)="openSnackBar($event)"
+>
+</dialog-delete-daily>

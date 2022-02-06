@@ -2,21 +2,30 @@
   <div class="page-item">
     <div class="page-entry-heading">
       <h3>Weekly Horoscope</h3>
-      <a class="btn btn-primary" [routerLink]="'/'">+ New Weekly</a>
+      <a
+        (click)="newWeekly.assignAllSigns()"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#newWeekly"
+        >+ New Weekly</a
+      >
     </div>
     <!--.page-entry-heading ends-->
 
     <div class="page-item-entry text-center">
       <div class="row date-picker mb-3">
-        <div class="col-8 text-left">
-          <strong>Week:</strong>
-          <span class="selected_date">{{ selectedWeekStart | date }} - {{ selectedWeekEnd | date }}</span>
-        </div>
-        <div class="col-4 text-right">
+        <div class="col-4 text-left">
           <div class="form-group">
             <div class="input-group">
-              <input (ngModelChange)="dateChanged($event)" class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                [(ngModel)]="selected_date" ngbDatepicker #d="ngbDatepicker" (firstDayOfWeek)=5 />
+              <input
+                (ngModelChange)="dateChanged($event)"
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                [(ngModel)]="selected_date"
+                ngbDatepicker
+                #d="ngbDatepicker"
+              />
               <div class="input-group-append">
                 <a (click)="d.toggle()">
                   <span class="material-icons"> today </span>
@@ -24,6 +33,13 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-8 text-right">
+          <strong>{{ weekTitle }} :</strong>
+          <span class="selected_dates">
+            {{ selectedRange }}
+          </span>
+
           <!--form-group end-->
         </div>
       </div>
@@ -39,42 +55,63 @@
           </tr>
         </thead>
         <tbody>
-          <!-- <tr *ngFor="let day of alldaily">
+          <tr *ngFor="let week of allweekly">
             <td>
-              {{ day.horoscopeId }}
+              <img width="80" src="{{ baseUrl + week.horoscopeImagePath }}" class="img-fluid">
+              <span class="sign_title">
+                {{week.horoscopeNameNepali + '-' + week.horoscopeNameEnglish}}
+              </span>
+            
             </td>
-            <td>
-              {{ day.horoscopeDescriptionNepali | slice:3:120  }}...
-            </td>
-            <td>
-              <p>
-                {{ day.horoscopeDescriptionEnglish | slice:3:120 }}...
-              </p>
-            </td>
+            <td [innerHTML]="week.horoscopeDescriptionNepali"></td>
+            <td [innerHTML]="week.horoscopeDescriptionEnglish"></td>
             <td>
               <a
                 class="btn btn-icon btn-icon-edit"
                 data-toggle="modal"
-                data-target="#editDaily"
-                (click)="editDaily.assignAll(day.id)"
+                data-target="#editWeekly"
+                (click)="editWeekly.assignAll(week.id)"
               >
                 <span class="material-icons"> edit </span>
               </a>
+
               <a
                 class="btn btn-icon btn-icon-view"
                 data-toggle="modal"
-                data-target="#deleteDaily"
-                (click)="deleteDaily.assignAll(day.id)"
+                data-target="#deleteWeekly"
+                (click)="deleteWeekly.assignAll(week.id)"
               >
                 <span class="material-icons"> delete </span>
               </a>
             </td>
-          </tr> -->
+          </tr>
         </tbody>
       </table>
-
     </div>
     <!--.page-entry-heading ends-->
   </div>
   <!--.page-item END-->
 </div>
+
+<dialog-new-weekly
+  #newWeekly
+  [selected_date]="selected_date"
+  [selected_week]="selectedRange"
+  (getWeeklyByDate)="getWeeklyByDate()"
+  (openSnackBar)="openSnackBar($event)"
+></dialog-new-weekly>
+
+<dialog-edit-weekly
+  #editWeekly
+  [selected_date]="selected_date"
+  [selected_week]="selectedRange"
+  (getWeeklyByDate)="getWeeklyByDate()"
+  (openSnackBar)="openSnackBar($event)"
+></dialog-edit-weekly>
+
+<dialog-delete-weekly
+  #deleteWeekly
+  (getWeeklyByDate)="getWeeklyByDate()"
+  (openSnackBar)="openSnackBar($event)"
+>
+</dialog-delete-weekly>

@@ -1,0 +1,101 @@
+<!-- Create Modal START -->
+<div
+  class="modal fade"
+  id="newYearlyEng"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="newYearlyEngLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          New Monthly (English) Horoscope for year -
+          <span class="highlights">{{ selected_year }}</span>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--.modal-header ends-->
+
+      <form [formGroup]="addYearlyEngForm" (ngSubmit)="addYearlyEng()">
+        <div class="modal-body">
+          
+          <div class="row">
+            <div class="col-6">
+              <h5>Select Sign</h5>
+              <select
+                id="horoscopeId"
+                class="form-control"
+                name="horoscopeId"
+                formControlName="horoscopeId"
+              >
+                <option value="" selected>Select Sign</option>
+                <option *ngFor="let sign of allSigns" value="{{ sign.id }}">
+                  {{
+                    sign.horoscopeNameEnglish + " - " + sign.horoscopeNameNepali
+                  }}
+                </option>
+              </select>
+              <small
+                *ngIf="
+                  horoscopeId && horoscopeId.invalid && horoscopeId.touched
+                "
+                class="err_msg"
+              >
+                Please select horoscope sign.
+              </small>
+            </div>
+            <div class="col-6">
+              <h5>Year:</h5>
+              <select
+                name="sel_year"
+                class="form-control"
+                [(ngModel)]="selected_year"
+                (ngModelChange)="yearChanged($event)"
+                [ngModelOptions]="{standalone: true}"
+              >
+                <option *ngFor="let year of allYears" value="{{year.value}}">
+                  {{ year.text }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row mid-title">
+            <div class="col">
+              <h3>Description in English</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <ckeditor
+                [data]="engDesc"
+                (change)="descEngChange($event)"
+              ></ckeditor>
+            </div>
+          </div>
+        </div>
+        <!--.modal-body ends-->
+        <div class="modal-footer">
+          <button
+            type="reset"
+            class="btn btn-danger btn-sm"
+            data-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary btn-sm">Add</button>
+        </div>
+      </form>
+    </div>
+    <!--.modal-content ends-->
+  </div>
+</div>
+<!-- Create Modal END-->

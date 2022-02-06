@@ -2,15 +2,30 @@
     <li *ngFor="let data of datas; index as i;" [routerLinkActive]="['active']"
         [routerLinkActiveOptions]="{ exact: true }">
         <a [routerLink]="data['link']">
-            {{ data['title'] }}
+            <img src="assets/cpanel-icons/dash.png" class="img-fluid" width="18px">  <span class="dbt"> {{ data['title'] }}</span>  
         </a>
 
         <ul>
             <li *ngFor='let obj of data["submenu"]' [routerLinkActive]="['active']"
                 [routerLinkActiveOptions]="{ exact: true }">
                 <a [routerLink]=" obj.link ">
-                    {{ obj.title }}
+                    <span class="material-icons md-3 dbsi"> trending_flat </span>  <span class="dbst"> {{ obj.title }} </span>
                 </a>
+               
+
+                <ul>
+                    <li *ngFor='let obj of obj.submenu' [routerLinkActive]="['active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <a [routerLink]=" obj.link ">
+                            <span class="material-icons md-3 dbsi"> trending_flat </span>  <span class="dbst"> {{ obj.title }} </span>
+                        </a>
+                        {{obj['submenu']}}
+        
+        
+                    </li>
+                </ul>
+
+
             </li>
         </ul>
     </li>

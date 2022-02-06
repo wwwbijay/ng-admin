@@ -2,50 +2,63 @@
 :root {
   --primaryBg: #022335;
 }
+
 html,
 body {
   height: 100%;
 }
+
 body {
   background: #f3f3f3;
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
-.table.table td{
+
+.table.table td {
   padding: 0.5rem;
   line-height: 20px;
   word-break: break-all;
   vertical-align: middle;
 }
+
 img {
   max-width: 100%;
 }
+
 h1,
 h2,
 h3,
 h4,
 h5 {
-  font-weight: bold;
+  font-weight: 400;
 }
-p{
+
+p {
   margin: 8px 0;
 }
+
 .page-heading {
   margin-bottom: 30px;
 }
+
 .navbar {
   background: #fff;
 }
+
 .table.table-striped.table-mid-content th,
 .table.table-striped.table-mid-content td {
   vertical-align: middle;
 }
-.alert-danger{
+
+.alert-danger {
   background: #f7e5e7;
 }
-.grey_txt{
+
+.grey_txt {
   color: #777
 }
+
 /***********************************
 General Buttons Starts
 **************************************/
@@ -53,6 +66,7 @@ General Buttons Starts
   background: var(--primaryBg);
   border: none;
 }
+
 .btn.btn-icon {
   border: none;
   margin: 0 3px;
@@ -63,20 +77,16 @@ General Buttons Starts
   padding: 0;
   text-align: center;
 }
+
 .btn.btn-icon-edit {
-  background: linear-gradient(
-    180deg,
-    rgba(97, 124, 40, 0.65) 0%,
-    rgba(51, 91, 10, 0.9) 100%
-  );
+  background: #075C33;
+
 }
+
 .btn.btn-icon-view {
-  background: linear-gradient(
-    180deg,
-    rgba(227, 9, 9, 0.65) 0%,
-    rgba(134, 21, 21, 0.9) 100%
-  );
+  background: #C40000;
 }
+
 .btn.btn-icon span {
   font-size: 16px;
   line-height: 30px;
@@ -89,60 +99,73 @@ General Buttons Starts
 /***********************************
 Page Item Starts
 **************************************/
-#profileMenuButton{
+#profileMenuButton {
   width: 35px;
   height: 35px;
   overflow: hidden;
   border-radius: 50%;
   border: 1px solid #eee;
 }
+
 .page-item {
   margin: 30px 0 20px;
 }
+
 .page-entry-heading {
   background: #e3e6ea;
   padding: 18px;
   position: relative;
 }
+
 .page-entry-heading .btn {
   position: absolute;
   right: 20px;
   top: 50%;
   margin-top: -18px;
 }
+
 .page-entry-heading h3 {
-  font-size: 18px;
+  font-size: 16px;
   margin: 0;
+  font-weight: 500;
 }
+
 .page-item-entry {
   background: #fff;
   padding: 50px 30px;
+  position:  relative;
 }
+
 .page-item-entry a {
   text-decoration: none;
 }
-.page-item-entry table{
+
+.page-item-entry table {
   font-size: 14px;
   table-layout: fixed;
 }
+
 /***********************************
 Default Form Stylings Starts
 **************************************/
-.form-group label{
+.form-group label {
   font-size: 14px;
   color: #979797;
 }
-.form-control{
+
+.form-control {
   border-radius: 0;
   border: none;
   border-bottom: 1px solid #ccc;
   color: #000;
 }
-.form-control:focus{
+
+.form-control:focus {
   box-shadow: none;
   border-bottom: 1px solid #555;
 }
-.form-group .material-icons{
+
+.form-group .material-icons {
   color: #777;
   font-size: 20px;
   position: absolute;
@@ -162,6 +185,7 @@ Form Error Messages Starts
   line-height: 16px;
   margin: 7px 0;
 }
+
 input.ng-invalid.ng-touched {
   border-bottom: 1px solid red;
 }
@@ -173,44 +197,51 @@ Bootstrap Modal
 body.modal-open.modal-open.modal-open {
   overflow: visible;
 }
-.modal-title{
+
+.modal-title {
   width: 100%;
   font-weight: 500;
   font-size: 18px;
   line-height: 25px;
   color: #022335;
 }
-.modal-body{
-  padding: 40px;
+
+.modal-body {
+  padding: 0px 40px;
 }
-.modal-body .row{
+
+.modal-body .row {
   padding-bottom: 20px;
 }
-.form-section-heading .title{
-    font-size: 20px;
-    font-weight: normal;
-    margin: 0 0 20px;
+
+.form-section-heading .title {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 0 0 20px;
 }
 
 
-input[type="file"]{
+input[type="file"] {
   height: 45px;
 }
 
-.whiteheader-item{
+.whiteheader-item {
   background: #FFFFFF;
   box-shadow: 0px 20px 27px rgba(0, 0, 0, 0.05);
   border-radius: 6px;
 }
+
 .wh-item-heading {
   padding: 14px 30px;
   border-bottom: 1px solid #E0E0E0;
 }
-.wh-item-heading .title{
+
+.wh-item-heading .title {
   font-size: 18px;
   margin: 0;
 }
-.wh-item-entry{
+
+.wh-item-entry {
   padding: 30px;
 }
 
@@ -219,58 +250,93 @@ input[type="file"]{
 .horoscope-nav  starts
 **************************************/
 
-.horoscope-nav ul{
+.horoscope-nav ul {
   margin: 0;
   padding: 0;
   list-style: none;
   background: #fff;
-  border-radius: 4px;
   display: flex;
-  justify-content: start;
-}
+  justify-content: flex-start;
+  box-shadow: 0 1px 20px 0 rgb(69 90 100 / 8%);
 
-.horoscope-nav li a{
+}
+.horoscope-nav li {
+  position: relative;
+  padding: 5px;
+}
+.horoscope-nav li a {
   font-size: 14px;
   color: #000;
   display: inline-block;
   padding: 10px 30px;
-}
-.horoscope-nav li a:hover{
-  text-decoration: none;
-}
-.horoscope-nav li.active a{
-  background: #022335;
-  color: #fff;
   border-radius: 4px;
 }
-.profile_image{
-  width: 200px;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 50%;
+
+.horoscope-nav li a:hover {
+  text-decoration: none;
 }
-.profile_image img{
+
+.horoscope-nav li.active > a {
+  background: #022335;
+  color: #fff;
+}
+.has-dropdown ul{
+  display: none;
+  position: absolute;
+  z-index: 999;
+  background: #fff;
+  width: 220px;
+  top: 40px;
+  left: 0;
+  box-shadow: 2px 2px 12px 0px rgba(0, 0, 0, 0.1);
+}
+.has-dropdown ul li{
+  display: block;
+}
+.has-dropdown ul a{
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  display: block;
+}
+.has-dropdown ul a:hover{
+  background: #f3f3f3;
+}
+.has-dropdown ul .active a{
+  background: #022335;
+}
+.profile_image {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.profile_image img {
   width: 100%;
   height: auto;
   cursor: pointer;
 }
-.sign_title{
+
+.sign_title {
   font-size: 12px;
   display: block;
   text-align: center;
 }
+
 /***********************************
 MATDialog  starts
 **************************************/
-.dialog-header{
+.dialog-header {
   position: relative;
   border-bottom: 1px solid #eee;
 }
-.mat-dialog-title.mat-dialog-title{
+
+.mat-dialog-title.mat-dialog-title {
   margin: 0;
   padding: 10px 0;
 }
-.dialog-header button{
+
+.dialog-header button {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -282,63 +348,217 @@ MATDialog  starts
   margin-bottom: 20px;
   color: #777;
 }
-.modal-notice .title{
+
+.modal-notice .title {
   font-size: 16px;
   margin: 0;
 }
-.modal-notice ul{
+
+.modal-notice ul {
   margin: 0;
   padding: 0;
   list-style: none;
   font-size: 14px;
 }
 
-a.dropdown-item{
+a.dropdown-item {
   cursor: pointer;
 }
 
 /***********************************
 Horoscope  starts
 **************************************/
-.mid-title{
+.mid-title {
   margin-top: 20px;
 }
-.mid-title h3{
+
+.mid-title h3 {
   font-weight: normal;
-  font-size: 20px;
+  font-size: 15px;
   padding: 8px;
-  background: #eee;
+
 }
 
-.input-group-append a{
+.input-group-append a {
   cursor: pointer;
   font-size: 20px;
 }
-.input-group-append a:hover{
+
+.input-group-append a:hover {
   color: #333;
 }
 
-.highlight{
-  background:rgb(237, 247, 97);
+.highlight {
+  background: rgb(237, 247, 97);
   padding: 8px;
 }
 
 .input-group-append a {
   cursor: pointer;
   font-size: 20px;
-  background: #eee;
   padding: 20px;
   margin-right: 15px;
   border-radius: 50%;
 }
-.input-group-append a:hover{
+
+.input-group-append a:hover {
   background: #ddd;
 }
 
-.selected_date{
+.selected_date {
   font-size: 20px;
   display: inline-block;
   padding: 5px;
   background: rgb(252, 250, 154);
   margin-left: 10px;
+}
+
+.theme-bg {
+  background: #e45415 !important;
+}
+
+.rounded-30 {
+  border-radius: 30px;
+}
+
+.text-theme {
+  color: #e45415 !important;
+}
+
+.dbi {
+  font-size: 1rem;
+  padding: 4px 7px;
+  margin-right: 7px;
+  border-radius: 4px;
+  width: 30px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 30px;
+  text-align: center;
+}
+.dbsi {
+  font-size: 1rem;
+  padding: 4px 7px;
+  margin-right: 7px;
+  border-radius: 4px;
+  width: 30px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 30px;
+  text-align: center;
+}
+
+.dbt {
+  position: absolute;
+  top: 8px;
+  margin: 0 5px;
+}
+
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.modal-footer {
+
+  border-top: none;
+
+}
+
+.modal-header {
+
+  padding: 0.75rem 1rem;
+
+}
+
+span.material-icons.trash {
+  font-size: 90px;
+}
+
+.btn.btn-icon-key {
+  background: #011a28;
+}
+
+span.dbst {
+  position: relative;
+  top: -3px;
+}
+.lang_select_wrap{
+  position: relative;
+}
+.lang_selector{
+  position: absolute;
+  left: 0;
+  top: 10px;
+  z-index: 99;
+}
+.lang_selector ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 2px solid #022335;
+  border-radius: 20px;
+}
+.lang_selector li{
+  display: inline-block;
+}
+.lang_selector li a{
+  display: inline-block;
+  padding: 2px 14px;
+  font-size: 14px;
+}
+.lang_selector li.active a{
+  background: #022335;
+  color: #fff;
+  border-radius: 20px;
+  margin: 0 -2px;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.btn-group-sm>.btn, .btn-sm {
+  padding: 0.25rem 2.5rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+.modal-content {
+  border: none;
+  box-shadow: 0 1px 20px 0 rgb(69 90 100 / 8%);
+
+}
+
+.modal-body{
+  position: relative;
+}
+.loading-middle{
+  position:absolute;
+  background: rgba(255,255,255,0.7);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+.loading-middle .spinner-border{
+  position: absolute;
+  left: 50%;
+  top: 50%;
 }

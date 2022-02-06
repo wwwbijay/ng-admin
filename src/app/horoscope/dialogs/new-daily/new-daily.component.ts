@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { DailyDataService } from '../../services/daily-data.service';
 import { SignsDataService } from '../../services/signs-data.service';
+import { appMessages } from 'src/app/messages.config';
 
 @Component({
   selector: 'dialog-new-daily',
@@ -11,6 +12,8 @@ import { SignsDataService } from '../../services/signs-data.service';
   styleUrls: ['./new-daily.component.css'],
 })
 export class NewDailyComponent implements OnInit {
+
+  loader: boolean = false;
   baseUrl = environment.baseUrl;
   nepDesc!: string;
   engDesc!: string;
@@ -19,13 +22,12 @@ export class NewDailyComponent implements OnInit {
   submitted: boolean = false;
   allSigns: any;
   @Input() selected_date: any;
-  formatted_date:any; 
   @Output() getDailyByDate: EventEmitter<any> = new EventEmitter();
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
   
   addDailyForm = new FormGroup({
     horoscopeId: new FormControl('', Validators.required),
   });
-
   get horoscopeId() {
     return this.addDailyForm.get('horoscopeId');
   }
@@ -34,9 +36,7 @@ export class NewDailyComponent implements OnInit {
     private _signs: SignsDataService,
     private _dailyservice: DailyDataService,
     private _datePipe: DatePipe
-  ) {
-   this.formatted_date = _datePipe.transform(this.selected_date,"yyyy-MM-dd");
-  }
+  ) { }
 
   ngOnInit(): void { }
   
@@ -68,18 +68,26 @@ export class NewDailyComponent implements OnInit {
     this.nepDesc = e.editor.getData();
   }
 
+  dateChanged(e: any) {
+    this.selected_date = e;
+  }
+ 
   addDaily() {
+    let formatted_date = this._datePipe.transform(this.selected_date,"yyyy-MM-dd");
     let data = {
       horoscopeId: this.addDailyForm.value.horoscopeId,
-      horoscopeDateEnglish: this.selected_date,
+      horoscopeDateEnglish: formatted_date,
       horoscopeDescriptionEnglish: this.engDesc,
       horoscopeDescriptionNepali: this.nepDesc,
     };
-
+    console.log(data);
+    
     this._dailyservice.add(data).subscribe({
-      next:(x:any)=>{ },
+      next:(x:any)=>{
+        this.openSnackBar.emit({message: appMessages.added});
+       },
       error:(err:any)=>{
-        console.log("Error:"+err);
+        this.openSnackBar.emit({message: appMessages.addError});
       },
       complete:()=>{
         this.getDailyByDate.emit();

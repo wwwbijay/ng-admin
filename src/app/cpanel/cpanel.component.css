@@ -9,12 +9,13 @@
     z-index: 1; 
     top: 0;
     left: 0;
+    box-shadow: 1px 0 20px 0 #022335;
     background-color: #022335; 
     overflow-x: hidden; 
     transition: 0.5s; 
   }
   .sideBrand{
-    padding: 50px;
+    padding: 20px;
   }
   /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
   #main {

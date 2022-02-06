@@ -1,0 +1,151 @@
+<!-- Create Modal START -->
+<div
+class="modal fade"
+id="createSign"
+tabindex="-1"
+role="dialog"
+aria-labelledby="createModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+      <div class="modal-header text-center">
+          <h5 class="modal-title">Add New Zodiac Sign</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div><!--.modal-header ends-->
+
+      <div *ngIf="submitted" class="submitted">
+          <div class="alert alert-success text-center" role="alert">
+              <p>New Sign Created Successfully!</p>
+          </div>
+      </div>
+
+    <form [formGroup]="createSignForm" (ngSubmit)="addSign()">
+      
+      <div class="modal-body">
+        
+        <div class="row mid-title">
+          <div class="col">
+              <h3>English</h3>
+          </div>
+      </div>
+        <div class="row">
+          
+          <div class="col-md-6">
+            
+            <input
+              name="HoroscopeNameEnglish"
+              type="text"
+              class="form-control"
+              id="HoroscopeNameEnglish"
+              formControlName="HoroscopeNameEnglish"
+              placeholder="Title in English"
+            />
+          </div>
+          <div class="col-md-6">
+            
+            <input
+              name="HoroscopeSubTitleEnglish"
+              type="text"
+              class="form-control"
+              id="HoroscopeSubTitleEnglish"
+              formControlName="HoroscopeSubTitleEnglish"
+              placeholder="Subtitle in English"
+            />
+          </div>
+        </div>
+        <div class="row mid-title">
+          <div class="col">
+              <h3>Nepali</h3>
+          </div>
+      </div>
+        <div class="row">
+          
+            <div class="col-md-6">
+              
+              <input
+                name="HoroscopeNameNepali"
+                type="text"
+                class="form-control"
+                id="HoroscopeNameNepali"
+                formControlName="HoroscopeNameNepali"
+                placeholder="Title in Nepali"
+              />
+              <small
+                  *ngIf="HoroscopeNameNepali && HoroscopeNameNepali.invalid && HoroscopeNameNepali.touched"
+                  class="err_msg"
+                >
+                  Minimum length of username should be 5.
+                </small>
+            </div>
+            <div class="col-md-6">
+              <input
+                name="HoroscopeSubTitleNepali"
+                type="text"
+                class="form-control"
+                id="HoroscopeSubTitleNepali"
+                formControlName="HoroscopeSubTitleNepali"
+                placeholder="Subtitle in Nepali"
+              />
+            </div>
+          </div>
+
+          <div class="row mid-title">
+            <div class="col">
+                <h3>Add Symbol</h3>
+            </div>
+        </div>
+        <div class="row align-items-center mt-4">
+          <div class="col-4">
+            <div class="symbol_image">
+                <img *ngIf="!!symbolPath" src="{{symbolPath}}">
+                <img *ngIf="!symbolPath" src="assets/noimage.jpg">
+            </div>
+          </div>
+          <div class="col-8">
+            <input
+              name="image"
+              type="file"
+              class="form-control"
+              id="inputImage"
+              (change)="uploadFile($event)"
+              formControlName="image"
+            />
+            <small
+                  *ngIf="image && image.invalid && image.touched"
+                  class="err_msg"
+                >
+                  Minimum length of username should be 5.
+                </small>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="reset"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          [disabled]="createSignForm.invalid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+  <!--.modal-content ends-->
+</div>
+</div>
+<!-- Create Modal END-->

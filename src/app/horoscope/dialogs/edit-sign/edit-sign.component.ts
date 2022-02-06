@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { SignsDataService } from '../../services/signs-data.service';
+import { appMessages } from 'src/app/messages.config';
 
 @Component({
   selector: 'dialog-edit-sign',
@@ -14,6 +15,7 @@ export class EditSignComponent implements OnInit {
   symbol:any;
   symbolPath:any;
   @Output("getAllSigns") getAllSigns: EventEmitter<any> = new EventEmitter();
+  @Output("openSnackBar") openSnackBar: EventEmitter<any> = new EventEmitter();
 
   selectedId:any;
   selectedSign={
@@ -88,10 +90,12 @@ export class EditSignComponent implements OnInit {
     this._signs.update(formData).subscribe({
         next: (x: number) =>{
            console.log('next value: ' + x);
-           console.log('Success');
+           this.openSnackBar.emit({message: appMessages.updated});
           },
         error: (err: Error) => {
           console.error('Error:'+err.message);
+          this.openSnackBar.emit({message: appMessages.updateError});
+          this.getAllSigns.emit();
         },
         complete: () => {
           // this.submitted = true;

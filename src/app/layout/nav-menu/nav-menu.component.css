@@ -41,8 +41,8 @@
 
 
 .menu_icon .material-icons{
-    font-size: 35px;
-    margin: 8px 0;
+    font-size: 24px;
+    margin: 15px 0;
     cursor: pointer;
 }
 .admin_userprofile{
@@ -66,7 +66,7 @@
 }
 
 .icon_links .admin_notification > a{
-    background: #f3f3f3;
+
     border-radius: 50%;
     width: 35px;
     height: 35px;
@@ -83,19 +83,39 @@
     right: -5px;
     top: -5px;
     border-radius: 50%;
-    line-height: 10px;
-    font-size: 12px;
+    line-height: 8px;
+    font-size: 10px;
     font-weight: normal;
     padding: 5px;
     min-width: 18px;
 }
 .admin_notification .dropdown-item{
-    border-bottom: 1px solid #eee;
-    padding: 12px 18px ;
+    padding: 5px 18px;
+    font-size: 14px;
 }
 .dropdown-title{
     padding: 8px 18px ;
-    font-size: 20px;
+    font-size: 16px;
     border-bottom: 1px solid #eee;
 }
 
+.dropdown-menu {
+ padding: 0rem 0; 
+ border:none !important;
+ box-shadow: 0 1px 20px 0 rgb(69 90 100 / 8%);
+ font-size: 14px;
+
+}
+
+.dropdown-menu.navdp:before{
+    position: absolute;
+    top: -10px;
+    right: 6px;
+    display: inline-block;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ccc;
+    border-left: 10px solid transparent;
+    border-bottom-color: rgb(255 255 255);
+    content: '';
+  
+}

@@ -19,7 +19,7 @@
           </div>
         </div>
       </div>
-     
+
 
 
       <table class="table table-striped table-mid-content">
@@ -34,18 +34,14 @@
             <th scope="col">Action</th>
           </tr>
         </thead>
-      <!---Test Drag #Start-->
-      <tbody
-        cdkDropList
-        #todoList="cdkDropList"
-        [cdkDropListData]="allsigns"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
+        <!---Test Drag #Start-->
+        <tbody cdkDropList #todoList="cdkDropList" [cdkDropListData]="allsigns" class="example-list"
+          (cdkDropListDropped)="drop($event)">
 
           <tr class="grabbable" *ngFor="let sign of allsigns" cdkDrag>
 
             <td>
-              <img [src]="baseUrl+sign.horoscopeImagePath" class="mr-2" style="width: 100px">
+              <img [src]="baseUrl+sign.horoscopeImagePath" class="mr-2" style="width: 60px">
             </td>
             <td>
               {{sign.horoscopeNameNepali}}
@@ -75,12 +71,12 @@
               </a>
             </td>
           </tr>
-      
-      </tbody>
-      <!---Test Drag #END-->
+
+        </tbody>
+        <!---Test Drag #END-->
       </table>
 
-   
+
 
 
     </div>
@@ -88,9 +84,10 @@
   </div>
   <!--.page-item END-->
 
-  <dialog-create-sign #newSign (getAllSigns)="getAllSigns()"></dialog-create-sign>
-  <dialog-edit-sign #editSign (getAllSigns)="getAllSigns()"></dialog-edit-sign>
-  <dialog-delete-sign #deleteSign (getAllSigns)="getAllSigns()"></dialog-delete-sign>
+  <dialog-create-sign #newSign (getAllSigns)="getAllSigns()" (openSnackBar)="openSnackBar($event)"></dialog-create-sign>
+  <dialog-edit-sign #editSign (getAllSigns)="getAllSigns()" (openSnackBar)="openSnackBar($event)"></dialog-edit-sign>
+  <dialog-delete-sign #deleteSign (getAllSigns)="getAllSigns()" (openSnackBar)="openSnackBar($event)">
+  </dialog-delete-sign>
 </div>
 
 <router-outlet></router-outlet>

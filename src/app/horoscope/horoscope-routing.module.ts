@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { UpdateYearlyComponent } from './update-yearly/update-yearly.component';
-import { UpdateMonthlyComponent } from './update-monthly/update-monthly.component';
 import { UpdateWeeklyComponent } from './update-weekly/update-weekly.component';
 import { UpdateDailyComponent } from './update-daily/update-daily.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { EngMonthlyComponent } from './update-monthly/eng/eng.component';
+import { NepMonthlyComponent } from './update-monthly/nep/nep.component';
+import { EngYearlyComponent } from './update-yearly/eng/eng.component';
+import { NepYearlyComponent } from './update-yearly/nep/nep.component';
 
 const routes: Routes = [
     {
       component: UpdateDailyComponent,
       path: 'update-daily',
-      data: {
+      data: {   
         breadcrumb: 'Daily Update Horroscope'
       },
       canActivate: [AuthGuard]
@@ -25,20 +27,40 @@ const routes: Routes = [
       canActivate: [AuthGuard]
     },
     {
-      component: UpdateMonthlyComponent,
+      component: EngMonthlyComponent,
       path: 'update-monthly',
       data: {
-        breadcrumb: 'Monthly Update Horroscope'
+        breadcrumb: 'Monthly Update Horroscope '
       },
-      canActivate: [AuthGuard]
+      canActivate: [AuthGuard],
+      children: [
+        {
+          component: NepMonthlyComponent,
+          path: 'np',
+          data: {
+            breadcrumb: 'Nepali'
+          },
+          canActivate: [AuthGuard],
+        }
+      ]
     },
     {
-      component: UpdateYearlyComponent,
+      component: EngYearlyComponent,
       path: 'update-yearly',
       data: {
         breadcrumb: 'Yearly Update Horroscope'
       },
-      canActivate: [AuthGuard]
+      canActivate: [AuthGuard],
+      children: [
+        {
+          component: NepYearlyComponent,
+          path: 'np',
+          data: {
+            breadcrumb: 'Nepali'
+          },
+          canActivate: [AuthGuard],
+        }
+      ]
     },
   ];
 

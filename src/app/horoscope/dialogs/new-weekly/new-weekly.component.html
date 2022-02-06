@@ -1,0 +1,109 @@
+<!-- Create Modal START -->
+<div
+  class="modal fade"
+  id="newWeekly"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="newWeeklyLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          New Weekly Horoscope for -
+          <span class="highlights"> {{ selected_week }}</span>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--.modal-header ends-->
+     
+      <form [formGroup]="addWeeklyForm" (ngSubmit)="addWeekly()">
+        <div class="modal-body">
+          
+          <div class="row">
+            <div class="col-6">
+              <h5>Select Sign:</h5>
+              <select id="horoscopeId" class="form-control" name="horoscopeId" formControlName="horoscopeId">
+                <option value="" selected>Select Sign</option>
+                <option *ngFor="let sign of allSigns" value="{{sign.id}}">
+                  {{
+                    sign.horoscopeNameEnglish + " - " + sign.horoscopeNameNepali
+                  }}
+                </option>
+              </select>
+              <small
+                  *ngIf="horoscopeId && horoscopeId.invalid && horoscopeId.touched"
+                  class="err_msg"
+                >
+                Please select horoscope sign.
+              </small>
+            </div>
+            <div class="col-6">
+              <h5>Year:</h5>
+              <div class="input-group">
+                <input
+                  (ngModelChange)="dateChanged($event)"
+                  class="form-control"
+                  placeholder="yyyy-mm-dd"
+                  name="dp"
+                  [(ngModel)]="selected_date"
+                  ngbDatepicker
+                  #d="ngbDatepicker"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div class="input-group-append">
+                  <a (click)="d.toggle()">
+                    <span class="material-icons"> today </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mid-title">
+            <div class="col">
+              <h3>Description in Nepali</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <ckeditor [data]="nepDesc" (change)="descNepChange($event)"></ckeditor>
+            </div>
+          </div>
+          <div class="row mid-title">
+            <div class="col">
+              <h3>Description in English</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <ckeditor [data]="engDesc" (change)="descEngChange($event)" ></ckeditor>
+            </div>
+          </div>
+          
+        </div><!--.modal-body ends-->
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-danger btn-sm" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            [disabled]="addWeeklyForm.invalid"
+            type="submit"
+            class="btn btn-primary btn-sm"
+          >
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+    <!--.modal-content ends-->
+  </div>
+</div>
+<!-- Create Modal END-->
